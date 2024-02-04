@@ -26,18 +26,18 @@ def alta():
         precio=Utiles.check_numeros("precio de la pieza", 25)
         if precio is not None:
             piezaPrueba = {#Aqui metemos en un diccionario los datos
-                        "nombre":nombre,
-                        "tipoPieza":tipoPieza,
-                        "armadura":armadura,
-                        "consumoEnergia":consumoEnergia,
-                        "peso":peso,
-                        "precio":precio
+                        "nombre":str(nombre),
+                        "tipoPieza":str(tipoPieza),
+                        "armadura":str(armadura),
+                        "consumoEnergia":str(consumoEnergia),
+                        "peso":str(peso),
+                        "precio":str(precio)
                         }
             GestorBBDD.insertarDato("Pieza", piezaPrueba)
 def menuTipoPieza():
     opcion=None
     while(opcion!="0"):
-        print("--"*5+"MENU PRINCIPAL--"*5)
+        print("Tipo de pieza:")
         print("1.Cabeza.\n2.Torso.\n3.Brazos.\n4.Piernas.\n0.Salir.")
         opcion=Utiles.check_numeros("Opcion", 25)
         if(opcion=="1"):
@@ -61,3 +61,15 @@ def buscar():
     print("BUSCAR")
 def mostrarTodos():
     print("MOSTRAR TODOS")
+    datos=GestorBBDD.mostrarTodosDatos("Pieza")
+    for x in datos:
+        print("\n[-"+datos[x]["nombre"]+"-]")
+        print("  Tipo de pieza:"+datos[x]["tipoPieza"]+"  ")
+        print("  Armadura:"+datos[x]["armadura"]+"  ")
+        print("  Consumo de energia:"+datos[x]["consumoEnergia"]+"  ")
+        print("  Peso:"+datos[x]["peso"]+"  ")
+        print("  Precio:"+datos[x]["precio"]+"$  ")
+    
+    
+    
+    

@@ -49,10 +49,14 @@ def buscar():
 def mostrarTodos():
     print("MOSTRAR TODOS")
     datos=GestorBBDD.mostrarTodosDatos("Arma")
-    print(datos, type(datos))
-    
     for x in datos:
-        print(datos[x])
+        print("\n[-"+datos[x]["nombre"]+"-]")
+        print("  Tipo de damage:"+datos[x]["tipoDamage"]+"  ")
+        print("  Damage por segundo:"+datos[x]["dps"]+"  ")
+        print("  Rondas por minuto:"+datos[x]["rpm"]+"  ")
+        print("  Municion maxima:"+datos[x]["municion"]+"  ")
+        print("  Puede ponerse en el hombro:"+datos[x]["armaHombro"]+"  ")
+        print("  Precio:"+datos[x]["precio"]+"$  ")
 
 
 

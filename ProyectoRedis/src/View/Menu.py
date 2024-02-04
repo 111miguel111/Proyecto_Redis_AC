@@ -3,7 +3,7 @@ from Controller import Utiles,GestionPieza,GestionArma,GestionAC
 def menu():
     opcion=None
     while(opcion!="0"):
-        print("--"*5+"MENU PRINCIPAL--"*5)
+        print("\n"+"--"*5+"MENU PRINCIPAL"+"--"*5+"\n")
         print("1.Gestionar los AC(Mechas).\n2.Gestionar las piezas.\n3.Armas\n0.Salir.")
         opcion=Utiles.check_numeros("Opcion", 25)
         if(opcion=="1"):

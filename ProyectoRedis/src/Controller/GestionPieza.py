@@ -33,7 +33,7 @@ def alta():
                         "peso":peso,
                         "precio":precio
                         }
-            #TODO-Aqui se meteria la nueva pieza a la bbdd
+            GestorBBDD.insertarDato("Pieza", piezaPrueba)
 def menuTipoPieza():
     opcion=None
     while(opcion!="0"):

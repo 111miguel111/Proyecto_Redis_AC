@@ -29,15 +29,15 @@ def alta():
         precio=Utiles.check_numeros("precio del arma", 25)
         if precio is not None:
             armaPrueba = {#Aqui metemos en un diccionario los datos
-                        "nombre":nombre,
-                        "tipoDamage":tipoDamage,
-                        "dps":dps,
-                        "rpm":rpm,
-                        "municion":municion,
-                        "armaHombro":armaHombro,
-                        "precio":precio
+                        "nombre":str(nombre),
+                        "tipoDamage":str(tipoDamage),
+                        "dps":str(dps),
+                        "rpm":str(rpm),
+                        "municion":str(municion),
+                        "armaHombro":str(armaHombro),
+                        "precio":str(precio)
                         }
-            #TODO-Aqui se meteria el nuevo arma a la bbdd
+            GestorBBDD.insertarDato("Arma", armaPrueba)
             
     
 def baja():
@@ -48,3 +48,6 @@ def buscar():
     print("BUSCAR")
 def mostrarTodos():
     print("MOSTRAR TODOS")
+    datos=GestorBBDD.mostrarTodosDatos("Arma")
+    for x in datos:
+        print(x)

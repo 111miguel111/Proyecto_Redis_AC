@@ -5,6 +5,7 @@ import sys
 import redis
 from Controller import Utiles
 
+
 def iniciarFicheroConfiguracion():
     '''
     Funcion que se encarga de crear el fichero de configuracion con valores predeterminados
@@ -209,13 +210,13 @@ else:
 # -------------------------------------------
 # Metodos redis
 
-#Crud
+# Crud
 def insertarDato(tipoDato, datos):
     try:
-        conn.hset(tipoDato + datos["nombre"], datos)
+        conn.hmset(tipoDato + datos["nombre"], datos)
     except:
         print("Se ha cometido un error en la insercion")
-        print(traceback)
+        print(traceback.format_exc())
 
 
 def buscarDato(clave):
@@ -230,12 +231,115 @@ def borrarDato(clave):
 
 
 def mostrarTodosDatos(tipoDato):
-    datosAux = []
+    datosAux = {}
     for key in conn.keys(tipoDato + "*"):
         datosAux[key] = conn.hgetall(key)
     return datosAux
 
-#Queries
-def pesoAC(ac):
-    peso = 0
-    peso += int((conn.hgetall(ac["cabeza"]))["peso"])
+
+# Queries
+def datoAC(ac, tipoDato):  # Este metodo no va aqui
+    '''
+    Esta clase se encarga de devolver la suma de valores numericos del mecha
+    ac: diccionario del mecha
+    tipoDato: String del tipo de dato del que se quieren obtener datos
+    '''
+    # Se comprueba si los datos a buscar son de una pieza
+    if tipoDato == "armadura" or tipoDato == "consumoEnergia" or tipoDato == "peso":
+        # Se crea un valor 0 y se busca el valor de cada pieza, si la pieza no existe
+        # El valor es 0
+        valor = 0
+
+        valor += int((buscarDato(ac["cabeza"]))[tipoDato]) \
+            if int((buscarDato(ac["cabeza"]))[tipoDato]) is not "" else 0
+        valor += int((buscarDato(ac["torso"]))[tipoDato]) \
+            if int((buscarDato(ac["torso"]))[tipoDato]) is not "" else 0
+        valor += int((buscarDato(ac["brazos"]))[tipoDato]) \
+            if int((buscarDato(ac["brazos"]))[tipoDato]) is not "" else 0
+        valor += int((buscarDato(ac["piernas"]))[tipoDato]) \
+            if int((buscarDato(ac["piernas"]))[tipoDato]) is not "" else 0
+
+        return valor
+
+    # Se comprueba si los datos son de las armas
+    elif tipoDato == "dps" or tipoDato == "rpm":
+        # Se crea un valor 0 y se busca el valor de cada pieza, si la pieza no existe
+        # El valor es 0
+        valor = 0
+
+        valor += int((buscarDato(ac["armaBDer"]))[tipoDato]) \
+            if int((buscarDato(ac["armaBDer"]))[tipoDato]) is not "" else 0
+        valor += int((buscarDato(ac["armaBIzq"]))[tipoDato]) \
+            if int((buscarDato(ac["armaBIzq"]))[tipoDato]) is not "" else 0
+        valor += int((buscarDato(ac["armaHDer"]))[tipoDato]) \
+            if int((buscarDato(ac["armaHDer"]))[tipoDato]) is not "" else 0
+        valor += int((buscarDato(ac["armaHIzq"]))[tipoDato]) \
+            if int((buscarDato(ac["armaHIzq"]))[tipoDato]) is not "" else 0
+
+        return valor
+
+    # Se comprueba si el dato es el precio
+    elif tipoDato == "precio":
+        # Se crea un valor 0 y se busca el valor de cada pieza, si la pieza no existe
+        # El valor es 0
+        valor = 0
+
+        valor += int((buscarDato(ac["cabeza"]))[tipoDato]) \
+            if int((buscarDato(ac["cabeza"]))[tipoDato]) is not "" else 0
+        valor += int((buscarDato(ac["torso"]))[tipoDato]) \
+            if int((buscarDato(ac["torso"]))[tipoDato]) is not "" else 0
+        valor += int((buscarDato(ac["brazos"]))[tipoDato]) \
+            if int((buscarDato(ac["brazos"]))[tipoDato]) is not "" else 0
+        valor += int((buscarDato(ac["piernas"]))[tipoDato]) \
+            if int((buscarDato(ac["piernas"]))[tipoDato]) is not "" else 0
+        valor += int((buscarDato(ac["armaBDer"]))[tipoDato]) \
+            if int((buscarDato(ac["armaBDer"]))[tipoDato]) is not "" else 0
+        valor += int((buscarDato(ac["armaBIzq"]))[tipoDato]) \
+            if int((buscarDato(ac["armaBIzq"]))[tipoDato]) is not "" else 0
+        valor += int((buscarDato(ac["armaHDer"]))[tipoDato]) \
+            if int((buscarDato(ac["armaHDer"]))[tipoDato]) is not "" else 0
+        valor += int((buscarDato(ac["armaHIzq"]))[tipoDato]) \
+            if int((buscarDato(ac["armaHIzq"]))[tipoDato]) is not "" else 0
+
+        return valor
+
+    # Si no es ningun valor conocido devuelve None
+    print("Dato a buscar no valido")
+    return None
+
+
+def mostrarTodosFiltro(tipoDato, campo, valor, rango):
+    '''
+    Metodo que busca todas las instancias de datos con los parametros elegidos.
+    Si los parametros elegidos no son correctos se devuelve none
+    tipoDato: String con el tipo de dato a buscar, se le puede concatenar caracteres
+    del nombre del dato para una busqueda por nombre mas exhaustiva
+    campo: String del parametro del dato por el que se desea filtrar
+    valor: String del valor por el que se desea filtrar. En el caso de buscar por nombre
+    se puede hacer busqueda parcial terminando con un *
+    rango: String con "=", "<", o ">" para hacer que busque por mayor que, menor que o igual.
+    El caso de que se quiera buscar un campo con letras solo "=" sera valido
+    '''
+    #Se crea el diccionario en el que se van a guardar los datos
+    datosAux = {}
+
+    #El for each recorre la BBDD en funcion a la cadena del tipo de dato introducida
+    for key in conn.keys(tipoDato + "*"):
+        try:
+            #Se comprueba que se quiere hacer con el tipo de dato
+            if (rango == "="):
+                if valor == "" or conn.hgetall(key)[campo] == valor:
+                    datosAux[key] = conn.hgetall(key)
+            elif (rango == ">"):
+                if valor == "" or int(conn.hgetall(key)[campo]) > int(valor):
+                    datosAux[key] = conn.hgetall(key)
+            elif (rango == "<"):
+                if valor == "" or int(conn.hgetall(key)[campo]) < valor:
+                    datosAux[key] = conn.hgetall(key)
+            else:
+                print('Introduzca que con que rango se quieren filtrar los datos. Si no esta seguro ponga "')
+        except:
+            print("Error al buscar dato. Compruebe que los parametros de busqueda son correctos")
+            return None
+
+    return datosAux

@@ -49,5 +49,13 @@ def buscar():
 def mostrarTodos():
     print("MOSTRAR TODOS")
     datos=GestorBBDD.mostrarTodosDatos("Arma")
+    print(datos, type(datos))
+    
     for x in datos:
-        print(x)
+        print(datos[x])
+
+
+
+
+
+

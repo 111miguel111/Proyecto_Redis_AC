@@ -34,7 +34,7 @@ def iniciarFicheroConfiguracionManulamente():
     print("El fichero de configuracion no existe porfavor introduce los campos a poner en el fichero.")
     host = Utiles.check_campo("host", 25)
     if host is not None:
-        port = Utiles.escanerNumerico("port")
+        port = Utiles.check_numeros("port", 25)
     if port is not None:
         try:
             # Creamos un fichero .ini en el cual se guardan datos para la configuracion del programa
@@ -135,7 +135,7 @@ def conectarse():
     except:
         print(
             "Hay un error en la conexion. \n1.Quieres restablecer el fichero con los valores por defecto \n2.Quieres cerrar el programa. ")
-        opcion = Utiles.escanerNumerico()
+        opcion = Utiles.check_numeros("Opcion", 25)
         if (opcion == '1'):
             print("El fichero de configuracion sera restablecido y el programa se cerrara.")
             iniciarFicheroConfiguracion()
@@ -173,7 +173,7 @@ def iniciar():
                 print(
                     "Hay un error en el fichero de configuracion: \n1.Quieres restablecer el fichero con los valores por defecto. \n2.Quieres cerrar el programa.\n3.Quieres borrar el fichero de configuracion.")
 
-                opcion = Utiles.escanerNumerico("Opcion")
+                opcion = Utiles.check_numeros("Opcion", 25)
                 if (opcion == '1'):
                     print("El fichero de configuracion sera restablecido y el programa se cerrara.")
                     iniciarFicheroConfiguracion()

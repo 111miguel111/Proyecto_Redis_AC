@@ -251,13 +251,13 @@ def datoAC(ac, tipoDato):  # Este metodo no va aqui
         valor = 0
 
         valor += int((buscarDato(ac["cabeza"]))[tipoDato]) \
-            if int((buscarDato(ac["cabeza"]))[tipoDato]) is not "" else 0
+            if int((buscarDato(ac["cabeza"]))[tipoDato]) != "" else 0
         valor += int((buscarDato(ac["torso"]))[tipoDato]) \
-            if int((buscarDato(ac["torso"]))[tipoDato]) is not "" else 0
+            if int((buscarDato(ac["torso"]))[tipoDato]) != "" else 0
         valor += int((buscarDato(ac["brazos"]))[tipoDato]) \
-            if int((buscarDato(ac["brazos"]))[tipoDato]) is not "" else 0
+            if int((buscarDato(ac["brazos"]))[tipoDato]) != "" else 0
         valor += int((buscarDato(ac["piernas"]))[tipoDato]) \
-            if int((buscarDato(ac["piernas"]))[tipoDato]) is not "" else 0
+            if int((buscarDato(ac["piernas"]))[tipoDato]) != "" else 0
 
         return valor
 
@@ -268,13 +268,13 @@ def datoAC(ac, tipoDato):  # Este metodo no va aqui
         valor = 0
 
         valor += int((buscarDato(ac["armaBDer"]))[tipoDato]) \
-            if int((buscarDato(ac["armaBDer"]))[tipoDato]) is not "" else 0
+            if int((buscarDato(ac["armaBDer"]))[tipoDato]) != "" else 0
         valor += int((buscarDato(ac["armaBIzq"]))[tipoDato]) \
-            if int((buscarDato(ac["armaBIzq"]))[tipoDato]) is not "" else 0
+            if int((buscarDato(ac["armaBIzq"]))[tipoDato]) != "" else 0
         valor += int((buscarDato(ac["armaHDer"]))[tipoDato]) \
-            if int((buscarDato(ac["armaHDer"]))[tipoDato]) is not "" else 0
+            if int((buscarDato(ac["armaHDer"]))[tipoDato]) != "" else 0
         valor += int((buscarDato(ac["armaHIzq"]))[tipoDato]) \
-            if int((buscarDato(ac["armaHIzq"]))[tipoDato]) is not "" else 0
+            if int((buscarDato(ac["armaHIzq"]))[tipoDato]) != "" else 0
 
         return valor
 
@@ -285,21 +285,21 @@ def datoAC(ac, tipoDato):  # Este metodo no va aqui
         valor = 0
 
         valor += int((buscarDato(ac["cabeza"]))[tipoDato]) \
-            if int((buscarDato(ac["cabeza"]))[tipoDato]) is not "" else 0
+            if int((buscarDato(ac["cabeza"]))[tipoDato]) != "" else 0
         valor += int((buscarDato(ac["torso"]))[tipoDato]) \
-            if int((buscarDato(ac["torso"]))[tipoDato]) is not "" else 0
+            if int((buscarDato(ac["torso"]))[tipoDato]) != "" else 0
         valor += int((buscarDato(ac["brazos"]))[tipoDato]) \
-            if int((buscarDato(ac["brazos"]))[tipoDato]) is not "" else 0
+            if int((buscarDato(ac["brazos"]))[tipoDato]) != "" else 0
         valor += int((buscarDato(ac["piernas"]))[tipoDato]) \
-            if int((buscarDato(ac["piernas"]))[tipoDato]) is not "" else 0
+            if int((buscarDato(ac["piernas"]))[tipoDato]) != "" else 0
         valor += int((buscarDato(ac["armaBDer"]))[tipoDato]) \
-            if int((buscarDato(ac["armaBDer"]))[tipoDato]) is not "" else 0
+            if int((buscarDato(ac["armaBDer"]))[tipoDato]) != "" else 0
         valor += int((buscarDato(ac["armaBIzq"]))[tipoDato]) \
-            if int((buscarDato(ac["armaBIzq"]))[tipoDato]) is not "" else 0
+            if int((buscarDato(ac["armaBIzq"]))[tipoDato]) != "" else 0
         valor += int((buscarDato(ac["armaHDer"]))[tipoDato]) \
-            if int((buscarDato(ac["armaHDer"]))[tipoDato]) is not "" else 0
+            if int((buscarDato(ac["armaHDer"]))[tipoDato]) != "" else 0
         valor += int((buscarDato(ac["armaHIzq"]))[tipoDato]) \
-            if int((buscarDato(ac["armaHIzq"]))[tipoDato]) is not "" else 0
+            if int((buscarDato(ac["armaHIzq"]))[tipoDato]) != "" else 0
 
         return valor
 

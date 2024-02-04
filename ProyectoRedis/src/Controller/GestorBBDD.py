@@ -1,34 +1,9 @@
-
 import configparser
+import traceback
 from os import remove
 import sys
 import redis
 from Controller import Utiles
-
-
-
-def escanerNumerico(contexto):
-    """
-    Funcion que cerciora que la cadena que se introduce no este vacia y sean numeros
-    :param contexto: informcacion sobre el campo
-    :return: respuesta: si el campo es correcto
-    :return: None: si el campo esta vacio
-    """
-    # Se crea un contador de intentos para el bucle que solo iterara hasta 5 intentos
-    intentos = 0
-    while (intentos < 5):
-        print(contexto.capitalize() + ": ")
-        scan = input()
-        # Se introduce la cadena y comprueba que no este vacio y que ponga 1 o 2 si no te vuelve a preguntar y si fallas 5 veces devulve none
-        if (scan.isspace() == False and scan.isnumeric() ):
-            return scan
-        intentos += 1
-        print('Porfavor introduce solo numeros no decimales.'+'\n')
-        if intentos < 5:
-            print("Fallos hasta salir", intentos, "/5")
-    print("Has superado el numero de intentos.")
-    return None
-
 
 def iniciarFicheroConfiguracion():
     '''
@@ -52,13 +27,13 @@ def iniciarFicheroConfiguracionManulamente():
     '''
     Funcion que se encarga de crear el fichero de configuracion con valores que se le pediran al usuario
     '''
-    host=None
-    port=None
-    #Pedimos los datos para crear el ficheo de configuracion
+    host = None
+    port = None
+    # Pedimos los datos para crear el ficheo de configuracion
     print("El fichero de configuracion no existe porfavor introduce los campos a poner en el fichero.")
-    host=Utiles.check_campo("host", 25)
+    host = Utiles.check_campo("host", 25)
     if host is not None:
-        port=escanerNumerico("port")
+        port = Utiles.escanerNumerico("port")
     if port is not None:
         try:
             # Creamos un fichero .ini en el cual se guardan datos para la configuracion del programa
@@ -69,7 +44,8 @@ def iniciarFicheroConfiguracionManulamente():
                 config.write(configfile)
             print("Se ha creado el fichero de configuracion.")
         except:
-            print('No se ha podido crear el fichero de configuracion, el programa se cerrara. \nComprueba que has introducido bien los datos.\nEl fichero se llama "config.ini". ')
+            print(
+                'No se ha podido crear el fichero de configuracion, el programa se cerrara. \nComprueba que has introducido bien los datos.\nEl fichero se llama "config.ini". ')
             sys.exit()  # Cerramos el programa ya que no deberia continuar tras este error
     else:
         print('No se ha podido crear el fichero de configuracion, el programa se cerrara. ')
@@ -142,23 +118,23 @@ def conectarse():
     :return devolveremos una conexion 
     '''
     try:
-        
-        #Obtenemos la informacion del fichero de oniguracion
+
+        # Obtenemos la informacion del fichero de oniguracion
         config = configparser.ConfigParser()
         config.read('config.ini')
         host_variable = str(config['SERVER']['host'])
         port_variable = int(config['SERVER']['port'])
-        #Una vez ya tenemos las variables con los datos para la conexion nos conectamos con redis
-        conn = redis.Redis(host=host_variable, 
-                        port=port_variable, 
-                        decode_responses=True)
-        
+        # Una vez ya tenemos las variables con los datos para la conexion nos conectamos con redis
+        conn = redis.Redis(host=host_variable,
+                           port=port_variable,
+                           decode_responses=True)
+
         return conn
     # Si la conexion no se puede realizar nos informara
     except:
         print(
             "Hay un error en la conexion. \n1.Quieres restablecer el fichero con los valores por defecto \n2.Quieres cerrar el programa. ")
-        opcion = escanerNumerico()
+        opcion = Utiles.escanerNumerico()
         if (opcion == '1'):
             print("El fichero de configuracion sera restablecido y el programa se cerrara.")
             iniciarFicheroConfiguracion()
@@ -177,8 +153,10 @@ def cerrarBD():
         print("Desconectando la base de datos.")
         conn.close()
     except:
-        #print(traceback.format_exc())
+        # print(traceback.format_exc())
         return None
+
+
 def iniciar():
     '''
     Funcion encargada de crear la conexion y confirmar que el fichero de configuracion va bien etc.
@@ -186,15 +164,15 @@ def iniciar():
     '''
     # Funcion que inicia lo relacionado con la base de datos, comprueba el fichero de datos, comprueba la conexion y si esta bien procede a crear una base de datos
     try:
-    #Primero confirmamos que el fichero de configuracion existe y no esta corrupto
+        # Primero confirmamos que el fichero de configuracion existe y no esta corrupto
         if (checkFileExistance(
                 "config.ini") == True):  # Comprobamos que el fichero de configuracion existe, si no es el caso lo creamos con los datos por defecto
             if (checkConfigBien("config.ini") == False):  # Comprobamos que el fichero de configuracion esta bien
                 # Si hay algun error informamos al usuario
                 print(
                     "Hay un error en el fichero de configuracion: \n1.Quieres restablecer el fichero con los valores por defecto. \n2.Quieres cerrar el programa.\n3.Quieres borrar el fichero de configuracion.")
-                
-                opcion = escanerNumerico("Opcion")
+
+                opcion = Utiles.escanerNumerico("Opcion")
                 if (opcion == '1'):
                     print("El fichero de configuracion sera restablecido y el programa se cerrara.")
                     iniciarFicheroConfiguracion()
@@ -213,31 +191,51 @@ def iniciar():
                     sys.exit()  # Cerramos el programa ya que no deberia continuar tras este error
         else:
             iniciarFicheroConfiguracionManulamente()
-        return True  
+        return True
     except:
         return False
 
 
-
-
-
-
-
-#------------------------------------------------------------------------------------------------------------
-#Creamos la variable conn para inicializarla
+# ------------------------------------------------------------------------------------------------------------
+# Creamos la variable conn para inicializarla
 conn = None
-#Comprobamos que la conexion esta bien y si este es el caso rrreaalizamos la conexion con peewee si no cerramos el programa
+# Comprobamos que la conexion esta bien y si este es el caso rrreaalizamos la conexion con peewee si no cerramos el programa
 if (iniciar()):
     conn = conectarse()
 else:
     sys.exit()  # Cerramos el programa ya que no deberia continuar tras este error
 
 
+# -------------------------------------------
+# Metodos redis
+
+#Crud
+def insertarDato(tipoDato, datos):
+    try:
+        conn.hset(tipoDato + datos["nombre"], datos)
+    except:
+        print("Se ha cometido un error en la insercion")
+        print(traceback)
 
 
+def buscarDato(clave):
+    datos = conn.hgetall(clave)
+    if (len(datos) == 0):
+        datos = None
+    return datos
 
 
+def borrarDato(clave):
+    conn.delete(clave)
 
-    
-    
-    
+
+def mostrarTodosDatos(tipoDato):
+    datosAux = []
+    for key in conn.keys(tipoDato + "*"):
+        datosAux[key] = conn.hgetall(key)
+    return datosAux
+
+#Queries
+def pesoAC(ac):
+    peso = 0
+    peso += int((conn.hgetall(ac["cabeza"]))["peso"])

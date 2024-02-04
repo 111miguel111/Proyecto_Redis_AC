@@ -75,6 +75,86 @@ def check_campo(contexto, long):
             print("Fallos hasta salir", fallos, "/5")
     print("Se han producido 5 fallos.\nAbotortando proceso.\n")
     return None
+def check_numeros(contexto, long):
+    """
+    Funcion de apoyo que cerciora que la cadena que se introduce tiene como maximo una longitud y ademas es alfanumerica
+    :param contexto: Explicacion del campo al que se refiere
+    :param long: longitud maxima de la cadena
+    :return: campo si este cumple las validaciones
+    :return: None si se falla 5 veces en la introduccion del campo
+    """
+    fallos = 0
+    while fallos < 5:
+        campo = entrada_teclado(contexto)
+        if campo is not None:
+            palabras = campo.split(" ")
+            carac_no_valido = False
+            for espacio in palabras:  # Comprobamos que en las posibles palabras del campo no haya componentes no alfanumericos
+                if not espacio.isnumeric():
+                    carac_no_valido = True
+
+            if not carac_no_valido:
+                long = int(long)
+                if 0 < len(campo) <= long:  # Verificamos la longitud del campo
+                    print(contexto.capitalize() + " es valido.")
+                    return campo
+                else:
+                    print(contexto + " tiene una longitud no valida, longitud maxima: " + str(long) + ".\n")
+                    fallos += 1
+            else:
+                if len(campo) == 0:
+                    print("El campo, " + contexto + " no puede estar vacio." + "\n")
+                    fallos += 1
+                else:
+                    print(contexto + " contiene caracteres no validos." + "\n")
+                    fallos += 1
+        else:
+            fallos += 1
+        if fallos < 5:
+            print("Fallos hasta salir", fallos, "/5")
+    print("Se han producido 5 fallos.\nAbotortando proceso.\n")
+    return None
+
+
+def check_letras(contexto, long):
+    """
+    Funcion de apoyo que cerciora que la cadena que se introduce tiene como maximo una longitud y ademas es alfabetica
+    :param contexto: Explicacion del campo al que se refiere
+    :param long: longitud maxima de la cadena
+    :return: campo si este cumple las validaciones
+    :return: None si se falla 5 veces en la introduccion del campo
+    """
+    fallos = 0
+    while fallos < 5:
+        campo = entrada_teclado(contexto)
+        if campo is not None:
+            palabras = campo.split(" ")
+            carac_no_valido = False
+            for espacio in palabras:  # Comprobamos que en las posibles palabras del campo no haya componentes no alfanumericos
+                if not espacio.isalpha():
+                    carac_no_valido = True
+
+            if not carac_no_valido:
+                long = int(long)
+                if 0 < len(campo) <= long:  # Verificamos la longitud del campo
+                    print(contexto.capitalize() + " es valido.")
+                    return campo.capitalize()
+                else:
+                    print(contexto + " tiene una longitud no valida, longitud maxima: " + str(long) + ".\n")
+                    fallos += 1
+            else:
+                if len(campo) == 0:
+                    print("El campo, " + contexto + " no puede estar vacio." + "\n")
+                    fallos += 1
+                else:
+                    print(contexto + " contiene caracteres no validos." + "\n")
+                    fallos += 1
+        else:
+            fallos += 1
+        if fallos < 5:
+            print("Fallos hasta salir", fallos, "/5")
+    print("Se han producido 5 fallos.\nAbotortando proceso.\n")
+    return None
 
 
 def check_dni():
@@ -138,24 +218,4 @@ def check_telefono():
     return None
 
 
-def escanerNumerico(contexto):
-    """
-    Funcion que cerciora que la cadena que se introduce no este vacia y sean numeros
-    :param contexto: informcacion sobre el campo
-    :return: respuesta: si el campo es correcto
-    :return: None: si el campo esta vacio
-    """
-    # Se crea un contador de intentos para el bucle que solo iterara hasta 5 intentos
-    intentos = 0
-    while (intentos < 5):
-        print(contexto.capitalize() + ": ")
-        scan = input()
-        # Se introduce la cadena y que ponga 1 o 2 si no te vuelve a preguntar y si fallas 5 veces devulve none
-        if (scan.isspace() == False and scan.isnumeric()):
-            return scan
-        intentos += 1
-        print('Porfavor introduce solo numeros no decimales.' + '\n')
-        if intentos < 5:
-            print("Fallos hasta salir", intentos, "/5")
-    print("Has superado el numero de intentos.")
-    return None
+

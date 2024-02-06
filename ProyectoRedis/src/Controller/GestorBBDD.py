@@ -3,7 +3,7 @@ import traceback
 from os import remove
 import sys
 import redis
-from Controller import Utiles
+from ProyectoRedis.src.Controller import Utiles
 
 
 def iniciarFicheroConfiguracion():
@@ -63,11 +63,13 @@ def checkFileExistance(filePath):
     # Comprobamos que el fichero exista si no es el caso devolvemos false
     try:
         with open(filePath, "r"):
+            print("El fichero de configuracion existe.")
             return True
-        print("El fichero de configuracion existe.")
+
     except FileNotFoundError:
-        return False
         print("El fichero de configuracion no existe.")
+        return False
+
     except IOError:
         return False
 

@@ -1,4 +1,5 @@
-from Controller import GestorBBDD
+
+from ProyectoRedis.src.Controller import GestorBBDD
 
 
 

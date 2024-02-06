@@ -1,4 +1,5 @@
-class Arma:
+class Arma():
+    '''
     def __init__(self, datos):
         self.nombre = datos["nombre"]
         self.tipoDamage = datos["tipoDamage"]
@@ -7,5 +8,7 @@ class Arma:
         self.municion = datos["municion"]
         self.armaHombro = datos["armaHombro"]
         self.precio = datos["precio"]
+        '''
+
 
 

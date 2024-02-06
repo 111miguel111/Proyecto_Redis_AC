@@ -1,4 +1,6 @@
-from Controller import Utiles,GestionPieza,GestionArma,GestionAC
+from ProyectoRedis.src.Controller import Utiles,GestionPieza,GestionArma,GestionAC,iGestores
+a = GestionArma.GestionArma()
+a.alta()
 
 def menu():
     opcion=None

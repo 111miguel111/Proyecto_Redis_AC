@@ -2,6 +2,8 @@ from ProyectoRedis.src.Model import Arma
 from ProyectoRedis.src.Model import Cuerpo
 from ProyectoRedis.src.Model import Pieza
 
+
+
 armaPrueba = {#Aqui metemos en un diccionario los datos
     "nombre":input("Introduzca el nombre"),
     "tipoDamage":input("Introduzca el tipo de damage"),

@@ -4,18 +4,19 @@ from ProyectoRedis.src.Model import Pieza
 from ProyectoRedis.src.Model import GestorBBDD
 
 armaPrueba = {#Aqui metemos en un diccionario los datos
-    "ArmaEjemplonombre":input("Introduzca el nombre"),
-    "ArmaEjemplotipoDamage":input("Introduzca el tipo de damage"),
-    "ArmaEjemplodps":input("Introduzca el damage por segundo"),
-    "ArmaEjemplorpm":input("Introduzca las rondas por minuto"),
-    "ArmaEjemplomunicion":input("Introduzca las rondas maximas"),
-    "ArmaEjemploarmaHombro":input("¿Es un arma de hombro? (Si o No)"),
-    "ArmaEjemploprecio":input("Introduzca el precio del arma")
+    "Arma_Ejemplo_nombre":input("Introduzca el nombre"),
+    "Arma_Ejemplo_tipoDamage":input("Introduzca el tipo de damage"),
+    "Arma_Ejemplo_dps":input("Introduzca el damage por segundo"),
+    "Arma_Ejemplo_rpm":input("Introduzca las rondas por minuto"),
+    "Arma_Ejemplo_municion":input("Introduzca las rondas maximas"),
+    "Arma_Ejemplo_armaHombro":input("¿Es un arma de hombro? (Si o No)"),
+    "Arma_Ejemplo_precio":input("Introduzca el precio del arma")
 }
-
+#GestorBBDD.borrarDato("Arma")
 GestorBBDD.insertarDato(armaPrueba)
-aux = GestorBBDD.buscarDato("ArmaEjeemplo")
+aux = GestorBBDD.buscarDato("ArmaEjemplo")
 print(aux)
+print(GestorBBDD.mostrarTodosDatos("Arma"))
 
 if aux is not None:
     for campo in aux:

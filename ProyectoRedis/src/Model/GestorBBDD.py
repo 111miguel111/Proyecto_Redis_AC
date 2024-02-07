@@ -236,8 +236,17 @@ def borrarDato(clave):
 
 
 def mostrarTodosDatos(tipoDato):#Diccionario de diccionarios
-    datos = conn.hgetall(tipoDato+"*")#Ayuda
-    return datos
+    datos = conn.keys(tipoDato+"*")#Ayuda
+    datosOut = {}
+    stringAux = ""
+    for key in datos:
+        if (str(key).split("_")[0]+"_"+str(key).split("_")[1]) is not stringAux:
+            stringAux=str(key).split("_")[0]+"_"+str(key).split("_")[1]
+            datosAux = {}
+            for key in conn.keys(stringAux+"*"):
+                datosAux[key] = conn.get(key)
+            datosOut[stringAux] = datosAux
+    return datosOut
 
 
 # Queries

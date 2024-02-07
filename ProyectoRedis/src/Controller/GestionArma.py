@@ -44,15 +44,77 @@ class GestionArma(iGestores):
     @staticmethod
     def baja():
         print("BAJA")
+        nombre = Utiles.check_campo("nombre", 25)
+        if nombre is not None:
+            armaAux =GestorBBDD.buscarDato("Arma" + nombre)
+            if armaAux is not None:
+                if Utiles.confirmacion("¿Seguro que quiere eliminar este arma?") is True:
+                    GestorBBDD.borrarDato("Arma"+nombre)
 
     @staticmethod
     def modificar():
         print("MODIFICAR")
+        nombre = Utiles.check_campo("nombre", 25)
+        if nombre is not None:
+            armaAux = GestorBBDD.buscarDato("Arma" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
+            if armaAux is not None:
+                menuModificar(nombre,armaAux)
+
 
     @staticmethod
-    def buscar():
-        print("BUSCAR")
+    def menuModificar(nombreOriginal,arma):
+        opcion = None
+        while (opcion != "0"):
+            cambio=False
+            print("¿Que campo quieres modificar?")
+            print("1.Nombre.\n2.Tipo de damage.\n3.Damage por segundo."
+                  "\n4.Rondas por minuto.\n5.Municion maxima.\n6.Puede ponerse en el hombro.\n7.Precio.\n0.Salir.")
+            opcion = Utiles.check_numeros("Opcion", 25)
+            if (opcion == "1"):
+                nombre = Utiles.check_campo("nombre", 25)
+                if nombre is not None:
+                    armaAux = GestorBBDD.buscarDato("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
+                    if armaAux is None:
+                        arma["Arma_"+nombreOriginal+"_Nombre"]=nombre
+                        cambio = True
+            elif (opcion == "2"):
+                arma["Arma_" + nombreOriginal + "_Nombre"] = nombre
+                cambio = True
+            elif (opcion == "3"):
+                arma["Arma_" + nombreOriginal + "_Nombre"] = nombre
+                cambio = True
+            elif (opcion == "4"):
+                arma["Arma_" + nombreOriginal + "_Nombre"] = nombre
+                cambio = True
+            elif (opcion == "5"):
+                arma["Arma_" + nombreOriginal + "_Nombre"] = nombre
+                cambio = True
+            elif (opcion == "6"):
+                arma["Arma_" + nombreOriginal + "_Nombre"] = nombre
+                cambio = True
+            elif (opcion == "7"):
+                arma["Arma_" + nombreOriginal + "_Nombre"] = nombre
+                cambio = True
+            elif (opcion == "0"):
+                print("Saliendo del subMenu.")
+                return None
+            else:
+                print("Opcion no valida.")
+            if cambio is True:
+                GestorBBDD.insertarDato(arma)
 
+    @staticmethod
+    def buscar(nombre):
+        nombre = Utiles.check_campo("nombre", 25)
+        if nombre is not None:
+            armaAux = GestorBBDD.buscarDato(
+                "Arma" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
+            if armaAux is not None:
+                return armaAux
+            else:
+                return None
+        else:
+            return None
     @staticmethod
     def mostrarTodos():
         print("MOSTRAR TODOS")

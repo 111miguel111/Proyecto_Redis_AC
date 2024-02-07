@@ -20,6 +20,11 @@ class Mando(metaclass=ABCMeta):
 
     @staticmethod
     @abstractmethod
+    def menuModificar():
+        pass
+
+    @staticmethod
+    @abstractmethod
     def buscar():
         pass
 

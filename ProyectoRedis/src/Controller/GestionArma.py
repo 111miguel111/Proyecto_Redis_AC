@@ -14,7 +14,7 @@ class GestionArma(iGestores):
         print("ALTA")
         nombre = Utiles.check_campo("nombre", 25)
         if nombre is not None:
-            armaAux = GestorBBDD.buscarDato("Arma" + nombre)  # Comprobamos si ya existe un arma con ese nombre
+            armaAux = GestorBBDD.buscarDato("Arma" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
             if armaAux is None:
                 tipoDamage = Utiles.check_letras("tipo de damage", 25)
         if tipoDamage is not None:
@@ -29,15 +29,15 @@ class GestionArma(iGestores):
             precio = Utiles.check_numeros("precio del arma", 25)
             if precio is not None:
                 armaPrueba = {  # Aqui metemos en un diccionario los datos
-                    "nombre": str(nombre),
-                    "tipoDamage": str(tipoDamage),
-                    "dps": str(dps),
-                    "rpm": str(rpm),
-                    "municion": str(municion),
-                    "armaHombro": str(armaHombro),
-                    "precio": str(precio)
+                    "Arma"+str(nombre)+"Nombre": str(nombre),
+                    "Arma"+str(nombre)+"TipoDamage": str(tipoDamage),
+                    "Arma"+str(nombre)+"Dps": str(dps),
+                    "Arma"+str(nombre)+"Rpm": str(rpm),
+                    "Arma"+str(nombre)+"Municion": str(municion),
+                    "Arma"+str(nombre)+"ArmaHombro": str(armaHombro),
+                    "Arma"+str(nombre)+"Precio": str(precio)
                 }
-                GestorBBDD.insertarDato("Arma", armaPrueba)
+                GestorBBDD.insertarDato("Arma", armaPrueba)#Te mando un diccionario con las clave valor del arma---------------------------------------------------
 
     @staticmethod
     def baja():
@@ -54,12 +54,12 @@ class GestionArma(iGestores):
     @staticmethod
     def mostrarTodos():
         print("MOSTRAR TODOS")
-        datos = GestorBBDD.mostrarTodosDatos("Arma")
+        datos = GestorBBDD.mostrarTodosDatos("Arma")# Te mando la categoria para que me devuelvas un diccionario con diccionarios que contengan los datos de una pieza
         for x in datos:
-            print("\n[-" + datos[x]["nombre"] + "-]")
-            print("  Tipo de damage:" + datos[x]["tipoDamage"] + "  ")
-            print("  Damage por segundo:" + datos[x]["dps"] + "  ")
-            print("  Rondas por minuto:" + datos[x]["rpm"] + "  ")
-            print("  Municion maxima:" + datos[x]["municion"] + "  ")
-            print("  Puede ponerse en el hombro:" + datos[x]["armaHombro"] + "  ")
-            print("  Precio:" + datos[x]["precio"] + "$  ")
+            print("\n[-" + datos[x]["*Nombre"] + "-]")
+            print("  Tipo de damage:" + datos[x]["*TipoDamage"] + "  ")
+            print("  Damage por segundo:" + datos[x]["*Dps"] + "  ")
+            print("  Rondas por minuto:" + datos[x]["*Rpm"] + "  ")
+            print("  Municion maxima:" + datos[x]["*Municion"] + "  ")
+            print("  Puede ponerse en el hombro:" + datos[x]["*ArmaHombro"] + "  ")
+            print("  Precio:" + datos[x]["*Precio"] + "$  ")

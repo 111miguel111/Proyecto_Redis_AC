@@ -1,9 +1,3 @@
-
-from ProyectoRedis.src.Controller import GestorBBDD
-
-
-
-
 def alta():
     print("ALTA")
 def baja():

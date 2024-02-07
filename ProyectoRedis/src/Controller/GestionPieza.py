@@ -1,5 +1,5 @@
-from ProyectoRedis.src.Controller import Utiles,GestorBBDD
-
+from ProyectoRedis.src.Controller import Utiles
+from ProyectoRedis.src.Model import GestorBBDD
 
 
 def alta():
@@ -13,7 +13,7 @@ def alta():
     print("ALTA")
     nombre=Utiles.check_campo("nombre", 25)
     if nombre is not None:
-        piezaAux=GestorBBDD.buscarDato("Pieza"+nombre)#Comprobamos si ya existe un arma con ese nombre
+        piezaAux= GestorBBDD.buscarDato("Pieza" + nombre)#Comprobamos si ya existe un arma con ese nombre
         if piezaAux is None:
             tipoPieza=menuTipoPieza()
     if tipoPieza is not None:
@@ -61,7 +61,7 @@ def buscar():
     print("BUSCAR")
 def mostrarTodos():
     print("MOSTRAR TODOS")
-    datos=GestorBBDD.mostrarTodosDatos("Pieza")
+    datos= GestorBBDD.mostrarTodosDatos("Pieza")
     for x in datos:
         print("\n[-"+datos[x]["nombre"]+"-]")
         print("  Tipo de pieza:"+datos[x]["tipoPieza"]+"  ")

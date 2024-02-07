@@ -1,20 +1,29 @@
-from ProyectoRedis.src.Model import Arma
+#from ProyectoRedis.src.Model import Arma
 from ProyectoRedis.src.Model import Cuerpo
 from ProyectoRedis.src.Model import Pieza
-
-
+from ProyectoRedis.src.Model import GestorBBDD
 
 armaPrueba = {#Aqui metemos en un diccionario los datos
-    "nombre":input("Introduzca el nombre"),
-    "tipoDamage":input("Introduzca el tipo de damage"),
-    "dps":input("Introduzca el damage por segundo"),
-    "rpm":input("Introduzca las rondas por minuto"),
-    "municion":input("Introduzca las rondas maximas"),
-    "armaHombro":input("¿Es un arma de hombro? (Si o No)"),
-    "precio":input("Introduzca el precio del arma")
+    "ArmaEjemplonombre":input("Introduzca el nombre"),
+    "ArmaEjemplotipoDamage":input("Introduzca el tipo de damage"),
+    "ArmaEjemplodps":input("Introduzca el damage por segundo"),
+    "ArmaEjemplorpm":input("Introduzca las rondas por minuto"),
+    "ArmaEjemplomunicion":input("Introduzca las rondas maximas"),
+    "ArmaEjemploarmaHombro":input("¿Es un arma de hombro? (Si o No)"),
+    "ArmaEjemploprecio":input("Introduzca el precio del arma")
 }
 
-a = Arma.Arma(armaPrueba)#Para construir el objeto por alguna razon tienes que usar un metodo que se llama igual que la clase de esta forma
+GestorBBDD.insertarDato(armaPrueba)
+aux = GestorBBDD.buscarDato("ArmaEjeemplo")
+print(aux)
+
+if aux is not None:
+    for campo in aux:
+        print(campo,aux[str(campo)])
+else:
+    print("Esta None")
+
+#a = Arma.Arma(armaPrueba)#Para construir el objeto por alguna razon tienes que usar un metodo que se llama igual que la clase de esta forma
 
 cuerpoPrueba = {#Aqui metemos en un diccionario los datos
     "nombre":input("Introduzca el nombre"),

@@ -1,4 +1,6 @@
-from ProyectoRedis.src.Controller import Utiles, GestorBBDD, iGestores
+from ProyectoRedis.src.Controller import Utiles, iGestores
+from ProyectoRedis.src.Model import GestorBBDD
+
 
 class GestionArma(iGestores):
     @staticmethod

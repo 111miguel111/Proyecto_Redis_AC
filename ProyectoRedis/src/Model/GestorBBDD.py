@@ -213,30 +213,31 @@ else:
 # Metodos redis
 
 # Crud
-def insertarDato(tipoDato, datos):
+def insertarDato(datos):
     try:
-        conn.hmset(tipoDato + datos["nombre"], datos)
+        for campo in datos:
+            conn.set(campo, datos[campo])
     except:
         print("Se ha cometido un error en la insercion")
         print(traceback.format_exc())
 
 
 def buscarDato(clave):
-    datos = conn.hgetall(clave)
-    if (len(datos) == 0):
-        datos = None
+    datos = {}
+    for campo in conn.keys(clave+"*"):
+        datos[campo]=conn.get(campo)
     return datos
 
 
 def borrarDato(clave):
-    conn.delete(clave)
+    datos = buscarDato(clave)
+    for campo in datos:
+        conn.delete(campo)
 
 
-def mostrarTodosDatos(tipoDato):
-    datosAux = {}
-    for key in conn.keys(tipoDato + "*"):
-        datosAux[key] = conn.hgetall(key)
-    return datosAux
+def mostrarTodosDatos(tipoDato):#Diccionario de diccionarios
+    datos = conn.hgetall(tipoDato+"*")#Ayuda
+    return datos
 
 
 # Queries
@@ -310,7 +311,7 @@ def datoAC(ac, tipoDato):  # Este metodo no va aqui
     return None
 
 
-def mostrarTodosFiltro(tipoDato, campo, valor, rango):
+def mostrarTodosFiltro(tipoDato, campo, valor, rango):#Diccionario de diccionarios
     '''
     Metodo que busca todas las instancias de datos con los parametros elegidos.
     Si los parametros elegidos no son correctos se devuelve none

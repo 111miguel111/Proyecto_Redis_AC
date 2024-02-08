@@ -87,9 +87,10 @@ class GestionArma(iGestores):
                                 "Arma_" + nombre + "_Precio": arma["Arma_" + nombreOriginal + "_Precio"]
                             }
                             arma=armaAux2
+                            nombreOriginal=nombre
                             cambio = True
-                else:
-                    print("Ya existe un arma con el mismo nombre.")
+                    else:
+                        print("Ya existe un arma con el mismo nombre.")
             elif (opcion == "2"):
                 tipoDamage = Utiles.check_letras("tipo de damage", 25)
                 if tipoDamage is not None:
@@ -138,16 +139,15 @@ class GestionArma(iGestores):
     def buscar(nombre):
         nombre = Utiles.check_campo("nombre", 25)
         if nombre is not None:
-            datos = GestorBBDD.buscarDato(
-                "Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
+            datos = GestorBBDD.buscarDato("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
             if datos is not None:
-                print("\n[-" + datos["*Nombre"] + "-]")
-                print("  Tipo de damage:" + datos["*TipoDamage"] + "  ")
-                print("  Damage por segundo:" + datos["*Dps"] + "  ")
-                print("  Rondas por minuto:" + datos["*Rpm"] + "  ")
-                print("  Municion maxima:" + datos["*Municion"] + "  ")
-                print("  Puede ponerse en el hombro:" + datos["*ArmaHombro"] + "  ")
-                print("  Precio:" + datos["*Precio"] + "$  ")
+                print("\n[-" + datos["Arma_"+nombre+"_Nombre"] + "-]")
+                print("  Tipo de damage:" + datos["Arma_"+nombre+"_TipoDamage"] + "  ")
+                print("  Damage por segundo:" + datos["Arma_"+nombre+"_Dps"] + "  ")
+                print("  Rondas por minuto:" + datos["Arma_"+nombre+"_Rpm"] + "  ")
+                print("  Municion maxima:" + datos["Arma_"+nombre+"_Municion"] + "  ")
+                print("  Puede ponerse en el hombro:" + datos["Arma_"+nombre+"_ArmaHombro"] + "  ")
+                print("  Precio:" + datos["Arma_"+nombre+"_Precio"] + "$  ")
                 return datos
             else:
                 print("No se ha encontrado el arma.")
@@ -159,10 +159,10 @@ class GestionArma(iGestores):
         print("MOSTRAR TODOS")
         datos = GestorBBDD.mostrarTodosDatos("Arma")# Te mando la categoria para que me devuelvas un diccionario con diccionarios que contengan los datos de una pieza
         for x in datos:
-            print("\n[-" + datos[x]["*Nombre"] + "-]")
-            print("  Tipo de damage:" + datos[x]["*TipoDamage"] + "  ")
-            print("  Damage por segundo:" + datos[x]["*Dps"] + "  ")
-            print("  Rondas por minuto:" + datos[x]["*Rpm"] + "  ")
-            print("  Municion maxima:" + datos[x]["*Municion"] + "  ")
-            print("  Puede ponerse en el hombro:" + datos[x]["*ArmaHombro"] + "  ")
-            print("  Precio:" + datos[x]["*Precio"] + "$  ")
+            print("\n[-" + datos[x][x+"_Nombre"] + "-]")
+            print("  Tipo de damage:" + datos[x][x+"_TipoDamage"] + "  ")
+            print("  Damage por segundo:" + datos[x][x+"_Dps"] + "  ")
+            print("  Rondas por minuto:" + datos[x][x+"_Rpm"] + "  ")
+            print("  Municion maxima:" + datos[x][x+"_Municion"] + "  ")
+            print("  Puede ponerse en el hombro:" + datos[x][x+"_ArmaHombro"] + "  ")
+            print("  Precio:" + datos[x][x+"_Precio"] + "$  ")

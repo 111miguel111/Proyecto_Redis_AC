@@ -240,7 +240,7 @@ def mostrarTodosDatos(tipoDato):#Diccionario de diccionarios
     datosOut = {}
     stringAux = ""
     for key in datos:
-        if (str(key).split("_")[0]+"_"+str(key).split("_")[1]) is not stringAux:
+        if (str(key).split("_")[0]+"_"+str(key).split("_")[1]) != stringAux:
             stringAux=str(key).split("_")[0]+"_"+str(key).split("_")[1]
             datosAux = {}
             for key in conn.keys(stringAux+"*"):
@@ -250,68 +250,68 @@ def mostrarTodosDatos(tipoDato):#Diccionario de diccionarios
 
 
 # Queries
-def datoAC(ac, tipoDato):  # Este metodo no va aqui
+def datoAC(clave, tipoDato):  # Este metodo no va aqui
     '''
     Esta clase se encarga de devolver la suma de valores numericos del mecha
     ac: diccionario del mecha
     tipoDato: String del tipo de dato del que se quieren obtener datos
     '''
     # Se comprueba si los datos a buscar son de una pieza
-    if tipoDato == "armadura" or tipoDato == "consumoEnergia" or tipoDato == "peso":
+    if tipoDato == "Armadura" or tipoDato == "ConsumoEnergia" or tipoDato == "Peso":
         # Se crea un valor 0 y se busca el valor de cada pieza, si la pieza no existe
         # El valor es 0
         valor = 0
 
-        valor += int((buscarDato(ac["cabeza"]))[tipoDato]) \
-            if int((buscarDato(ac["cabeza"]))[tipoDato]) != "" else 0
-        valor += int((buscarDato(ac["torso"]))[tipoDato]) \
-            if int((buscarDato(ac["torso"]))[tipoDato]) != "" else 0
-        valor += int((buscarDato(ac["brazos"]))[tipoDato]) \
-            if int((buscarDato(ac["brazos"]))[tipoDato]) != "" else 0
-        valor += int((buscarDato(ac["piernas"]))[tipoDato]) \
-            if int((buscarDato(ac["piernas"]))[tipoDato]) != "" else 0
+        valor += int((buscarDato(clave+"_Cabeza"))[tipoDato]) \
+            if int((buscarDato(clave+"_Cabeza"))[tipoDato]) != "" else 0
+        valor += int((buscarDato(clave + "_Torso"))[tipoDato]) \
+            if int((buscarDato(clave + "_Torso"))[tipoDato]) != "" else 0
+        valor += int((buscarDato(clave + "_Brazos"))[tipoDato]) \
+            if int((buscarDato(clave + "_Brazos"))[tipoDato]) != "" else 0
+        valor += int((buscarDato(clave + "_Piernas"))[tipoDato]) \
+            if int((buscarDato(clave + "_Piernas"))[tipoDato]) != "" else 0
 
         return valor
 
     # Se comprueba si los datos son de las armas
-    elif tipoDato == "dps" or tipoDato == "rpm":
+    elif tipoDato == "Dps" or tipoDato == "Rpm":
         # Se crea un valor 0 y se busca el valor de cada pieza, si la pieza no existe
         # El valor es 0
         valor = 0
 
-        valor += int((buscarDato(ac["armaBDer"]))[tipoDato]) \
-            if int((buscarDato(ac["armaBDer"]))[tipoDato]) != "" else 0
-        valor += int((buscarDato(ac["armaBIzq"]))[tipoDato]) \
-            if int((buscarDato(ac["armaBIzq"]))[tipoDato]) != "" else 0
-        valor += int((buscarDato(ac["armaHDer"]))[tipoDato]) \
-            if int((buscarDato(ac["armaHDer"]))[tipoDato]) != "" else 0
-        valor += int((buscarDato(ac["armaHIzq"]))[tipoDato]) \
-            if int((buscarDato(ac["armaHIzq"]))[tipoDato]) != "" else 0
+        valor += int((buscarDato(clave + "_ArmaBDer"))[tipoDato]) \
+            if int((buscarDato(clave + "_ArmaBDer"))[tipoDato]) != "" else 0
+        valor += int((buscarDato(clave + "_ArmaBIzq"))[tipoDato]) \
+            if int((buscarDato(clave + "_ArmaBIzq"))[tipoDato]) != "" else 0
+        valor += int((buscarDato(clave + "_ArmaHDer"))[tipoDato]) \
+            if int((buscarDato(clave + "_ArmaHDer"))[tipoDato]) != "" else 0
+        valor += int((buscarDato(clave + "_ArmaHIzq"))[tipoDato]) \
+            if int((buscarDato(clave + "_ArmaHIzq"))[tipoDato]) != "" else 0
 
         return valor
 
     # Se comprueba si el dato es el precio
-    elif tipoDato == "precio":
+    elif tipoDato == "Precio":
         # Se crea un valor 0 y se busca el valor de cada pieza, si la pieza no existe
         # El valor es 0
         valor = 0
 
-        valor += int((buscarDato(ac["cabeza"]))[tipoDato]) \
-            if int((buscarDato(ac["cabeza"]))[tipoDato]) != "" else 0
-        valor += int((buscarDato(ac["torso"]))[tipoDato]) \
-            if int((buscarDato(ac["torso"]))[tipoDato]) != "" else 0
-        valor += int((buscarDato(ac["brazos"]))[tipoDato]) \
-            if int((buscarDato(ac["brazos"]))[tipoDato]) != "" else 0
-        valor += int((buscarDato(ac["piernas"]))[tipoDato]) \
-            if int((buscarDato(ac["piernas"]))[tipoDato]) != "" else 0
-        valor += int((buscarDato(ac["armaBDer"]))[tipoDato]) \
-            if int((buscarDato(ac["armaBDer"]))[tipoDato]) != "" else 0
-        valor += int((buscarDato(ac["armaBIzq"]))[tipoDato]) \
-            if int((buscarDato(ac["armaBIzq"]))[tipoDato]) != "" else 0
-        valor += int((buscarDato(ac["armaHDer"]))[tipoDato]) \
-            if int((buscarDato(ac["armaHDer"]))[tipoDato]) != "" else 0
-        valor += int((buscarDato(ac["armaHIzq"]))[tipoDato]) \
-            if int((buscarDato(ac["armaHIzq"]))[tipoDato]) != "" else 0
+        valor += int((buscarDato(clave + "_Cabeza"))[tipoDato]) \
+            if int((buscarDato(clave + "_Cabeza"))[tipoDato]) != "" else 0
+        valor += int((buscarDato(clave + "_Torso"))[tipoDato]) \
+            if int((buscarDato(clave + "_Torso"))[tipoDato]) != "" else 0
+        valor += int((buscarDato(clave + "_Brazos"))[tipoDato]) \
+            if int((buscarDato(clave + "_Brazos"))[tipoDato]) != "" else 0
+        valor += int((buscarDato(clave + "_Piernas"))[tipoDato]) \
+            if int((buscarDato(clave + "_Piernas"))[tipoDato]) != "" else 0
+        valor += int((buscarDato(clave + "_ArmaBDer"))[tipoDato]) \
+            if int((buscarDato(clave + "_ArmaBDer"))[tipoDato]) != "" else 0
+        valor += int((buscarDato(clave + "_ArmaBIzq"))[tipoDato]) \
+            if int((buscarDato(clave + "_ArmaBIzq"))[tipoDato]) != "" else 0
+        valor += int((buscarDato(clave + "_ArmaHDer"))[tipoDato]) \
+            if int((buscarDato(clave + "_ArmaHDer"))[tipoDato]) != "" else 0
+        valor += int((buscarDato(clave + "_ArmaHIzq"))[tipoDato]) \
+            if int((buscarDato(clave + "_ArmaHIzq"))[tipoDato]) != "" else 0
 
         return valor
 
@@ -335,19 +335,20 @@ def mostrarTodosFiltro(tipoDato, campo, valor, rango):#Diccionario de diccionari
     #Se crea el diccionario en el que se van a guardar los datos
     datosAux = {}
 
+    datos = mostrarTodosDatos(tipoDato)
     #El for each recorre la BBDD en funcion a la cadena del tipo de dato introducida
-    for key in conn.keys(tipoDato + "*"):
+    for key in datos:
         try:
             #Se comprueba que se quiere hacer con el tipo de dato
             if (rango == "="):
-                if valor == "" or conn.hgetall(key)[campo] == valor:
-                    datosAux[key] = conn.hgetall(key)
+                if valor == "" or conn.get(key+campo) == valor:
+                    datosAux[key] = datos[key]
             elif (rango == ">"):
-                if valor == "" or int(conn.hgetall(key)[campo]) > int(valor):
-                    datosAux[key] = conn.hgetall(key)
+                if valor == "" or int(conn.get(key+campo)) > int(valor):
+                    datosAux[key] = datos[key]
             elif (rango == "<"):
-                if valor == "" or int(conn.hgetall(key)[campo]) < valor:
-                    datosAux[key] = conn.hgetall(key)
+                if valor == "" or int(conn.get(key+campo)) < int(valor):
+                    datosAux[key] = datos[key]
             else:
                 print('Introduzca que con que rango se quieren filtrar los datos. Si no esta seguro ponga "')
         except:

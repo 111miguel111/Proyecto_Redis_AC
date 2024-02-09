@@ -1,6 +1,5 @@
-from ProyectoRedis.src.Controller import Utiles,GestionPieza,GestionArma,GestionAC,iGestores
-a = GestionArma.GestionArma()
-a.alta()
+from ProyectoRedis.src.Controller import Utiles,GestionPieza,GestionArma,GestionAC
+
 
 def menu():
     opcion=None
@@ -10,40 +9,43 @@ def menu():
         opcion=Utiles.check_numeros("Opcion", 25)
         if(opcion=="1"):
             print("")
-            menuAC()
+            gestor = GestionAC.GestionAC()
+            submenu("AC", gestor)
         elif(opcion=="2"):
             print("")
-            menuPiezas()
+            gestor = GestionPieza.GestionPieza()
+            submenu("PIEZA", gestor)
         elif(opcion=="3"):
             print("")
-            menuArmas()
+            gestor = GestionArma.GestionArma()
+            submenu("ARMA", gestor)
         elif(opcion=="0"):
             print("Saliendo del programa.")
         else:
             print("Opcion no valida.")
 
 
-def menuAC():
+def submenu(tipoDato, gestor):
     opcion=None
     while(opcion!="0"):
-        print("\n--GESTION DEL AC--\n")
-        print("1.Crear AC.\n2.Eliminar AC.\n3.Modificar AC.\n4.Buscar AC.\n5.Mostrar todos los AC.\n0.Salir.")
+        print("\n--GESTION DE "+tipoDato+"--\n")
+        print("1.Crear "+tipoDato+".\n2.Eliminar "+tipoDato+".\n3.Modificar "+tipoDato+".\n4.Buscar "+tipoDato+".\n5.Mostrar todos los "+tipoDato+".\n0.Salir.")
         opcion=Utiles.check_numeros("Opcion", 25)
         if(opcion=="1"):
             print("")
-            GestionAC.alta()
+            gestor.alta()
         elif(opcion=="2"):
             print("")
-            GestionAC.baja()
+            gestor.baja()
         elif(opcion=="3"):
             print("")
-            GestionAC.modificar()
+            gestor.modificar()
         elif(opcion=="4"):
             print("")
-            GestionAC.buscar()
+            gestor.buscar()
         elif(opcion=="5"):
             print("")
-            GestionAC.mostrarTodos()
+            gestor.mostrarTodos()
         elif(opcion=="0"):
             print("Saliendo del menu.\n")
             
@@ -52,68 +54,3 @@ def menuAC():
 
 
 
-def menuPiezas():
-    opcion=None
-    while(opcion!="0"):
-        print("\n--GESTION DE LAS PIEZAS--\n")
-        print("1.Crear pieza.\n2.Eliminar pieza.\n3.Modificar pieza.\n4.Buscar pieza.\n5.Mostrar todos las pieza.\n0.Salir.")
-        opcion=Utiles.check_numeros("Opcion", 25)
-        if(opcion=="1"):
-            print("")
-            GestionPieza.alta()
-        elif(opcion=="2"):
-            print("")
-            GestionPieza.baja()
-            
-        elif(opcion=="3"):
-            print("")
-            GestionPieza.modificar()
-            
-        elif(opcion=="4"):
-            print("")
-            GestionPieza.buscar()
-            
-        elif(opcion=="5"):
-            print("")
-            GestionPieza.mostrarTodos()
-            
-        elif(opcion=="0"):
-            print("Saliendo del menu.\n")
-            
-        else:
-            print("Opcion no valida.")
-def menuArmas():
-    opcion=None
-    while(opcion!="0"):
-        print("\n--GESTION DE LAS ARMAS--\n")
-        print("1.Crear arma.\n2.Eliminar arma.\n3.Modificar arma.\n4.Buscar arma.\n5.Mostrar todos las armas.\n0.Salir.")
-        opcion=Utiles.check_numeros("Opcion", 25)
-        if(opcion=="1"):
-            print("")
-            GestionArma.alta()
-        elif(opcion=="2"):
-            print("")
-            GestionArma.baja()
-            
-        elif(opcion=="3"):
-            print("")
-            GestionArma.modificar()
-            
-        elif(opcion=="4"):
-            print("")
-            GestionArma.buscar()
-            
-        elif(opcion=="5"):
-            print("")
-            GestionArma.mostrarTodos()
-            
-        elif(opcion=="0"):
-            print("Saliendo del menu.\n")
-            
-        else:
-            print("Opcion no valida.")
-            
-            
-            
-            
-            

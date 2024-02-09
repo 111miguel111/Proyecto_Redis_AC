@@ -2,7 +2,7 @@ from abc import abstractmethod
 from abc import ABCMeta
 
 
-class Mando(metaclass=ABCMeta):
+class iGestores(metaclass=ABCMeta):
     @staticmethod
     @abstractmethod
     def alta():

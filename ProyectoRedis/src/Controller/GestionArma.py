@@ -2,7 +2,7 @@ from ProyectoRedis.src.Controller import Utiles, iGestores
 from ProyectoRedis.src.Model import GestorBBDD
 
 
-class GestionArma(iGestores):
+class GestionArma(iGestores.iGestores):
     @staticmethod
     def alta():
         nombre = None

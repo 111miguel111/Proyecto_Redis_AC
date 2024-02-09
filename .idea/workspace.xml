@@ -28,6 +28,8 @@
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Model/Pieza.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Model/Pieza.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/View/Menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/View/Menu.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/View/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/View/config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,10 +58,12 @@
   &quot;keyToString&quot;: {
     &quot;Python.Pruebas1.executor&quot;: &quot;Run&quot;,
     &quot;Python.Test.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/WORKSPACE/git/proyecto_Redis/Proyecto_Redis_AC&quot;
+    &quot;last_opened_file_path&quot;: &quot;D:/WORKSPACE/git/proyecto_Redis/Proyecto_Redis_AC&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -67,7 +71,7 @@
       <recent name="C:\Users\Roberto\Documents\GitHub\Proyecto_Redis_AC\ProyectoRedis\src\Model" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Test">
+  <component name="RunManager" selected="Python.main">
     <configuration name="Pruebas1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Proyecto_Redis_AC" />
       <option name="ENV_FILES" value="" />
@@ -112,8 +116,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Proyecto_Redis_AC" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ProyectoRedis/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ProyectoRedis/src/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.Test" />
         <item itemvalue="Python.Pruebas1" />
       </list>

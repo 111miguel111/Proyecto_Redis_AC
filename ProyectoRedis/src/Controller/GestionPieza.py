@@ -2,7 +2,7 @@ from ProyectoRedis.src.Controller import Utiles, iGestores
 from ProyectoRedis.src.Model import GestorBBDD
 
 
-class GestionPieza(iGestores):
+class GestionPieza(iGestores.iGestores):
 
     @staticmethod
     def alta():

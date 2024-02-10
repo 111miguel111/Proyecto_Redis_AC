@@ -226,6 +226,8 @@ def buscarDato(clave):
     datos = {}
     for campo in conn.keys(clave+"*"):
         datos[campo]=conn.get(campo)
+    if(datos=={}):
+        datos=None
     return datos
 
 

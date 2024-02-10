@@ -12,13 +12,15 @@ class GestionPieza(iGestores.iGestores):
         consumoEnergia = None
         peso = None
         precio = None
-
-        print("ALTA")
+        pieza=None
+        print(5*"-"+"ALTA"+"-"*5)
         nombre = Utiles.check_campo("nombre", 25)
         if nombre is not None:
             piezaAux = GestorBBDD.buscarDato("Pieza_" + nombre)  # Comprobamos si ya existe un arma con ese nombre
             if piezaAux is None:
-                tipoPieza = menuTipoPieza()
+                tipoPieza = GestionPieza.menuTipoPieza()
+            else:
+                print("Ya existe una pieza con ese nombre.")
         if tipoPieza is not None:
             armadura = Utiles.check_numeros("valor de armadura", 25)
         if armadura is not None:
@@ -37,7 +39,10 @@ class GestionPieza(iGestores.iGestores):
                 "Pieza_" + str(nombre) + "_Precio": str(precio)
             }
             GestorBBDD.insertarDato(pieza)
-
+        if pieza is not None:
+            print("Pieza creada.")
+        else:
+            print("Fallo en la creacion de la pieza")
     @staticmethod
     def menuTipoPieza():
         opcion = None
@@ -61,7 +66,7 @@ class GestionPieza(iGestores.iGestores):
 
     @staticmethod
     def baja():
-        print("BAJA")
+        print(5*"-"+"BAJA"+"-"*5)
         nombre = Utiles.check_campo("nombre", 25)
         if nombre is not None:
             piezaAux = GestorBBDD.buscarDato("Pieza_" + nombre)
@@ -71,13 +76,13 @@ class GestionPieza(iGestores.iGestores):
 
     @staticmethod
     def modificar():
-        print("MODIFICAR")
+        print(5*"-"+"MODIFICAR"+"-"*5)
         nombre = Utiles.check_campo("nombre", 25)
         if nombre is not None:
             piezaAux = GestorBBDD.buscarDato(
                 "Pieza_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
             if piezaAux is not None:
-                menuModificar(nombre, piezaAux)
+                GestionPieza.menuModificar(nombre, piezaAux)
 
     @staticmethod
     def menuModificar(nombreOriginal, pieza):  # Metodo placeholder
@@ -103,8 +108,7 @@ class GestionPieza(iGestores.iGestores):
                                 "Pieza_" + nombre + "_Nombre": nombre,
                                 "Pieza_" + nombre + "_TipoPieza": pieza["Pieza_" + nombreOriginal + "_TipoPieza"],
                                 "Pieza_" + nombre + "_Armadura": pieza["Pieza_" + nombreOriginal + "_Armadura"],
-                                "Pieza_" + nombre + "_ConsumoEnergia": pieza[
-                                    "Pieza_" + nombreOriginal + "_ConsumoEnergia"],
+                                "Pieza_" + nombre + "_ConsumoEnergia": pieza["Pieza_" + nombreOriginal + "_ConsumoEnergia"],
                                 "Pieza_" + nombre + "_Peso": pieza["Pieza_" + nombreOriginal + "_Peso"],
                                 "Pieza_" + nombre + "_Precio": pieza["Pieza_" + nombreOriginal + "_Precio"]
                             }
@@ -113,7 +117,7 @@ class GestionPieza(iGestores.iGestores):
                     else:
                         print("Ya existe una pieza con el mismo nombre.")
             elif (opcion == "2"):
-                tipoPieza = menuTipoPieza()
+                tipoPieza = GestionPieza.menuTipoPieza()
                 if tipoPieza is not None:
                     if Utiles.confirmacion("Seguro que quiere cambiar el tipo de pieza de la pieza: " + pieza[
                         "Pieza_" + nombreOriginal + "_Nombre"] + " a: " + tipoPieza):
@@ -157,7 +161,7 @@ class GestionPieza(iGestores.iGestores):
 
     @staticmethod
     def buscar():
-        print("BUSCAR")
+        print(5*"-"+"BUSCAR"+"-"*5)
         nombre = Utiles.check_campo("nombre", 25)
         if nombre is not None:
             datos = GestorBBDD.buscarDato(
@@ -178,8 +182,8 @@ class GestionPieza(iGestores.iGestores):
 
     @staticmethod
     def mostrarTodos():
-        print("MOSTRAR TODOS")
-        datos = GestorBBDD.mostrarTodosDatos("Pieza")
+        print(5*"-"+"MOSTRAR TODOS"+"-"*5)
+        datos = GestorBBDD.mostrarTodosDatos("Pieza_")
         for x in datos:
             print("\n[-" + datos[x][x + "_Nombre"] + "-]")
             print("  Tipo de pieza:" + datos[x][x + "_TipoPieza"] + "  ")
@@ -187,3 +191,5 @@ class GestionPieza(iGestores.iGestores):
             print("  Consumo de energia:" + datos[x][x + "_ConsumoEnergia"] + "  ")
             print("  Peso:" + datos[x][x + "_Peso"] + "  ")
             print("  Precio:" + datos[x][x + "_Precio"] + "$  ")
+        if (datos == {}):
+            print("No hay piezas creadas.")

@@ -12,13 +12,15 @@ class GestionArma(iGestores.iGestores):
         municion = None
         armaHombro = None
         precio = None
-
-        print("ALTA")
+        arma=None
+        print(5*"-"+"ALTA"+"-"*5)
         nombre = Utiles.check_campo("nombre", 25)
         if nombre is not None:
             armaAux = GestorBBDD.buscarDato("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
             if armaAux is None:
                 tipoDamage = Utiles.check_letras("tipo de damage", 25)
+            else:
+                print("Ya existe un arma con ese nombre.")
         if tipoDamage is not None:
             dps = Utiles.check_numeros("damage por segundo", 25)
         if dps is not None:
@@ -40,10 +42,13 @@ class GestionArma(iGestores.iGestores):
                 "Arma_"+str(nombre)+"_Precio": str(precio)
                 }
             GestorBBDD.insertarDato(arma)#Te mando un diccionario con las clave valor del arma---------------------------------------------------
-
+        if arma is not None:
+            print("Arma creada.")
+        else:
+            print("Fallo en la creacion del arma")
     @staticmethod
     def baja():
-        print("BAJA")
+        print(5*"-"+"BAJA"+"-"*5)
         nombre = Utiles.check_campo("nombre", 25)
         if nombre is not None:
             armaAux =GestorBBDD.buscarDato("Arma_" + nombre)
@@ -53,12 +58,12 @@ class GestionArma(iGestores.iGestores):
 
     @staticmethod
     def modificar():
-        print("MODIFICAR")
+        print(5*"-"+"MODIFICAR"+"-"*5)
         nombre = Utiles.check_campo("nombre", 25)
         if nombre is not None:
             armaAux = GestorBBDD.buscarDato("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
             if armaAux is not None:
-                menuModificar(nombre,armaAux)
+                GestionArma.menuModificar(nombre,armaAux)
 
 
     @staticmethod
@@ -137,6 +142,7 @@ class GestionArma(iGestores.iGestores):
 
     @staticmethod
     def buscar(nombre):
+        print(5*"-"+"BUSCAR"+"-"*5)
         nombre = Utiles.check_campo("nombre", 25)
         if nombre is not None:
             datos = GestorBBDD.buscarDato("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
@@ -154,10 +160,12 @@ class GestionArma(iGestores.iGestores):
                 return None
         else:
             return None
+
+
     @staticmethod
     def mostrarTodos():
-        print("MOSTRAR TODOS")
-        datos = GestorBBDD.mostrarTodosDatos("Arma")# Te mando la categoria para que me devuelvas un diccionario con diccionarios que contengan los datos de una pieza
+        print(5*"-"+"MOSTRAR TODOS"+"-"*5)
+        datos = GestorBBDD.mostrarTodosDatos("Arma_")# Te mando la categoria para que me devuelvas un diccionario con diccionarios que contengan los datos de una pieza
         for x in datos:
             print("\n[-" + datos[x][x+"_Nombre"] + "-]")
             print("  Tipo de damage:" + datos[x][x+"_TipoDamage"] + "  ")
@@ -166,3 +174,5 @@ class GestionArma(iGestores.iGestores):
             print("  Municion maxima:" + datos[x][x+"_Municion"] + "  ")
             print("  Puede ponerse en el hombro:" + datos[x][x+"_ArmaHombro"] + "  ")
             print("  Precio:" + datos[x][x+"_Precio"] + "$  ")
+        if(datos=={}):
+            print("No hay armas creadas.")

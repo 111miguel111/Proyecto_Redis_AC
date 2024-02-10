@@ -5,6 +5,9 @@ from ProyectoRedis.src.Model import GestorBBDD
 class GestionAC(iGestores.iGestores):
     @staticmethod
     def alta():
+        '''
+        Funcion encargada de dar de alta un AC pidiendo los nombres de las partes que lo componen
+        '''
         nombre = None
         cabeza = None
         torso = None
@@ -15,6 +18,7 @@ class GestionAC(iGestores.iGestores):
         armaHDer = None
         armaHIzq = None
         cuerpo = None
+
         print(5 * "-" + "ALTA" + "-" * 5)
         nombre = Utiles.check_campo("nombre", 25)
         if nombre is not None:
@@ -22,6 +26,7 @@ class GestionAC(iGestores.iGestores):
             if cuerpoAux is None:
                 GestionAC.mostrarNombres("Pieza","cabeza")
                 cabeza = Utiles.check_campo("nombre de la cabeza del AC", 25)
+
                 #ESTO HAY QUE HACERLO PARA CADA PARTE, DE MOMENTO LO COMENTO CON PROPOSITOS DE TESTEO
                 '''
                 cabezaAux= GestorBBDD.buscarDato("Pieza_" + cabeza)
@@ -40,16 +45,16 @@ class GestionAC(iGestores.iGestores):
             GestionAC.mostrarNombres("Pieza", "piernas")
             piernas=Utiles.check_campo("nombre de las piernas del AC", 25)
         if piernas is not None:
-            GestionAC.mostrarNombres("Arma", "irrelevante")
+            GestionAC.mostrarNombres("Arma", "False")
             armaBDer=Utiles.check_campo("nombre del arma del brazo derecho del AC", 25)
         if armaBDer is not None:
-            GestionAC.mostrarNombres("Arma", "irrelevante")
+            GestionAC.mostrarNombres("Arma", "False")
             armaBIzq=Utiles.check_campo("nombre del arma del brazo izquierdo del AC", 25)
         if armaBIzq is not None:
-            GestionAC.mostrarNombres("Arma", "True")
+            GestionAC.mostrarNombres("Arma", "irrelevante")
             armaHDer = Utiles.check_campo("nombre del arma del hombro derecho del AC", 25)
         if armaHDer is not None:
-            GestionAC.mostrarNombres("Arma", "True")
+            GestionAC.mostrarNombres("Arma", "irrelevante")
             armaHIzq = Utiles.check_campo("nombre del arma del hombro izquierdo del AC", 25)
         if armaHIzq is not None:
             cuerpo = {  # Aqui metemos en un diccionario los datos
@@ -67,7 +72,7 @@ class GestionAC(iGestores.iGestores):
         if cuerpo is not None:
             print("AC creado.")
         else:
-            print("Fallo en la creacion del AC")
+            print("Fallo en la creacion del AC.")
 
 
 

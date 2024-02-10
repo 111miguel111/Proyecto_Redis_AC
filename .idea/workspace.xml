@@ -16,24 +16,19 @@
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/.project" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/.project" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/.pydevproject" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/.pydevproject" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoRedis/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Controller/GestionAC.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Controller/GestionAC.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Controller/GestionArma.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Controller/GestionArma.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Controller/GestionPieza.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Controller/GestionPieza.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Controller/Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Controller/Test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Controller/Utiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Controller/Utiles.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Controller/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Controller/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Controller/config.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Controller/iGestores.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Controller/iGestores.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Model/Arma.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Model/Arma.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Model/Cuerpo.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Model/Cuerpo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Model/GestorBBDD.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Model/GestorBBDD.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Model/Pieza.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Model/Pieza.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Model/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/View/Menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/View/Menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/View/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/View/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/View/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/config.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/main.py" afterDir="false" />
     </list>

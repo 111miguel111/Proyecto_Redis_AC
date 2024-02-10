@@ -109,14 +109,79 @@ class GestionAC(iGestores.iGestores):
     @staticmethod
     def baja():
         print(5*"-"+"BAJA"+"-"*5)
+        nombre = Utiles.check_campo("nombre", 25)
+        if nombre is not None:
+            acAux =GestorBBDD.buscarDato("AC_" + nombre)
+            if acAux is not None:
+                if Utiles.confirmacion("¿Seguro que quiere eliminar este AC?") is True:
+                    GestorBBDD.borrarDato("AC_"+nombre)
 
     @staticmethod
     def modificar():
         print(5*"-"+"MODIFICAR"+"-"*5)
+        nombre = Utiles.check_campo("nombre", 25)
+        if nombre is not None:
+            acAux = GestorBBDD.buscarDato(
+                "AC_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
+            if acAux is not None:
+                GestionAC.menuModificar(nombre, acAux)
 
     @staticmethod
-    def menuModificar(nombreOriginal, arma):
-        print("QUITAME CUANDO HAYA CODIGO EN ESTA FUNCION")
+    def menuModificar(nombreOriginal, ac):
+        opcion = None
+        while (opcion != "0"):
+            cambio = False
+            print("¿Que campo quieres modificar?")
+            print("1.Nombre.\n2.Cabeza.\n3.Torso."
+                  "\n4.Brazos.\n5.Piernas.\n6.Arma brazo derecho."
+                  "\n7.Arma Brazo Izquierdo.\n8.Arma Hombro Derecho."
+                  "\n9.Arma Hombro Izquierdo.\n0.Salir.")
+            opcion = Utiles.check_numeros("Opcion", 25)
+            if (opcion == "1"):
+                nombre = Utiles.check_campo("nombre", 25)
+                if nombre is not None:
+                    acAux = GestorBBDD.buscarDato("AC_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
+                    if acAux is None:
+                        if Utiles.confirmacion("Seguro que quiere cambiar el nombre del AC: "+nombreOriginal+" a: "+nombre):
+                            GestorBBDD.borrarDato("AC_"+nombreOriginal)
+                            acAux2 = {
+                                "AC_" + nombre + "_Nombre": nombre,
+                                "AC_" + nombre + "_Cabeza": ac["AC_" + nombreOriginal + "_Cabeza"],
+                                "AC_" + nombre + "_Torso": ac["AC_" + nombreOriginal + "_Torso"],
+                                "AC_" + nombre + "_Brazos": ac["AC_" + nombreOriginal + "_Brazos"],
+                                "AC_" + nombre + "_Piernas": ac["AC_" + nombreOriginal + "_Piernas"],
+                                "AC_" + nombre + "_ArmaBDer": ac["AC_" + nombreOriginal + "_ArmaBDer"],
+                                "AC_" + nombre + "_ArmaBIzq": ac["AC_" + nombreOriginal + "_ArmaBIzq"],
+                                "AC_" + nombre + "_ArmaHDer": ac["AC_" + nombreOriginal + "_ArmaHDer"],
+                                "AC_" + nombre + "_ArmaHIzq": ac["AC_" + nombreOriginal + "_ArmaHIzq"]
+                            }
+                            ac=acAux2
+                            nombreOriginal=nombre
+                            cambio = True
+                    else:
+                        print("Ya existe un AC con el mismo nombre.")
+            elif (opcion == "2"):
+                GestionAC.mostrarNombres("Pieza","cabeza")
+                cabeza = Utiles.check_letras("cabeza", 25)
+
+                if cabeza is not None:
+                    # ESTO HAY QUE HACERLO PARA CADA PARTE, DE MOMENTO LO COMENTO CON PROPOSITOS DE TESTEO
+                    '''
+                    cabezaAux= GestorBBDD.buscarDato("Pieza_" + cabeza)
+                    if cabezaAux is not None:
+                    '''
+                    #Este if va dentro del de justo arriba
+                    if Utiles.confirmacion("Seguro que quiere cambiar la cabeza del AC: " + ac["AC_"+nombreOriginal+"_Nombre"] + " a: " + cabeza):
+                        ac["AC_" + nombreOriginal + "_Cabeza"] = cabeza
+                        cambio = True
+
+            elif (opcion == "0"):
+                print("Saliendo del subMenu.")
+                return None
+            else:
+                print("Opcion no valida.")
+            if cambio is True:
+                GestorBBDD.insertarDato(ac)
 
     @staticmethod
     def buscar():

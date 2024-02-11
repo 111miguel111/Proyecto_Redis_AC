@@ -219,7 +219,6 @@ def insertarDato(datos):
             conn.set(campo, datos[campo])
     except:
         print("Se ha cometido un error en la insercion")
-        print(traceback.format_exc())
 
 
 def buscarDato(clave):
@@ -253,8 +252,11 @@ def mostrarTodosDatos(tipoDato):#Diccionario de diccionarios
 def cascada(nombreOriginal,nombre):
     datos = mostrarTodosDatos("AC_")  # Te mando la categoria para que me devuelvas un diccionario con diccionarios que contengan los datos de una pieza
     for x in datos:
-         if(datos[x][x + "_*"] ==nombreOriginal):
-             datos[x][x + "_*"]=nombre
+        for campo in datos[x]:
+             if(datos[x][campo] ==nombreOriginal):
+                 datos[x][campo]=nombre
+                 borrarDato(campo)
+                 conn.set(campo, nombre)
 # Queries
 def datoAC(clave, tipoDato):  # Este metodo no va aqui
     '''

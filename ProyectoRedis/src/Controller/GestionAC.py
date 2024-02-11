@@ -236,7 +236,7 @@ class GestionAC(iGestores.iGestores):
 
             elif (opcion == "2"):
                 GestionAC.mostrarNombres("Pieza","cabeza")
-                cabeza = Utiles.check_letras("cabeza", 25)
+                cabeza = Utiles.check_campo("cabeza", 25)
 
                 if cabeza is not None:
                     cabezaAux= GestorBBDD.buscarDato("Pieza_" + cabeza)
@@ -250,7 +250,7 @@ class GestionAC(iGestores.iGestores):
 
             elif (opcion == "3"):
                 GestionAC.mostrarNombres("Pieza","torso")
-                torso = Utiles.check_letras("torso", 25)
+                torso = Utiles.check_campo("torso", 25)
 
                 if torso is not None:
                     torsoAux= GestorBBDD.buscarDato("Pieza_" + torso)
@@ -264,7 +264,7 @@ class GestionAC(iGestores.iGestores):
 
             elif (opcion == "4"):
                 GestionAC.mostrarNombres("Pieza","brazos")
-                brazos = Utiles.check_letras("brazos", 25)
+                brazos = Utiles.check_campo("brazos", 25)
 
                 if brazos is not None:
                     brazosAux= GestorBBDD.buscarDato("Pieza_" + brazos)
@@ -278,7 +278,7 @@ class GestionAC(iGestores.iGestores):
 
             elif (opcion == "5"):
                 GestionAC.mostrarNombres("Pieza","piernas")
-                piernas = Utiles.check_letras("piernas", 25)
+                piernas = Utiles.check_campo("piernas", 25)
 
                 if piernas is not None:
                     piernasAux= GestorBBDD.buscarDato("Pieza_" + piernas)
@@ -291,8 +291,8 @@ class GestionAC(iGestores.iGestores):
                             print("No se han encontrado esas piernas")
 
             elif (opcion == "6"):
-                GestionAC.mostrarNombres("Arma","armaBDer")
-                armaBDer = Utiles.check_letras("armaBDer", 25)
+                GestionAC.mostrarNombres("Arma","False")
+                armaBDer = Utiles.check_campo("armaBDer", 25)
 
                 if armaBDer is not None:
                     armaBDerAux= GestorBBDD.buscarDato("Arma_" + armaBDer)
@@ -305,8 +305,8 @@ class GestionAC(iGestores.iGestores):
                             print("No se ha encontrado ese arma del brazo derecho")
 
             elif (opcion == "7"):
-                GestionAC.mostrarNombres("Arma","armaBIzq")
-                armaBIzq = Utiles.check_letras("armaBIzq", 25)
+                GestionAC.mostrarNombres("Arma","False")
+                armaBIzq = Utiles.check_campo("armaBIzq", 25)
 
                 if armaBIzq is not None:
                     armaBIzqAux= GestorBBDD.buscarDato("Arma_" + armaBIzq)
@@ -319,8 +319,8 @@ class GestionAC(iGestores.iGestores):
                             print("No se ha encontrado ese arma del brazo izquierdo")
 
             elif (opcion == "8"):
-                GestionAC.mostrarNombres("Arma","armaHDer")
-                armaHDer = Utiles.check_letras("armaHDer", 25)
+                GestionAC.mostrarNombres("Arma","irrelevante")
+                armaHDer = Utiles.check_campo("armaHDer", 25)
 
                 if armaHDer is not None:
                     armaHDerAux= GestorBBDD.buscarDato("Arma_" + armaHDer)
@@ -333,11 +333,11 @@ class GestionAC(iGestores.iGestores):
                             print("No se ha encontrado ese arma del hombro derecho")
 
             elif (opcion == "9"):
-                GestionAC.mostrarNombres("Pieza","armaHIzq")
-                armaHIzq = Utiles.check_letras("armaHIzq", 25)
+                GestionAC.mostrarNombres("Arma","irrelevante")
+                armaHIzq = Utiles.check_campo("armaHIzq", 25)
 
                 if armaHIzq is not None:
-                    armaHIzqAux= GestorBBDD.buscarDato("Pieza_" + armaHIzq)
+                    armaHIzqAux= GestorBBDD.buscarDato("Arma_" + armaHIzq)
                     if armaHIzqAux is not None:
                         #Este if va dentro del de justo arriba
                         if Utiles.confirmacion("Seguro que quiere cambiar la armaHIzq del AC: " + ac["AC_"+nombreOriginal+"_Nombre"] + " a: " + armaHIzq):
@@ -397,12 +397,12 @@ class GestionAC(iGestores.iGestores):
                         "\n       ,/&#       /(,/%#%%%            %&#%/---------------Piernas:" + datos["AC_" + nombre + "_Piernas"] +
                         "\n      ..%         (.*%&%                 %%,*..             " +
                         "\n     ,,%        #*,(#&&                    %#* ./           " + "NOMBRE:" + datos["AC_" + nombre + "_Nombre"] +
-                        "\n    #/*      *&##%&(%%&.                  ,##&%&%#(         " + "ARMADURA: " + str(GestorBBDD.datoAC(datos["AC_" + nombre + "_Nombre"], "Armadura")) +
-                        "\n             %&@&&#%%%%                    *&&&&(@@/        " + "CONSUMO ENERGETICO:" + str(GestorBBDD.datoAC(datos["AC_" + nombre + "_Nombre"], "ConsumoEnergia")) +
-                        "\n          *#/%%&&&&&%%#                    .%%%%#%#%        " + "PESO:" + str(GestorBBDD.datoAC(datos["AC_" + nombre + "_Nombre"], "Peso")) +
-                        "\n         ,#%###                                 &&&%&(      " + "DPS:" + str(GestorBBDD.datoAC(datos["AC_" + nombre + "_Nombre"], "Dps")) +
-                        "\n                                                    ,,      " + "RPM:" + str(GestorBBDD.datoAC(datos["AC_" + nombre + "_Nombre"], "Rpm")) +
-                        "\n      ====================================================     PRECIO:" + str(GestorBBDD.datoAC(datos["AC_" + nombre + "_Nombre"], "Precio")) + "$"
+                        "\n    #/*      *&##%&(%%&.                  ,##&%&%#(         " + "ARMADURA: " + str(datoAC(datos["AC_" + nombre + "_Nombre"], "Armadura")) +
+                        "\n             %&@&&#%%%%                    *&&&&(@@/        " + "CONSUMO ENERGETICO:" + str(datoAC(datos["AC_" + nombre + "_Nombre"], "ConsumoEnergia")) +
+                        "\n          *#/%%&&&&&%%#                    .%%%%#%#%        " + "PESO:" + str(datoAC(datos["AC_" + nombre + "_Nombre"], "Peso")) +
+                        "\n         ,#%###                                 &&&%&(      " + "DPS:" + str(datoAC(datos["AC_" + nombre + "_Nombre"], "Dps")) +
+                        "\n                                                    ,,      " + "RPM:" + str(datoAC(datos["AC_" + nombre + "_Nombre"], "Rpm")) +
+                        "\n      ====================================================     PRECIO:" + str(datoAC(datos["AC_" + nombre + "_Nombre"], "Precio")) + "$"
                     )
         else:
             print("No hay ACs creados.")
@@ -448,13 +448,61 @@ class GestionAC(iGestores.iGestores):
                     "\n       ,/&#       /(,/%#%%%            %&#%/---------------Piernas:" +datos[x][x + "_Piernas"] +
                     "\n      ..%         (.*%&%                 %%,*..             " +
                     "\n     ,,%        #*,(#&&                    %#* ./           " + "NOMBRE:" + datos[x][x + "_Nombre"] +
-                    "\n    #/*      *&##%&(%%&.                  ,##&%&%#(         " + "ARMADURA: " + str(GestorBBDD.datoAC( datos[x][x + "_Nombre"] , "Armadura")) +
-                    "\n             %&@&&#%%%%                    *&&&&(@@/        " + "CONSUMO ENERGETICO:" + str(GestorBBDD.datoAC( datos[x][x + "_Nombre"] , "ConsumoEnergia")) +
-                    "\n          *#/%%&&&&&%%#                    .%%%%#%#%        " + "PESO:" + str(GestorBBDD.datoAC( datos[x][x + "_Nombre"] , "Peso")) +
-                    "\n         ,#%###                                 &&&%&(      " + "DPS:" + str(GestorBBDD.datoAC( datos[x][x + "_Nombre"] , "Dps")) +
-                    "\n                                                    ,,      " + "RPM:" + str(GestorBBDD.datoAC( datos[x][x + "_Nombre"] , "Rpm")) +
-                    "\n      ====================================================  PRECIO:" + str(GestorBBDD.datoAC( datos[x][x + "_Nombre"] , "Precio")) + "$"
+                    "\n    #/*      *&##%&(%%&.                  ,##&%&%#(         " + "ARMADURA: " + str(datoAC( datos[x][x + "_Nombre"] , "Armadura")) +
+                    "\n             %&@&&#%%%%                    *&&&&(@@/        " + "CONSUMO ENERGETICO:" + str(datoAC( datos[x][x + "_Nombre"] , "ConsumoEnergia")) +
+                    "\n          *#/%%&&&&&%%#                    .%%%%#%#%        " + "PESO:" + str(datoAC( datos[x][x + "_Nombre"] , "Peso")) +
+                    "\n         ,#%###                                 &&&%&(      " + "DPS:" + str(datoAC( datos[x][x + "_Nombre"] , "Dps")) +
+                    "\n                                                    ,,      " + "RPM:" + str(datoAC( datos[x][x + "_Nombre"] , "Rpm")) +
+                    "\n      ====================================================  PRECIO:" + str(datoAC( datos[x][x + "_Nombre"] , "Precio")) + "$"
                 )
         else:
             print("No hay ACs creados.")
 
+def datoAC(nombreAC, tipoDato):  # Este metodo no va aqui
+    '''
+    Esta clase se encarga de devolver la suma de valores numericos del mecha
+    ac: diccionario del mecha
+    tipoDato: String del tipo de dato del que se quieren obtener datos
+    nombreAC: Nombre del AC del que se quiere saber los datos
+    '''
+
+    # Se comprueba si los datos a buscar son de una pieza
+    if tipoDato == "Armadura" or tipoDato == "ConsumoEnergia" or tipoDato == "Peso":
+        # Se define que se quieren piezas
+        tipoComponente = "Pieza_"
+        # Se crea una lista con los campos a comprobar de la pieza
+        listaCampos = ["_Cabeza", "_Torso", "_Brazos", "_Piernas"]
+        # Se calcula el valor de la suma de la estadistica
+        valor = GestorBBDD.sumaDatosAC(listaCampos, tipoComponente, nombreAC, tipoDato)
+
+    # Se comprueba si los datos son de las armas
+    elif tipoDato == "Dps" or tipoDato == "Rpm":
+        # Se define que se quieren armas
+        tipoComponente = "Arma_"
+        # Se crea una lista con los campos a comprobar del arma
+        listaCampos = ["_ArmaBDer", "_ArmaBIzq", "_ArmaHDer", "_ArmaHIzq"]
+        # Se calcula el valor de la suma de la estadistica
+        valor = GestorBBDD.sumaDatosAC(listaCampos, tipoComponente, nombreAC, tipoDato)
+
+    # Se comprueba si el dato es el precio
+    elif tipoDato == "Precio":
+        # Se define que se quieren piezas
+        tipoComponente = "Pieza_"
+        # Se crea una lista con los campos a comprobar
+        listaCampos = ["_Cabeza", "_Torso", "_Brazos", "_Piernas"]
+        # Se calcula el valor de la suma de la estadistica
+        valor = GestorBBDD.sumaDatosAC(listaCampos, tipoComponente, nombreAC, tipoDato)
+
+        # Se define que se quieren armas
+        tipoComponente = "Arma_"
+        # Se crea una lista con los campos a comprobar del arma
+        listaCampos = ["_ArmaBDer", "_ArmaBIzq", "_ArmaHDer", "_ArmaHIzq"]
+        # Se calcula el valor de la suma de la estadistica
+        valor += GestorBBDD.sumaDatosAC(listaCampos, tipoComponente, nombreAC, tipoDato)
+
+    else:
+        # Si no es ningun valor conocido devuelve None
+        print("Dato a buscar no valido")
+        valor = None
+
+    return valor

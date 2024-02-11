@@ -262,56 +262,6 @@ def cascada(nombreOriginal, nombre):
 
 
 # Queries
-def datoAC(nombreAC, tipoDato):  # Este metodo no va aqui
-    '''
-    Esta clase se encarga de devolver la suma de valores numericos del mecha
-    ac: diccionario del mecha
-    tipoDato: String del tipo de dato del que se quieren obtener datos
-    nombreAC: Nombre del AC del que se quiere saber los datos
-    '''
-
-    # Se comprueba si los datos a buscar son de una pieza
-    if tipoDato == "Armadura" or tipoDato == "ConsumoEnergia" or tipoDato == "Peso":
-        # Se define que se quieren piezas
-        tipoComponente = "Pieza_"
-        # Se crea una lista con los campos a comprobar de la pieza
-        listaCampos = ["_Cabeza", "_Torso", "_Brazos", "_Piernas"]
-        # Se calcula el valor de la suma de la estadistica
-        valor = sumaDatosAC(listaCampos, tipoComponente, nombreAC, tipoDato)
-
-    # Se comprueba si los datos son de las armas
-    elif tipoDato == "Dps" or tipoDato == "Rpm":
-        # Se define que se quieren armas
-        tipoComponente = "Arma_"
-        # Se crea una lista con los campos a comprobar del arma
-        listaCampos = ["_ArmaBDer", "_ArmaBIzq", "_ArmaHDer", "_ArmaHIzq"]
-        # Se calcula el valor de la suma de la estadistica
-        valor = sumaDatosAC(listaCampos, tipoComponente, nombreAC, tipoDato)
-
-    # Se comprueba si el dato es el precio
-    elif tipoDato == "Precio":
-        # Se define que se quieren piezas
-        tipoComponente = "Pieza_"
-        # Se crea una lista con los campos a comprobar
-        listaCampos = ["_Cabeza", "_Torso", "_Brazos", "_Piernas"]
-        # Se calcula el valor de la suma de la estadistica
-        valor = sumaDatosAC(listaCampos, tipoComponente, nombreAC, tipoDato)
-
-        # Se define que se quieren armas
-        tipoComponente = "Arma_"
-        # Se crea una lista con los campos a comprobar del arma
-        listaCampos = ["_ArmaBDer", "_ArmaBIzq", "_ArmaHDer", "_ArmaHIzq"]
-        # Se calcula el valor de la suma de la estadistica
-        valor += sumaDatosAC(listaCampos, tipoComponente, nombreAC, tipoDato)
-
-    else:
-        # Si no es ningun valor conocido devuelve None
-        print("Dato a buscar no valido")
-        valor = None
-
-    return valor
-
-
 def sumaDatosAC(listaCampos, tipoComponente, nombreAC, tipoDato):
     '''
     Metodo que suma los valores de un campo de cada pieza o arma

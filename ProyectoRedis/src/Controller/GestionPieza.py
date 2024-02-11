@@ -66,23 +66,30 @@ class GestionPieza(iGestores.iGestores):
 
     @staticmethod
     def baja():
-        print(5*"-"+"BAJA"+"-"*5)
-        nombre = Utiles.check_campo("nombre", 25)
-        if nombre is not None:
-            piezaAux = GestorBBDD.buscarDato("Pieza_" + nombre)
-            if piezaAux is not None:
-                if Utiles.confirmacion("¿Seguro que quiere eliminar esta pieza?") is True:
-                    GestorBBDD.borrarDato("Pieza_" + nombre)
+        if (GestorBBDD.mostrarTodosDatos("Pieza_") != {}):
+            print(5*"-"+"BAJA"+"-"*5)
+            nombre = Utiles.check_campo("nombre", 25)
+            if nombre is not None:
+                piezaAux = GestorBBDD.buscarDato("Pieza_" + nombre)
+                if piezaAux is not None:
+                    if Utiles.confirmacion("¿Seguro que quiere eliminar esta pieza?") is True:
+                        GestorBBDD.borrarDato("Pieza_" + nombre)
+                        GestorBBDD.cascada(nombre, "Sin equipar")
+        else:
+            print("No hay piezas creadas.")
 
     @staticmethod
     def modificar():
-        print(5*"-"+"MODIFICAR"+"-"*5)
-        nombre = Utiles.check_campo("nombre", 25)
-        if nombre is not None:
-            piezaAux = GestorBBDD.buscarDato(
-                "Pieza_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
-            if piezaAux is not None:
-                GestionPieza.menuModificar(nombre, piezaAux)
+        if (GestorBBDD.mostrarTodosDatos("Pieza_") != {}):
+            print(5*"-"+"MODIFICAR"+"-"*5)
+            nombre = Utiles.check_campo("nombre", 25)
+            if nombre is not None:
+                piezaAux = GestorBBDD.buscarDato(
+                    "Pieza_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
+                if piezaAux is not None:
+                    GestionPieza.menuModificar(nombre, piezaAux)
+        else:
+            print("No hay piezas creadas.")
 
     @staticmethod
     def menuModificar(nombreOriginal, pieza):  # Metodo placeholder
@@ -101,8 +108,8 @@ class GestionPieza(iGestores.iGestores):
                     piezaAux = GestorBBDD.buscarDato(
                         "Pieza_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
                     if piezaAux is None:
-                        if Utiles.confirmacion(
-                                "Seguro que quiere cambiar el nombre de la pieza: " + nombreOriginal + " a: " + nombre):
+                        if Utiles.confirmacion("Seguro que quiere cambiar el nombre de la pieza: " + nombreOriginal + " a: " + nombre):
+                            GestorBBDD.cascada(nombreOriginal, nombre)
                             GestorBBDD.borrarDato("Pieza_" + nombreOriginal)
                             piezaAux2 = {
                                 "Pieza_" + nombre + "_Nombre": nombre,
@@ -161,35 +168,39 @@ class GestionPieza(iGestores.iGestores):
 
     @staticmethod
     def buscar():
-        print(5*"-"+"BUSCAR"+"-"*5)
-        nombre = Utiles.check_campo("nombre", 25)
-        if nombre is not None:
-            datos = GestorBBDD.buscarDato(
-                "Pieza_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
-            if datos is not None:
-                print("\n[-" + datos["Pieza_" + nombre + "_Nombre"] + "-]")
-                print("  Tipo de pieza:" + datos["Pieza_" + nombre + "_TipoPieza"] + "  ")
-                print("  Armadura:" + datos["Pieza_" + nombre + "_Armadura"] + "  ")
-                print("  Consumo de energia:" + datos["Pieza_" + nombre + "_ConsumoEnergia"] + "  ")
-                print("  Peso:" + datos["Pieza_" + nombre + "_Peso"] + "  ")
-                print("  Precio:" + datos["Pieza_" + nombre + "_Precio"] + "$  ")
-                return datos
+        if (GestorBBDD.mostrarTodosDatos("Pieza_") != {}):
+            print(5*"-"+"BUSCAR"+"-"*5)
+            nombre = Utiles.check_campo("nombre", 25)
+            if nombre is not None:
+                datos = GestorBBDD.buscarDato(
+                    "Pieza_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
+                if datos is not None:
+                    print("\n[-" + datos["Pieza_" + nombre + "_Nombre"] + "-]")
+                    print("  Tipo de pieza:" + datos["Pieza_" + nombre + "_TipoPieza"] + "  ")
+                    print("  Armadura:" + datos["Pieza_" + nombre + "_Armadura"] + "  ")
+                    print("  Consumo de energia:" + datos["Pieza_" + nombre + "_ConsumoEnergia"] + "  ")
+                    print("  Peso:" + datos["Pieza_" + nombre + "_Peso"] + "  ")
+                    print("  Precio:" + datos["Pieza_" + nombre + "_Precio"] + "$  ")
+                    return datos
+                else:
+                    print("No se ha encontrado la pieza.")
+                    return None
             else:
-                print("No se ha encontrado la pieza.")
                 return None
         else:
-            return None
+            print("No hay piezas creadas.")
 
     @staticmethod
     def mostrarTodos():
-        print(5*"-"+"MOSTRAR TODOS"+"-"*5)
-        datos = GestorBBDD.mostrarTodosDatos("Pieza_")
-        for x in datos:
-            print("\n[-" + datos[x][x + "_Nombre"] + "-]")
-            print("  Tipo de pieza:" + datos[x][x + "_TipoPieza"] + "  ")
-            print("  Armadura:" + datos[x][x + "_Armadura"] + "  ")
-            print("  Consumo de energia:" + datos[x][x + "_ConsumoEnergia"] + "  ")
-            print("  Peso:" + datos[x][x + "_Peso"] + "  ")
-            print("  Precio:" + datos[x][x + "_Precio"] + "$  ")
-        if (datos == {}):
+        if (GestorBBDD.mostrarTodosDatos("Arma_") != {}):
+            print(5*"-"+"MOSTRAR TODOS"+"-"*5)
+            datos = GestorBBDD.mostrarTodosDatos("Pieza_")
+            for x in datos:
+                print("\n[-" + datos[x][x + "_Nombre"] + "-]")
+                print("  Tipo de pieza:" + datos[x][x + "_TipoPieza"] + "  ")
+                print("  Armadura:" + datos[x][x + "_Armadura"] + "  ")
+                print("  Consumo de energia:" + datos[x][x + "_ConsumoEnergia"] + "  ")
+                print("  Peso:" + datos[x][x + "_Peso"] + "  ")
+                print("  Precio:" + datos[x][x + "_Precio"] + "$  ")
+        else:
             print("No hay piezas creadas.")

@@ -48,23 +48,29 @@ class GestionArma(iGestores.iGestores):
             print("Fallo en la creacion del arma")
     @staticmethod
     def baja():
-        print(5*"-"+"BAJA"+"-"*5)
-        nombre = Utiles.check_campo("nombre", 25)
-        if nombre is not None:
-            armaAux =GestorBBDD.buscarDato("Arma_" + nombre)
-            if armaAux is not None:
-                if Utiles.confirmacion("¿Seguro que quiere eliminar este arma?") is True:
-                    GestorBBDD.borrarDato("Arma_"+nombre)
+        if(GestorBBDD.mostrarTodosDatos("Arma_")!={}):
+            print(5*"-"+"BAJA"+"-"*5)
+            nombre = Utiles.check_campo("nombre", 25)
+            if nombre is not None:
+                armaAux =GestorBBDD.buscarDato("Arma_" + nombre)
+                if armaAux is not None:
+                    if Utiles.confirmacion("¿Seguro que quiere eliminar este arma?") is True:
+                        GestorBBDD.borrarDato("Arma_"+nombre)
+                        GestorBBDD.cascada(nombre, "Sin equipar")
+        else:
+            print("No hay armas creadas")
 
     @staticmethod
     def modificar():
-        print(5*"-"+"MODIFICAR"+"-"*5)
-        nombre = Utiles.check_campo("nombre", 25)
-        if nombre is not None:
-            armaAux = GestorBBDD.buscarDato("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
-            if armaAux is not None:
-                GestionArma.menuModificar(nombre,armaAux)
-
+        if (GestorBBDD.mostrarTodosDatos("Arma_") != {}):
+            print(5*"-"+"MODIFICAR"+"-"*5)
+            nombre = Utiles.check_campo("nombre", 25)
+            if nombre is not None:
+                armaAux = GestorBBDD.buscarDato("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
+                if armaAux is not None:
+                    GestionArma.menuModificar(nombre,armaAux)
+        else:
+            print("No hay armas creadas")
 
     @staticmethod
     def menuModificar(nombreOriginal,arma):
@@ -81,6 +87,7 @@ class GestionArma(iGestores.iGestores):
                     armaAux = GestorBBDD.buscarDato("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
                     if armaAux is None:
                         if Utiles.confirmacion("Seguro que quiere cambiar el nombre del arma: "+nombreOriginal+" a: "+nombre):
+                            GestorBBDD.cascada(nombreOriginal, nombre)
                             GestorBBDD.borrarDato("Arma_"+nombreOriginal)
                             armaAux2 = {
                                 "Arma_" + nombre + "_Nombre": nombre,
@@ -142,37 +149,41 @@ class GestionArma(iGestores.iGestores):
 
     @staticmethod
     def buscar(nombre):
-        print(5*"-"+"BUSCAR"+"-"*5)
-        nombre = Utiles.check_campo("nombre", 25)
-        if nombre is not None:
-            datos = GestorBBDD.buscarDato("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
-            if datos is not None:
-                print("\n[-" + datos["Arma_"+nombre+"_Nombre"] + "-]")
-                print("  Tipo de damage:" + datos["Arma_"+nombre+"_TipoDamage"] + "  ")
-                print("  Damage por segundo:" + datos["Arma_"+nombre+"_Dps"] + "  ")
-                print("  Rondas por minuto:" + datos["Arma_"+nombre+"_Rpm"] + "  ")
-                print("  Municion maxima:" + datos["Arma_"+nombre+"_Municion"] + "  ")
-                print("  Puede ponerse en el hombro:" + datos["Arma_"+nombre+"_ArmaHombro"] + "  ")
-                print("  Precio:" + datos["Arma_"+nombre+"_Precio"] + "$  ")
-                return datos
+        if (GestorBBDD.mostrarTodosDatos("Arma_") != {}):
+            print(5*"-"+"BUSCAR"+"-"*5)
+            nombre = Utiles.check_campo("nombre", 25)
+            if nombre is not None:
+                datos = GestorBBDD.buscarDato("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
+                if datos is not None:
+                    print("\n[-" + datos["Arma_"+nombre+"_Nombre"] + "-]")
+                    print("  Tipo de damage:" + datos["Arma_"+nombre+"_TipoDamage"] + "  ")
+                    print("  Damage por segundo:" + datos["Arma_"+nombre+"_Dps"] + "  ")
+                    print("  Rondas por minuto:" + datos["Arma_"+nombre+"_Rpm"] + "  ")
+                    print("  Municion maxima:" + datos["Arma_"+nombre+"_Municion"] + "  ")
+                    print("  Puede ponerse en el hombro:" + datos["Arma_"+nombre+"_ArmaHombro"] + "  ")
+                    print("  Precio:" + datos["Arma_"+nombre+"_Precio"] + "$  ")
+                    return datos
+                else:
+                    print("No se ha encontrado el arma.")
+                    return None
             else:
-                print("No se ha encontrado el arma.")
                 return None
         else:
-            return None
+            print("No hay armas creadas.")
 
 
     @staticmethod
     def mostrarTodos():
-        print(5*"-"+"MOSTRAR TODOS"+"-"*5)
-        datos = GestorBBDD.mostrarTodosDatos("Arma_")# Te mando la categoria para que me devuelvas un diccionario con diccionarios que contengan los datos de una pieza
-        for x in datos:
-            print("\n[-" + datos[x][x+"_Nombre"] + "-]")
-            print("  Tipo de damage:" + datos[x][x+"_TipoDamage"] + "  ")
-            print("  Damage por segundo:" + datos[x][x+"_Dps"] + "  ")
-            print("  Rondas por minuto:" + datos[x][x+"_Rpm"] + "  ")
-            print("  Municion maxima:" + datos[x][x+"_Municion"] + "  ")
-            print("  Puede ponerse en el hombro:" + datos[x][x+"_ArmaHombro"] + "  ")
-            print("  Precio:" + datos[x][x+"_Precio"] + "$  ")
-        if(datos=={}):
+        if (GestorBBDD.mostrarTodosDatos("Pieza_") != {}):
+            print(5*"-"+"MOSTRAR TODOS"+"-"*5)
+            datos = GestorBBDD.mostrarTodosDatos("Arma_")# Te mando la categoria para que me devuelvas un diccionario con diccionarios que contengan los datos de una pieza
+            for x in datos:
+                print("\n[-" + datos[x][x+"_Nombre"] + "-]")
+                print("  Tipo de damage:" + datos[x][x+"_TipoDamage"] + "  ")
+                print("  Damage por segundo:" + datos[x][x+"_Dps"] + "  ")
+                print("  Rondas por minuto:" + datos[x][x+"_Rpm"] + "  ")
+                print("  Municion maxima:" + datos[x][x+"_Municion"] + "  ")
+                print("  Puede ponerse en el hombro:" + datos[x][x+"_ArmaHombro"] + "  ")
+                print("  Precio:" + datos[x][x+"_Precio"] + "$  ")
+        else:
             print("No hay armas creadas.")

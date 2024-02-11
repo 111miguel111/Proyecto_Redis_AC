@@ -250,7 +250,11 @@ def mostrarTodosDatos(tipoDato):#Diccionario de diccionarios
             datosOut[stringAux] = datosAux
     return datosOut
 
-
+def cascada(nombreOriginal,nombre):
+    datos = mostrarTodosDatos("AC_")  # Te mando la categoria para que me devuelvas un diccionario con diccionarios que contengan los datos de una pieza
+    for x in datos:
+         if(datos[x][x + "_*"] ==nombreOriginal):
+             datos[x][x + "_*"]=nombre
 # Queries
 def datoAC(clave, tipoDato):  # Este metodo no va aqui
     '''

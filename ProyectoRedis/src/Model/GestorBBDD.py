@@ -223,10 +223,10 @@ def insertarDato(datos):
 
 def buscarDato(clave):
     datos = {}
-    for campo in conn.keys(clave+"*"):
-        datos[campo]=conn.get(campo)
-    if(datos=={}):
-        datos=None
+    for campo in conn.keys(clave + "*"):
+        datos[campo] = conn.get(campo)
+    if (datos == {}):
+        datos = None
     return datos
 
 
@@ -236,99 +236,104 @@ def borrarDato(clave):
         conn.delete(campo)
 
 
-def mostrarTodosDatos(tipoDato):#Diccionario de diccionarios
-    datos = conn.keys(tipoDato+"*")#Ayuda
+def mostrarTodosDatos(tipoDato):  # Diccionario de diccionarios
+    datos = conn.keys(tipoDato + "*")  # Ayuda
     datosOut = {}
     stringAux = ""
     for key in datos:
-        if (str(key).split("_")[0]+"_"+str(key).split("_")[1]) != stringAux:
-            stringAux=str(key).split("_")[0]+"_"+str(key).split("_")[1]
+        if (str(key).split("_")[0] + "_" + str(key).split("_")[1]) != stringAux:
+            stringAux = str(key).split("_")[0] + "_" + str(key).split("_")[1]
             datosAux = {}
-            for key in conn.keys(stringAux+"*"):
+            for key in conn.keys(stringAux + "*"):
                 datosAux[key] = conn.get(key)
             datosOut[stringAux] = datosAux
     return datosOut
 
-def cascada(nombreOriginal,nombre):
-    datos = mostrarTodosDatos("AC_")  # Te mando la categoria para que me devuelvas un diccionario con diccionarios que contengan los datos de una pieza
+
+def cascada(nombreOriginal, nombre):
+    datos = mostrarTodosDatos(
+        "AC_")  # Te mando la categoria para que me devuelvas un diccionario con diccionarios que contengan los datos de una pieza
     for x in datos:
         for campo in datos[x]:
-             if(datos[x][campo] ==nombreOriginal):
-                 datos[x][campo]=nombre
-                 borrarDato(campo)
-                 conn.set(campo, nombre)
+            if (datos[x][campo] == nombreOriginal):
+                datos[x][campo] = nombre
+                borrarDato(campo)
+                conn.set(campo, nombre)
+
+
 # Queries
-def datoAC(clave, tipoDato):  # Este metodo no va aqui
+def datoAC(nombreAC, tipoDato):  # Este metodo no va aqui
     '''
     Esta clase se encarga de devolver la suma de valores numericos del mecha
     ac: diccionario del mecha
     tipoDato: String del tipo de dato del que se quieren obtener datos
+    nombreAC: Nombre del AC del que se quiere saber los datos
     '''
+
     # Se comprueba si los datos a buscar son de una pieza
     if tipoDato == "Armadura" or tipoDato == "ConsumoEnergia" or tipoDato == "Peso":
-        # Se crea un valor 0 y se busca el valor de cada pieza, si la pieza no existe
-        # El valor es 0
-        valor = 0
-
-        valor += int((buscarDato(clave+"_Cabeza"))[tipoDato]) \
-            if buscarDato(clave+"_Cabeza") != None else 0
-        valor += int((buscarDato(clave + "_Torso"))[tipoDato]) \
-            if buscarDato(clave + "_Torso") != None else 0
-        valor += int((buscarDato(clave + "_Brazos"))[tipoDato]) \
-            if buscarDato(clave + "_Brazos") != None else 0
-        valor += int((buscarDato(clave + "_Piernas"))[tipoDato]) \
-            if buscarDato(clave + "_Piernas") != None else 0
-
-        return valor
+        # Se define que se quieren piezas
+        tipoComponente = "Pieza_"
+        # Se crea una lista con los campos a comprobar de la pieza
+        listaCampos = ["_Cabeza", "_Torso", "_Brazos", "_Piernas"]
+        # Se calcula el valor de la suma de la estadistica
+        valor = sumaDatosAC(listaCampos, tipoComponente, nombreAC, tipoDato)
 
     # Se comprueba si los datos son de las armas
     elif tipoDato == "Dps" or tipoDato == "Rpm":
-        # Se crea un valor 0 y se busca el valor de cada pieza, si la pieza no existe
-        # El valor es 0
-        valor = 0
-
-        valor += int((buscarDato(clave + "_ArmaBDer"))[tipoDato]) \
-            if buscarDato(clave + "_ArmaBDer") != None else 0
-        valor += int((buscarDato(clave + "_ArmaBIzq"))[tipoDato]) \
-            if buscarDato(clave + "_ArmaBIzq") != None else 0
-        valor += int((buscarDato(clave + "_ArmaHDer"))[tipoDato]) \
-            if buscarDato(clave + "_ArmaHDer") != None else 0
-        valor += int((buscarDato(clave + "_ArmaHIzq"))[tipoDato]) \
-            if buscarDato(clave + "_ArmaHIzq") != None else 0
-
-        return valor
+        # Se define que se quieren armas
+        tipoComponente = "Arma_"
+        # Se crea una lista con los campos a comprobar del arma
+        listaCampos = ["_ArmaBDer", "_ArmaBIzq", "_ArmaHDer", "_ArmaHIzq"]
+        # Se calcula el valor de la suma de la estadistica
+        valor = sumaDatosAC(listaCampos, tipoComponente, nombreAC, tipoDato)
 
     # Se comprueba si el dato es el precio
     elif tipoDato == "Precio":
-        # Se crea un valor 0 y se busca el valor de cada pieza, si la pieza no existe
-        # El valor es 0
-        valor = 0
+        # Se define que se quieren piezas
+        tipoComponente = "Pieza_"
+        # Se crea una lista con los campos a comprobar
+        listaCampos = ["_Cabeza", "_Torso", "_Brazos", "_Piernas"]
+        # Se calcula el valor de la suma de la estadistica
+        valor = sumaDatosAC(listaCampos, tipoComponente, nombreAC, tipoDato)
 
-        valor += int((buscarDato(clave + "_Cabeza"))[tipoDato]) \
-            if buscarDato(clave + "_Cabeza") != None else 0
-        valor += int((buscarDato(clave + "_Torso"))[tipoDato]) \
-            if buscarDato(clave + "_Torso") != None else 0
-        valor += int((buscarDato(clave + "_Brazos"))[tipoDato]) \
-            if buscarDato(clave + "_Brazos") != None else 0
-        valor += int((buscarDato(clave + "_Piernas"))[tipoDato]) \
-            if buscarDato(clave + "_Piernas") != None else 0
-        valor += int((buscarDato(clave + "_ArmaBDer"))[tipoDato]) \
-            if buscarDato(clave + "_ArmaBDer") != None else 0
-        valor += int((buscarDato(clave + "_ArmaBIzq"))[tipoDato]) \
-            if buscarDato(clave + "_ArmaBIzq") != None else 0
-        valor += int((buscarDato(clave + "_ArmaHDer"))[tipoDato]) \
-            if buscarDato(clave + "_ArmaHDer") != None else 0
-        valor += int((buscarDato(clave + "_ArmaHIzq"))[tipoDato]) \
-            if buscarDato(clave + "_ArmaHIzq") != None else 0
+        # Se define que se quieren armas
+        tipoComponente = "Arma_"
+        # Se crea una lista con los campos a comprobar del arma
+        listaCampos = ["_ArmaBDer", "_ArmaBIzq", "_ArmaHDer", "_ArmaHIzq"]
+        # Se calcula el valor de la suma de la estadistica
+        valor += sumaDatosAC(listaCampos, tipoComponente, nombreAC, tipoDato)
 
-        return valor
+    else:
+        # Si no es ningun valor conocido devuelve None
+        print("Dato a buscar no valido")
+        valor = None
 
-    # Si no es ningun valor conocido devuelve None
-    print("Dato a buscar no valido")
-    return None
+    return valor
 
 
-def mostrarTodosFiltro(tipoDato, campo, valor, rango):#Diccionario de diccionarios
+def sumaDatosAC(listaCampos, tipoComponente, nombreAC, tipoDato):
+    '''
+    Metodo que suma los valores de un campo de cada pieza o arma
+    listaCampos: Lista con los campos a comprobar de la pieza
+    tipoComponente: String que define si se quieren buscar piezas o armas
+    nombreAC: Nombre del AC del que se quiere saber los datos
+    tipoDato: String del tipo de dato del que se quieren obtener datos
+    '''
+    # Se crea un valor 0 sobre el que se sumaran las estadisticas
+    valor = 0
+    # Se suma campo a campo el valor a calcular
+    for campos in listaCampos:
+        # Se obtiene el nombre de la pieza de la parte correspondiente en el AC
+        nombrePieza = tipoComponente + buscarDato("AC_" + nombreAC + campos)["AC_" + nombreAC + campos] + "_" + tipoDato
+        # Se busca ahora el parametro de la pieza en la base de datos y se suma a valor
+        # Si el campo no existe se pone 0
+        valor += int(buscarDato(nombrePieza)[nombrePieza]) \
+            if buscarDato(nombrePieza)[nombrePieza] != None else 0
+    return valor
+
+
+def mostrarTodosFiltro(tipoDato, campo, valor, rango):  # Diccionario de diccionarios
     '''
     Metodo que busca todas las instancias de datos con los parametros elegidos.
     Si los parametros elegidos no son correctos se devuelve none
@@ -340,22 +345,22 @@ def mostrarTodosFiltro(tipoDato, campo, valor, rango):#Diccionario de diccionari
     rango: String con "=", "<", o ">" para hacer que busque por mayor que, menor que o igual.
     El caso de que se quiera buscar un campo con letras solo "=" sera valido
     '''
-    #Se crea el diccionario en el que se van a guardar los datos
+    # Se crea el diccionario en el que se van a guardar los datos
     datosAux = {}
 
     datos = mostrarTodosDatos(tipoDato)
-    #El for each recorre la BBDD en funcion a la cadena del tipo de dato introducida
+    # El for each recorre la BBDD en funcion a la cadena del tipo de dato introducida
     for key in datos:
         try:
-            #Se comprueba que se quiere hacer con el tipo de dato
+            # Se comprueba que se quiere hacer con el tipo de dato
             if (rango == "="):
-                if valor == "" or conn.get(key+campo) == valor:
+                if valor == "" or conn.get(key + campo) == valor:
                     datosAux[key] = datos[key]
             elif (rango == ">"):
-                if valor == "" or int(conn.get(key+campo)) > int(valor):
+                if valor == "" or int(conn.get(key + campo)) > int(valor):
                     datosAux[key] = datos[key]
             elif (rango == "<"):
-                if valor == "" or int(conn.get(key+campo)) < int(valor):
+                if valor == "" or int(conn.get(key + campo)) < int(valor):
                     datosAux[key] = datos[key]
             else:
                 print('Introduzca que con que rango se quieren filtrar los datos. Si no esta seguro ponga "')

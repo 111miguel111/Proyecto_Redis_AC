@@ -319,11 +319,11 @@ class GestionAC(iGestores.iGestores):
                             print("No se ha encontrado ese arma del brazo izquierdo")
 
             elif (opcion == "8"):
-                GestionAC.mostrarNombres("Pieza","armaHDer")
+                GestionAC.mostrarNombres("Arma","armaHDer")
                 armaHDer = Utiles.check_letras("armaHDer", 25)
 
                 if armaHDer is not None:
-                    armaHDerAux= GestorBBDD.buscarDato("Pieza_" + armaHDer)
+                    armaHDerAux= GestorBBDD.buscarDato("Arma_" + armaHDer)
                     if armaHDerAux is not None:
                         #Este if va dentro del de justo arriba
                         if Utiles.confirmacion("Seguro que quiere cambiar la armaHDer del AC: " + ac["AC_"+nombreOriginal+"_Nombre"] + " a: " + armaHDer):

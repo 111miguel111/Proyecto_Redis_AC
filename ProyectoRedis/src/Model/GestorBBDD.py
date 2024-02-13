@@ -115,6 +115,20 @@ def checkConfigBien(filePath):
         return False
 
 
+def AgregarCatalogo():
+    try:
+        with open("../../catalogo.txt", "r") as fichero:
+            for linea in fichero:
+                linea=linea.replace("\n","")
+                claveValor=linea.split(":")
+                conn.set(claveValor[0],claveValor[1])
+            print("Se ha agregado el catalogo es decir 2 piezas de cada tipo y 2 armas de cada tipo.")
+    except:
+        print("No se ha podido agregar catalogo.")
+
+    return 0
+
+
 def conectarse():
     '''
     Funcion encargada de conectar redis a la base de datos
@@ -278,8 +292,10 @@ def sumaDatosAC(listaCampos, tipoComponente, nombreAC, tipoDato):
         nombrePieza = tipoComponente + buscarDato("AC_" + nombreAC + campos)["AC_" + nombreAC + campos] + "_" + tipoDato
         # Se busca ahora el parametro de la pieza en la base de datos y se suma a valor
         # Si el campo no existe se pone 0
-        valor += int(buscarDato(nombrePieza)[nombrePieza]) \
-            if buscarDato(nombrePieza)[nombrePieza] != None else 0
+        try:
+            valor += int(buscarDato(nombrePieza)[nombrePieza])
+        except:
+            valor = 0
     return valor
 
 

@@ -148,7 +148,7 @@ class GestionArma(iGestores.iGestores):
                 GestorBBDD.insertarDato(arma)
 
     @staticmethod
-    def buscar(nombre):
+    def buscar():
         if (GestorBBDD.mostrarTodosDatos("Arma_") != {}):
             print(5*"-"+"BUSCAR"+"-"*5)
             nombre = Utiles.check_campo("nombre", 25)

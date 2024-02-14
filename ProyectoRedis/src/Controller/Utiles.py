@@ -27,7 +27,7 @@ def entrada_teclado(contexto=""):
     :return: respuesta: si el campo es correcto
     :return: None: si el campo esta vacio
     """
-    print(contexto.upper()() + ": ")
+    print(contexto.upper() + ": ")
     respuesta = input("→")
     print("")
     if respuesta is not None and not respuesta.isspace():

@@ -51,13 +51,13 @@ class GestionPieza(iGestores.iGestores):
             print("1.Cabeza.\n2.Torso.\n3.Brazos.\n4.Piernas.\n0.Salir.")
             opcion = Utiles.check_numeros("Opcion", 25)
             if (opcion == "1"):
-                return "Cabeza"
+                return "CABEZA"
             elif (opcion == "2"):
-                return "Torso"
+                return "TORSO"
             elif (opcion == "3"):
-                return "Brazos"
+                return "BRAZOS"
             elif (opcion == "4"):
-                return "Piernas"
+                return "PIERNAS"
             elif (opcion == "0"):
                 print("Saliendo del menu.")
                 return None

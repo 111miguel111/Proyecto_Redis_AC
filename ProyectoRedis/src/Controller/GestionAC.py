@@ -35,7 +35,7 @@ class GestionAC(iGestores.iGestores):
                     cont = 0
                     while cont < 5:
                         print("Cabezas disponibles:")
-                        GestionAC.mostrarNombres("Pieza", "cabeza")
+                        GestionAC.mostrarNombres("Pieza", "Cabeza")
                         cabeza = Utiles.check_campo("introduzca el nombre de la cabeza del AC", 25)
 
                         if cabeza is not None:
@@ -56,7 +56,7 @@ class GestionAC(iGestores.iGestores):
                 cont = 0
                 while cont < 5:
                     print("Torsos disponibles:")
-                    GestionAC.mostrarNombres("Pieza", "torso")
+                    GestionAC.mostrarNombres("Pieza", "Torso")
                     torso = Utiles.check_campo("introduzca el nombre del torso del AC", 25)
                     if torso is not None:
                         torsoAux = GestorBBDD.buscarDatoPorClave("Pieza_" + torso)
@@ -73,7 +73,7 @@ class GestionAC(iGestores.iGestores):
                 cont = 0
                 while cont < 5:
                     print("Brazos disponibles:")
-                    GestionAC.mostrarNombres("Pieza", "brazos")
+                    GestionAC.mostrarNombres("Pieza", "Brazos")
                     brazos = Utiles.check_campo("Introduzca el nombre de los brazos del AC", 25)
                     if brazos is not None:
                         brazosAux = GestorBBDD.buscarDatoPorClave("Pieza_" + brazos)
@@ -91,7 +91,7 @@ class GestionAC(iGestores.iGestores):
                 cont = 0
                 while cont < 5:
                     print("Piernas disponibles:")
-                    GestionAC.mostrarNombres("Pieza", "piernas")
+                    GestionAC.mostrarNombres("Pieza", "Piernas")
                     piernas = Utiles.check_campo("Introduzca el nombre de las piernas del AC", 25)
                     if piernas is not None:
                         piernasAux = GestorBBDD.buscarDatoPorClave("Pieza_" + piernas)
@@ -309,7 +309,7 @@ class GestionAC(iGestores.iGestores):
                         print("Ya existe un AC con el mismo nombre.\n")
 
             elif (opcion == "2"):
-                GestionAC.mostrarNombres("Pieza", "cabeza")
+                GestionAC.mostrarNombres("Pieza", "Cabeza")
                 cabeza = Utiles.check_campo("cabeza", 25)
 
                 if cabeza is not None:
@@ -324,7 +324,7 @@ class GestionAC(iGestores.iGestores):
                         print("No se ha encontrado esa cabeza\n")
 
             elif (opcion == "3"):
-                GestionAC.mostrarNombres("Pieza", "torso")
+                GestionAC.mostrarNombres("Pieza", "Torso")
                 torso = Utiles.check_campo("torso", 25)
 
                 if torso is not None:
@@ -339,7 +339,7 @@ class GestionAC(iGestores.iGestores):
                         print("No se ha encontrado ese torso\n")
 
             elif (opcion == "4"):
-                GestionAC.mostrarNombres("Pieza", "brazos")
+                GestionAC.mostrarNombres("Pieza", "Brazos")
                 brazos = Utiles.check_campo("brazos", 25)
 
                 if brazos is not None:
@@ -354,7 +354,7 @@ class GestionAC(iGestores.iGestores):
                         print("No se han encontrado esos brazos\n")
 
             elif (opcion == "5"):
-                GestionAC.mostrarNombres("Pieza", "piernas")
+                GestionAC.mostrarNombres("Pieza", "Piernas")
                 piernas = Utiles.check_campo("piernas", 25)
 
                 if piernas is not None:

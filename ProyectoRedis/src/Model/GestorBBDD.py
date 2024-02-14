@@ -245,7 +245,7 @@ def buscarDato(busqueda):
 
 def buscarDatoPorClave(clave):
     datos = {}
-    for campo in conn.keys(clave + "*"+"_"+"*"):
+    for campo in conn.keys(clave +"_"+"*"):
         datos[campo] = conn.get(campo)
     if (datos == {}):
         datos = None

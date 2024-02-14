@@ -16,7 +16,7 @@ class GestionPieza(iGestores.iGestores):
         print(5*"-"+"ALTA"+"-"*5)
         nombre = Utiles.check_campo("nombre", 25)
         if nombre is not None:
-            piezaAux = GestorBBDD.buscarDato("Pieza_" + nombre)  # Comprobamos si ya existe un arma con ese nombre
+            piezaAux = GestorBBDD.buscarDatoPorClave("Pieza_" + nombre)  # Comprobamos si ya existe un arma con ese nombre
             if piezaAux is None:
                 tipoPieza = GestionPieza.menuTipoPieza()
             else:
@@ -70,7 +70,7 @@ class GestionPieza(iGestores.iGestores):
             print(5*"-"+"BAJA"+"-"*5)
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
-                piezaAux = GestorBBDD.buscarDato("Pieza_" + nombre)
+                piezaAux = GestorBBDD.buscarDatoPorClave("Pieza_" + nombre)
                 if piezaAux is not None:
                     if Utiles.confirmacion("¿Seguro que quiere eliminar esta pieza?") is True:
                         GestorBBDD.borrarDato("Pieza_" + nombre)
@@ -84,7 +84,7 @@ class GestionPieza(iGestores.iGestores):
             print(5*"-"+"MODIFICAR"+"-"*5)
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
-                piezaAux = GestorBBDD.buscarDato(
+                piezaAux = GestorBBDD.buscarDatoPorClave(
                     "Pieza_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
                 if piezaAux is not None:
                     GestionPieza.menuModificar(nombre, piezaAux)
@@ -105,7 +105,7 @@ class GestionPieza(iGestores.iGestores):
             if (opcion == "1"):
                 nombre = Utiles.check_campo("nombre", 25)
                 if nombre is not None:
-                    piezaAux = GestorBBDD.buscarDato(
+                    piezaAux = GestorBBDD.buscarDatoPorClave(
                         "Pieza_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
                     if piezaAux is None:
                         if Utiles.confirmacion("Seguro que quiere cambiar el nombre de la pieza: " + nombreOriginal + " a: " + nombre):
@@ -172,7 +172,7 @@ class GestionPieza(iGestores.iGestores):
             print(5*"-"+"BUSCAR"+"-"*5)
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
-                datos = GestorBBDD.buscarDato(
+                datos = GestorBBDD.buscarDatoPorClave(
                     "Pieza_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
                 if datos is not None:
                     print("\n[-" + datos["Pieza_" + nombre + "_Nombre"] + "-]")

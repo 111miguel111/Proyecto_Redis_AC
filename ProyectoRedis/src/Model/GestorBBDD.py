@@ -258,7 +258,7 @@ def borrarDato(clave):
         conn.delete(campo)
 
 def dropDatabase():
-    datos = buscarDato("*")
+    datos = conn.keys("*")
     for campo in datos:
         conn.delete(campo)
 

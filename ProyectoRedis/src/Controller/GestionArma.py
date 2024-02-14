@@ -57,6 +57,11 @@ class GestionArma(iGestores.iGestores):
                     if Utiles.confirmacion("¿Seguro que quiere eliminar este arma?") is True:
                         GestorBBDD.borrarDato("Arma_"+nombre)
                         GestorBBDD.cascada(nombre, "Sin equipar")
+                        print("Arma eliminada.")
+                    else:
+                        print("Arma no eliminada.")
+            else:
+                print("No se ha encontrado el arma.")
         else:
             print("No hay armas creadas")
 
@@ -141,11 +146,12 @@ class GestionArma(iGestores.iGestores):
                         cambio = True
             elif (opcion == "0"):
                 print("Saliendo del subMenu.")
-                return None
+                opcion=0
             else:
                 print("Opcion no valida.")
             if cambio is True:
                 GestorBBDD.insertarDato(arma)
+                print("Arma modificada.")
 
     @staticmethod
     def buscar():

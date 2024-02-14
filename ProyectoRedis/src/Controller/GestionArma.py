@@ -16,7 +16,7 @@ class GestionArma(iGestores.iGestores):
         print(5*"-"+"ALTA"+"-"*5)
         nombre = Utiles.check_campo("nombre", 25)
         if nombre is not None:
-            armaAux = GestorBBDD.buscarDato("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
+            armaAux = GestorBBDD.buscarDatoPorClave("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
             if armaAux is None:
                 tipoDamage = Utiles.check_letras("tipo de damage", 25)
             else:
@@ -52,7 +52,7 @@ class GestionArma(iGestores.iGestores):
             print(5*"-"+"BAJA"+"-"*5)
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
-                armaAux =GestorBBDD.buscarDato("Arma_" + nombre)
+                armaAux =GestorBBDD.buscarDatoPorClave("Arma_" + nombre)
                 if armaAux is not None:
                     if Utiles.confirmacion("¿Seguro que quiere eliminar este arma?") is True:
                         GestorBBDD.borrarDato("Arma_"+nombre)
@@ -66,7 +66,7 @@ class GestionArma(iGestores.iGestores):
             print(5*"-"+"MODIFICAR"+"-"*5)
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
-                armaAux = GestorBBDD.buscarDato("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
+                armaAux = GestorBBDD.buscarDatoPorClave("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
                 if armaAux is not None:
                     GestionArma.menuModificar(nombre,armaAux)
         else:
@@ -84,7 +84,7 @@ class GestionArma(iGestores.iGestores):
             if (opcion == "1"):
                 nombre = Utiles.check_campo("nombre", 25)
                 if nombre is not None:
-                    armaAux = GestorBBDD.buscarDato("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
+                    armaAux = GestorBBDD.buscarDatoPorClave("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
                     if armaAux is None:
                         if Utiles.confirmacion("Seguro que quiere cambiar el nombre del arma: "+nombreOriginal+" a: "+nombre):
                             GestorBBDD.cascada(nombreOriginal, nombre)
@@ -153,7 +153,7 @@ class GestionArma(iGestores.iGestores):
             print(5*"-"+"BUSCAR"+"-"*5)
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
-                datos = GestorBBDD.buscarDato("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
+                datos = GestorBBDD.buscarDatoPorClave("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
                 if datos is not None:
                     print("\n[-" + datos["Arma_"+nombre+"_Nombre"] + "-]")
                     print("  Tipo de damage:" + datos["Arma_"+nombre+"_TipoDamage"] + "  ")

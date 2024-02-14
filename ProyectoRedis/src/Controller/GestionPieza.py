@@ -120,6 +120,7 @@ class GestionPieza(iGestores.iGestores):
                                 "Pieza_" + nombre + "_Precio": pieza["Pieza_" + nombreOriginal + "_Precio"]
                             }
                             pieza = piezaAux2
+                            nombreOriginal=nombre
                             cambio = True
                     else:
                         print("Ya existe una pieza con el mismo nombre.")
@@ -160,7 +161,7 @@ class GestionPieza(iGestores.iGestores):
                         cambio = True
             elif (opcion == "0"):
                 print("Saliendo del subMenu.")
-                return None
+                opcion = "0"
             else:
                 print("Opcion no valida.")
             if cambio is True:

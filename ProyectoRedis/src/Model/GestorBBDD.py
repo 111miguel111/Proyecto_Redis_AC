@@ -121,7 +121,7 @@ def AgregarCatalogo():
             for linea in fichero:
                 linea=linea.replace("\n","")
                 claveValor=linea.split(":")
-                conn.set(claveValor[0],claveValor[1])
+                conn.set(claveValor[0],claveValor[1].upper())
             print("Se ha agregado el catalogo es decir 2 piezas de cada tipo y 2 armas de cada tipo.")
     except:
         print("No se ha podido agregar catalogo.")
@@ -145,12 +145,13 @@ def conectarse():
         conn = redis.Redis(host=host_variable,
                            port=port_variable,
                            decode_responses=True)
+        conn.keys("a")
 
         return conn
     # Si la conexion no se puede realizar nos informara
     except:
         print(
-            "Hay un error en la conexion. \n1.Quieres restablecer el fichero con los valores por defecto \n2.Quieres cerrar el programa. ")
+            "Hay un error en la conexion. Compruebe la conexion con redis y si el fichero de configuracion es correcto. \n1.Quieres restablecer el fichero con los valores por defecto \n2.Quieres cerrar el programa. ")
         opcion = Utiles.check_numeros("Opcion", 25)
         if (opcion == '1'):
             print("El fichero de configuracion sera restablecido y el programa se cerrara.")

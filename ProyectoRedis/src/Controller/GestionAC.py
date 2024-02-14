@@ -8,10 +8,10 @@ class GestionAC(iGestores.iGestores):
         '''
         Funcion encargada de dar de alta un AC pidiendo los nombres de las partes que lo componen
         '''
-        if (GestionAC.confirmarStock("Pieza", "cabeza") != {}
-                and GestionAC.confirmarStock("Pieza", "torso") != {}
-                and GestionAC.confirmarStock("Pieza", "brazos") != {}
-                and GestionAC.confirmarStock("Pieza", "piernas") != {}
+        if (GestionAC.confirmarStock("Pieza", "Cabeza") != {}
+                and GestionAC.confirmarStock("Pieza", "Torso") != {}
+                and GestionAC.confirmarStock("Pieza", "Brazos") != {}
+                and GestionAC.confirmarStock("Pieza", "Piernas") != {}
                 and GestionAC.confirmarStock("Arma", "False") != {}
                 and GestionAC.confirmarStock("Arma", "irrelevante") != {}):
             nombre = None
@@ -28,7 +28,7 @@ class GestionAC(iGestores.iGestores):
             print(5 * "-" + "ALTA" + "-" * 5)
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
-                cuerpoAux = GestorBBDD.buscarDato(
+                cuerpoAux = GestorBBDD.buscarDatoPorClave(
                     "AC_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
 
                 if cuerpoAux is None:
@@ -38,13 +38,17 @@ class GestionAC(iGestores.iGestores):
                         GestionAC.mostrarNombres("Pieza", "cabeza")
                         cabeza = Utiles.check_campo("introduzca el nombre de la cabeza del AC", 25)
 
-                        cabezaAux = GestorBBDD.buscarDato("Pieza_" + cabeza)
-                        if cabezaAux is None:
-                            cabeza = None
-                            print("No existe esa cabeza "+str(cont+1)+"/5\n")
+                        if cabeza is not None:
+                            cabezaAux = GestorBBDD.buscarDatoPorClave("Pieza_" + cabeza)
+                            if cabezaAux is None:
+                                cabeza = None
+                                print("No existe esa cabeza "+str(cont+1)+"/5\n")
+                            else:
+                                cont = 5
                             cont += 1
                         else:
                             cont = 5
+
                 else:
                     print("Ya existe un AC con ese nombre.")
 
@@ -54,11 +58,13 @@ class GestionAC(iGestores.iGestores):
                     print("Torsos disponibles:")
                     GestionAC.mostrarNombres("Pieza", "torso")
                     torso = Utiles.check_campo("introduzca el nombre del torso del AC", 25)
-
-                    torsoAux = GestorBBDD.buscarDato("Pieza_" + torso)
-                    if torsoAux is None:
-                        torso = None
-                        print("No existe ese torso "+str(cont+1)+"/5\n")
+                    if torso is not None:
+                        torsoAux = GestorBBDD.buscarDatoPorClave("Pieza_" + torso)
+                        if torsoAux is None:
+                            torso = None
+                            print("No existe ese torso "+str(cont+1)+"/5\n")
+                        else:
+                            cont = 5
                         cont += 1
                     else:
                         cont = 5
@@ -69,11 +75,14 @@ class GestionAC(iGestores.iGestores):
                     print("Brazos disponibles:")
                     GestionAC.mostrarNombres("Pieza", "brazos")
                     brazos = Utiles.check_campo("Introduzca el nombre de los brazos del AC", 25)
-
-                    brazosAux = GestorBBDD.buscarDato("Pieza_" + brazos)
-                    if brazosAux is None:
-                        brazos = None
-                        print("No existen esos brazos "+str(cont+1)+"/5\n")
+                    if brazos is not None:
+                        brazosAux = GestorBBDD.buscarDatoPorClave("Pieza_" + brazos)
+                        if brazosAux is None:
+                            brazos = None
+                            print("No existen esos brazos "+str(cont+1)+"/5\n")
+                            cont += 1
+                        else:
+                            cont = 5
                         cont += 1
                     else:
                         cont = 5
@@ -84,11 +93,13 @@ class GestionAC(iGestores.iGestores):
                     print("Piernas disponibles:")
                     GestionAC.mostrarNombres("Pieza", "piernas")
                     piernas = Utiles.check_campo("Introduzca el nombre de las piernas del AC", 25)
-
-                    piernasAux = GestorBBDD.buscarDato("Pieza_" + piernas)
-                    if piernasAux is None:
-                        piernas = None
-                        print("No existen esas piernas "+str(cont+1)+"/5\n")
+                    if piernas is not None:
+                        piernasAux = GestorBBDD.buscarDatoPorClave("Pieza_" + piernas)
+                        if piernasAux is None:
+                            piernas = None
+                            print("No existen esas piernas "+str(cont+1)+"/5\n")
+                        else:
+                            cont = 5
                         cont += 1
                     else:
                         cont = 5
@@ -99,11 +110,13 @@ class GestionAC(iGestores.iGestores):
                     print("Armas para brazo disponibles:")
                     GestionAC.mostrarNombres("Arma", "False")
                     armaBDer = Utiles.check_campo("Introduzca el nombre del arma del brazo derecho del AC", 25)
-
-                    armaBDerAux = GestorBBDD.buscarDato("Arma_" + armaBDer)
-                    if armaBDerAux is None:
-                        armaBDer = None
-                        print("No existe ese arma del brazo derecho "+str(cont+1)+"/5\n")
+                    if armaBDer is not None:
+                        armaBDerAux = GestorBBDD.buscarDatoPorClave("Arma_" + armaBDer)
+                        if armaBDerAux is None:
+                            armaBDer = None
+                            print("No existe ese arma del brazo derecho "+str(cont+1)+"/5\n")
+                        else:
+                            cont = 5
                         cont += 1
                     else:
                         cont = 5
@@ -114,11 +127,13 @@ class GestionAC(iGestores.iGestores):
                     print("Armas para brazo disponibles:")
                     GestionAC.mostrarNombres("Arma", "False")
                     armaBIzq = Utiles.check_campo("Introduzca el nombre del arma del brazo izquierdo del AC", 25)
-
-                    armaBIzqAux = GestorBBDD.buscarDato("Arma_" + armaBIzq)
-                    if armaBIzqAux is None:
-                        armaBIzq = None
-                        print("No existe ese arma del brazo izquierdo "+str(cont+1)+"/5\n")
+                    if armaBIzq is not None:
+                        armaBIzqAux = GestorBBDD.buscarDatoPorClave("Arma_" + armaBIzq)
+                        if armaBIzqAux is None:
+                            armaBIzq = None
+                            print("No existe ese arma del brazo izquierdo "+str(cont+1)+"/5\n")
+                        else:
+                            cont = 5
                         cont += 1
                     else:
                         cont = 5
@@ -129,11 +144,13 @@ class GestionAC(iGestores.iGestores):
                     print("Armas para  disponibles:")
                     GestionAC.mostrarNombres("Arma", "irrelevante")
                     armaHDer = Utiles.check_campo("nombre del arma del hombro derecho del AC", 25)
-
-                    armaHDerAux = GestorBBDD.buscarDato("Arma_" + armaHDer)
-                    if armaHDerAux is None:
-                        armaHDer = None
-                        print("No existe ese arma del hombro derecho "+str(cont+1)+"/5\n")
+                    if armaHDer is not None:
+                        armaHDerAux = GestorBBDD.buscarDatoPorClave("Arma_" + armaHDer)
+                        if armaHDerAux is None:
+                            armaHDer = None
+                            print("No existe ese arma del hombro derecho "+str(cont+1)+"/5\n")
+                        else:
+                            cont = 5
                         cont += 1
                     else:
                         cont = 5
@@ -143,11 +160,13 @@ class GestionAC(iGestores.iGestores):
                 while cont < 5:
                     GestionAC.mostrarNombres("Arma", "irrelevante")
                     armaHIzq = Utiles.check_campo("nombre del arma del hombro izquierdo del AC", 25)
-
-                    armaHIzqAux = GestorBBDD.buscarDato("Arma_" + armaHIzq)
-                    if armaHIzqAux is None:
-                        armaHIzq = None
-                        print("No existe ese arma del hombro izquierdo "+str(cont+1)+"/5\n")
+                    if armaHIzq is not None:
+                        armaHIzqAux = GestorBBDD.buscarDatoPorClave("Arma_" + armaHIzq)
+                        if armaHIzqAux is None:
+                            armaHIzq = None
+                            print("No existe ese arma del hombro izquierdo "+str(cont+1)+"/5\n")
+                        else:
+                            cont = 5
                         cont += 1
                     else:
                         cont = 5
@@ -228,7 +247,7 @@ class GestionAC(iGestores.iGestores):
             print(5 * "-" + "BAJA" + "-" * 5)
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
-                acAux = GestorBBDD.buscarDato("AC_" + nombre)
+                acAux = GestorBBDD.buscarDatoPorClave("AC_" + nombre)
                 if acAux is not None:
                     if Utiles.confirmacion("¿Seguro que quiere eliminar este AC?") is True:
                         GestorBBDD.borrarDato("AC_" + nombre)
@@ -243,7 +262,7 @@ class GestionAC(iGestores.iGestores):
             print(5 * "-" + "MODIFICAR" + "-" * 5)
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
-                acAux = GestorBBDD.buscarDato(
+                acAux = GestorBBDD.buscarDatoPorClave(
                     "AC_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
                 if acAux is not None:
                     GestionAC.menuModificar(nombre, acAux)
@@ -266,7 +285,7 @@ class GestionAC(iGestores.iGestores):
             if (opcion == "1"):
                 nombre = Utiles.check_campo("nombre", 25)
                 if nombre is not None:
-                    acAux = GestorBBDD.buscarDato(
+                    acAux = GestorBBDD.buscarDatoPorClave(
                         "AC_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
                     if acAux is None:
                         if Utiles.confirmacion(
@@ -294,7 +313,7 @@ class GestionAC(iGestores.iGestores):
                 cabeza = Utiles.check_campo("cabeza", 25)
 
                 if cabeza is not None:
-                    cabezaAux = GestorBBDD.buscarDato("Pieza_" + cabeza)
+                    cabezaAux = GestorBBDD.buscarDatoPorClave("Pieza_" + cabeza)
                     if cabezaAux is not None:
                         # Este if va dentro del de justo arriba
                         if Utiles.confirmacion("Seguro que quiere cambiar la cabeza del AC: " + ac[
@@ -309,7 +328,7 @@ class GestionAC(iGestores.iGestores):
                 torso = Utiles.check_campo("torso", 25)
 
                 if torso is not None:
-                    torsoAux = GestorBBDD.buscarDato("Pieza_" + torso)
+                    torsoAux = GestorBBDD.buscarDatoPorClave("Pieza_" + torso)
                     if torsoAux is not None:
                         # Este if va dentro del de justo arriba
                         if Utiles.confirmacion("Seguro que quiere cambiar el torso del AC: " + ac[
@@ -324,7 +343,7 @@ class GestionAC(iGestores.iGestores):
                 brazos = Utiles.check_campo("brazos", 25)
 
                 if brazos is not None:
-                    brazosAux = GestorBBDD.buscarDato("Pieza_" + brazos)
+                    brazosAux = GestorBBDD.buscarDatoPorClave("Pieza_" + brazos)
                     if brazosAux is not None:
                         # Este if va dentro del de justo arriba
                         if Utiles.confirmacion("Seguro que quiere cambiar la brazos del AC: " + ac[
@@ -339,7 +358,7 @@ class GestionAC(iGestores.iGestores):
                 piernas = Utiles.check_campo("piernas", 25)
 
                 if piernas is not None:
-                    piernasAux = GestorBBDD.buscarDato("Pieza_" + piernas)
+                    piernasAux = GestorBBDD.buscarDatoPorClave("Pieza_" + piernas)
                     if piernasAux is not None:
                         # Este if va dentro del de justo arriba
                         if Utiles.confirmacion("Seguro que quiere cambiar la piernas del AC: " + ac[
@@ -354,7 +373,7 @@ class GestionAC(iGestores.iGestores):
                 armaBDer = Utiles.check_campo("armaBDer", 25)
 
                 if armaBDer is not None:
-                    armaBDerAux = GestorBBDD.buscarDato("Arma_" + armaBDer)
+                    armaBDerAux = GestorBBDD.buscarDatoPorClave("Arma_" + armaBDer)
                     if armaBDerAux is not None:
                         # Este if va dentro del de justo arriba
                         if Utiles.confirmacion("Seguro que quiere cambiar la armaBDer del AC: " + ac[
@@ -369,7 +388,7 @@ class GestionAC(iGestores.iGestores):
                 armaBIzq = Utiles.check_campo("armaBIzq", 25)
 
                 if armaBIzq is not None:
-                    armaBIzqAux = GestorBBDD.buscarDato("Arma_" + armaBIzq)
+                    armaBIzqAux = GestorBBDD.buscarDatoPorClave("Arma_" + armaBIzq)
                     if armaBIzqAux is not None:
                         # Este if va dentro del de justo arriba
                         if Utiles.confirmacion("Seguro que quiere cambiar la armaBIzq del AC: " + ac[
@@ -384,7 +403,7 @@ class GestionAC(iGestores.iGestores):
                 armaHDer = Utiles.check_campo("armaHDer", 25)
 
                 if armaHDer is not None:
-                    armaHDerAux = GestorBBDD.buscarDato("Arma_" + armaHDer)
+                    armaHDerAux = GestorBBDD.buscarDatoPorClave("Arma_" + armaHDer)
                     if armaHDerAux is not None:
                         # Este if va dentro del de justo arriba
                         if Utiles.confirmacion("Seguro que quiere cambiar la armaHDer del AC: " + ac[
@@ -399,7 +418,7 @@ class GestionAC(iGestores.iGestores):
                 armaHIzq = Utiles.check_campo("armaHIzq", 25)
 
                 if armaHIzq is not None:
-                    armaHIzqAux = GestorBBDD.buscarDato("Arma_" + armaHIzq)
+                    armaHIzqAux = GestorBBDD.buscarDatoPorClave("Arma_" + armaHIzq)
                     if armaHIzqAux is not None:
                         # Este if va dentro del de justo arriba
                         if Utiles.confirmacion("Seguro que quiere cambiar la armaHIzq del AC: " + ac[
@@ -424,7 +443,7 @@ class GestionAC(iGestores.iGestores):
             print(5 * "-" + "BUSCAR" + "-" * 5)
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
-                datos = GestorBBDD.buscarDato(
+                datos = GestorBBDD.buscarDatoPorClave(
                     "AC_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
                 if datos is not None:
                     print("\n[-" + datos["AC_" + nombre + "_Nombre"] + "-]")

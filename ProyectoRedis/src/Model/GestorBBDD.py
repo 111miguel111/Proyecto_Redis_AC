@@ -235,9 +235,17 @@ def insertarDato(datos):
         print("Se ha cometido un error en la insercion")
 
 
-def buscarDato(clave):
+def buscarDato(busqueda):
     datos = {}
-    for campo in conn.keys(clave + "*"):
+    for campo in conn.keys(busqueda + "*"):
+        datos[campo] = conn.get(campo)
+    if (datos == {}):
+        datos = None
+    return datos
+
+def buscarDatoPorClave(clave):
+    datos = {}
+    for campo in conn.keys(clave + "*"+"_"+"*"):
         datos[campo] = conn.get(campo)
     if (datos == {}):
         datos = None

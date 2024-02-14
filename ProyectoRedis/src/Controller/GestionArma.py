@@ -38,7 +38,7 @@ class GestionArma(iGestores.iGestores):
                 "Arma_"+str(nombre)+"_Dps": str(dps),
                 "Arma_"+str(nombre)+"_Rpm": str(rpm),
                 "Arma_"+str(nombre)+"_Municion": str(municion),
-                "Arma_"+str(nombre)+"_ArmaHombro": str(armaHombro),
+                "Arma_"+str(nombre)+"_ArmaHombro": str(armaHombro).upper(),
                 "Arma_"+str(nombre)+"_Precio": str(precio)
                 }
             GestorBBDD.insertarDato(arma)#Te mando un diccionario con las clave valor del arma---------------------------------------------------
@@ -136,7 +136,7 @@ class GestionArma(iGestores.iGestores):
                 armaHombro = Utiles.confirmacion("¿Es un arma de hombro?")
                 if armaHombro is not None:
                     if Utiles.confirmacion("Seguro que quiere cambiar si el arma es de hombro de: " + arma["Arma_"+nombreOriginal+"_Nombre"] + " a: " + armaHombro):
-                        arma["Arma_" + nombreOriginal + "_ArmaHombro"] = armaHombro
+                        arma["Arma_" + nombreOriginal + "_ArmaHombro"] = str(armaHombro).upper()
                         cambio = True
             elif (opcion == "7"):
                 precio = Utiles.check_numeros("precio del arma", 25)
@@ -146,7 +146,7 @@ class GestionArma(iGestores.iGestores):
                         cambio = True
             elif (opcion == "0"):
                 print("Saliendo del subMenu.")
-                opcion=0
+                opcion="0"
             else:
                 print("Opcion no valida.")
             if cambio is True:

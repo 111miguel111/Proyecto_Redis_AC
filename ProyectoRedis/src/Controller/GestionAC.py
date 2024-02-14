@@ -12,7 +12,7 @@ class GestionAC(iGestores.iGestores):
                 and GestionAC.confirmarStock("Pieza", "TORSO") != {}
                 and GestionAC.confirmarStock("Pieza", "BRAZOS") != {}
                 and GestionAC.confirmarStock("Pieza", "PIERNAS") != {}
-                and GestionAC.confirmarStock("Arma", "False") != {}
+                and GestionAC.confirmarStock("Arma", "FALSE") != {}
                 and GestionAC.confirmarStock("Arma", "irrelevante") != {}):
             nombre = None
             cabeza = None

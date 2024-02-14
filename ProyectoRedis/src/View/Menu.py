@@ -5,7 +5,7 @@ def menu():
     opcion=None
     while(opcion!="0"):
         print("\n"+"[====="+"-"*5+"MENU PRINCIPAL"+"-"*5+"=====]"+"\n")
-        print("1.Gestionar los AC(Mechas).\n2.Gestionar las piezas.\n3.Gestionar las Armas.\n4.Agregar catalogo.\n0.Salir.")
+        print("1.Gestionar los AC(Mechas).\n2.Gestionar las piezas.\n3.Gestionar las Armas.\n4.Agregar catalogo.\n5.Borrar base de datos.\n0.Salir.")
         opcion=Utiles.check_numeros("Opcion", 25)
         if(opcion=="1"):
             gestor = GestionAC.GestionAC()
@@ -19,6 +19,9 @@ def menu():
         elif (opcion == "4"):
             if Utiles.confirmacion("¿Esta seguro que quiere agregar catalogo?") == True:
                 GestorBBDD.AgregarCatalogo()
+        elif (opcion == "5"):
+            if Utiles.confirmacion("¿Esta seguro que quiere borrar la base de datos?") == True:
+                GestorBBDD.dropDatabase()
         elif(opcion=="0"):
             print("Saliendo del programa.")
         else:

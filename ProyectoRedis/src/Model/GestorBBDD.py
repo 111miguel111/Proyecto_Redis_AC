@@ -257,6 +257,11 @@ def borrarDato(clave):
     for campo in datos:
         conn.delete(campo)
 
+def dropDatabase():
+    datos = buscarDato("*")
+    for campo in datos:
+        conn.delete(campo)
+
 
 def mostrarTodosDatos(tipoDato):  # Diccionario de diccionarios
     datos = conn.keys(tipoDato + "*")  # Ayuda

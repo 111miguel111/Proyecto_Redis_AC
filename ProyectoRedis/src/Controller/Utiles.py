@@ -27,7 +27,7 @@ def entrada_teclado(contexto=""):
     :return: respuesta: si el campo es correcto
     :return: None: si el campo esta vacio
     """
-    print(contexto.capitalize() + ": ")
+    print(contexto.upper()() + ": ")
     respuesta = input("→")
     print("")
     if respuesta is not None and not respuesta.isspace():
@@ -58,7 +58,7 @@ def check_campo(contexto, long):
             if not carac_no_valido:
                 long = int(long)
                 if 0 < len(campo) <= long:  # Verificamos la longitud del campo
-                    return campo.capitalize()
+                    return campo.upper()
                 else:
                     print(contexto + " tiene una longitud no valida, longitud maxima: " + str(long) + ".\n")
                     fallos += 1
@@ -136,7 +136,7 @@ def check_letras(contexto, long):
             if not carac_no_valido:
                 long = int(long)
                 if 0 < len(campo) <= long:  # Verificamos la longitud del campo
-                    return campo.capitalize()
+                    return campo.upper()
                 else:
                     print(contexto + " tiene una longitud no valida, longitud maxima: " + str(long) + ".\n")
                     fallos += 1

@@ -61,6 +61,8 @@ class GestionPieza(iGestores.iGestores):
             elif (opcion == "0"):
                 print("Saliendo del menu.")
                 return None
+            elif (opcion == None):
+                return None
             else:
                 print("Opcion no valida.")
 

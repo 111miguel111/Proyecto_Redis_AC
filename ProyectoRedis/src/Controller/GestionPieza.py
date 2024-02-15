@@ -42,7 +42,7 @@ class GestionPieza(iGestores.iGestores):
         if pieza is not None:
             print("Pieza creada.")
         else:
-            print("Fallo en la creacion de la pieza")
+            print("Fallo en la creacion de la pieza.")
     @staticmethod
     def menuTipoPieza():
         opcion = None
@@ -75,6 +75,11 @@ class GestionPieza(iGestores.iGestores):
                     if Utiles.confirmacion("¿Seguro que quiere eliminar esta pieza?") is True:
                         GestorBBDD.borrarDato("Pieza_" + nombre)
                         GestorBBDD.cascada(nombre, "Sin equipar")
+                        print("Pieza eliminada.")
+                    else:
+                        print("Pieza no eliminada.")
+                else:
+                    print("Pieza no encontrada.")
         else:
             print("No hay piezas creadas.")
 
@@ -88,6 +93,9 @@ class GestionPieza(iGestores.iGestores):
                     "Pieza_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
                 if piezaAux is not None:
                     GestionPieza.menuModificar(nombre, piezaAux)
+                else:
+                    print("Pieza no encontrada.")
+
         else:
             print("No hay piezas creadas.")
 
@@ -166,6 +174,7 @@ class GestionPieza(iGestores.iGestores):
                 print("Opcion no valida.")
             if cambio is True:
                 GestorBBDD.insertarDato(pieza)
+                print("Pieza modificada.")
 
     @staticmethod
     def buscar():

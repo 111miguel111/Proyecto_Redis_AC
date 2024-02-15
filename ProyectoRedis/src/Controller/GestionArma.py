@@ -45,7 +45,7 @@ class GestionArma(iGestores.iGestores):
         if arma is not None:
             print("Arma creada.")
         else:
-            print("Fallo en la creacion del arma")
+            print("Fallo en la creacion del arma.")
     @staticmethod
     def baja():
         if(GestorBBDD.mostrarTodosDatos("Arma_")!={}):
@@ -63,7 +63,7 @@ class GestionArma(iGestores.iGestores):
             else:
                 print("No se ha encontrado el arma.")
         else:
-            print("No hay armas creadas")
+            print("No hay armas creadas.")
 
     @staticmethod
     def modificar():
@@ -74,8 +74,10 @@ class GestionArma(iGestores.iGestores):
                 armaAux = GestorBBDD.buscarDatoPorClave("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
                 if armaAux is not None:
                     GestionArma.menuModificar(nombre,armaAux)
+                else:
+                    print("Pieza no encontrada.")
         else:
-            print("No hay armas creadas")
+            print("No hay armas creadas.")
 
     @staticmethod
     def menuModificar(nombreOriginal,arma):

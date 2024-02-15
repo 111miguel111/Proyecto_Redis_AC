@@ -251,8 +251,9 @@ class GestionAC(iGestores.iGestores):
                 if acAux is not None:
                     if Utiles.confirmacion("¿Seguro que quiere eliminar este AC?") is True:
                         GestorBBDD.borrarDato("AC_" + nombre)
+                        print("AC eliminado.")
                 else:
-                    print("No se ha encontrado ese AC")
+                    print("No se ha encontrado ese AC.")
         else:
             print("No hay ACs creados.")
 
@@ -436,6 +437,7 @@ class GestionAC(iGestores.iGestores):
 
             if cambio is True:
                 GestorBBDD.insertarDato(ac)
+                print("AC modificado.")
 
     @staticmethod
     def buscar():
@@ -612,7 +614,6 @@ def datoAC(nombreAC, tipoDato):  # Este metodo no va aqui
 
     else:
         # Si no es ningun valor conocido devuelve None
-        print("Dato a buscar no valido")
         valor = None
 
     return valor

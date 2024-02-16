@@ -108,7 +108,7 @@ class GestionAC(iGestores.iGestores):
                 cont = 0
                 while cont < 5:
                     print("Armas para brazo disponibles:")
-                    GestionAC.mostrarNombres("Arma", "False")
+                    GestionAC.mostrarNombres("Arma", "FALSE")
                     armaBDer = Utiles.check_campo("Introduzca el nombre del arma del brazo derecho del AC", 25)
                     if armaBDer is not None:
                         armaBDerAux = GestorBBDD.buscarDatoPorClave("Arma_" + armaBDer)
@@ -125,7 +125,7 @@ class GestionAC(iGestores.iGestores):
                 cont = 0
                 while cont < 5:
                     print("Armas para brazo disponibles:")
-                    GestionAC.mostrarNombres("Arma", "False")
+                    GestionAC.mostrarNombres("Arma", "FALSE")
                     armaBIzq = Utiles.check_campo("Introduzca el nombre del arma del brazo izquierdo del AC", 25)
                     if armaBIzq is not None:
                         armaBIzqAux = GestorBBDD.buscarDatoPorClave("Arma_" + armaBIzq)
@@ -458,13 +458,13 @@ class GestionAC(iGestores.iGestores):
                     print("  Arma hombro derecho:" + datos["AC_" + nombre + "_ArmaHDer"] + "  ")
                     print("  Arma hombro izquierdo:" + datos["AC_" + nombre + "_ArmaHIzq"] + "  ")
 
-                    print(
+                    print(Utiles.bcolors.Green+
 
                         "\n                                         *(                 " +
                         "\n                    /  *,,               (#(                " +
                         "\n                   (#,....#  .       *   /%@(               " +
-                        "\n                ,*%(,//%-----------------------------------HD Arma:" + datos[
-                            "AC_" + nombre + "_ArmaHDer"] +
+                        "\n                ,*%(,//%"+ Utiles.bcolors.Purple+"-----------------------------------"+Utiles.bcolors.BckgrWhite+"HD Arma:" + Utiles.bcolors.Cyan+datos[
+                            "AC_" + nombre + "_ArmaHDer"]+ Utiles.bcolors.Green + Utiles.bcolors.BckgrDefault+
                         "\n               *(&%%*/.%%*/    .     *  *#/*/,///(*(        " +
                         "\n              (/#& ,(,%#%#&#../(,//((.(#% %#---------------HI Arma:" + datos[
                             "AC_" + nombre + "_ArmaHIzq"] +
@@ -502,7 +502,7 @@ class GestionAC(iGestores.iGestores):
                             datoAC(datos["AC_" + nombre + "_Nombre"], "Rpm")) +
                         "\n      ====================================================     PRECIO:" + str(
                             datoAC(datos["AC_" + nombre + "_Nombre"], "Precio")) + "$"
-                    )
+                    + Utiles.bcolors.White)
                 else:
                     print("No se ha encontrado ese AC.")
         else:

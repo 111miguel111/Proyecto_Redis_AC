@@ -86,7 +86,7 @@ class GestionArma(iGestores.iGestores):
             cambio=False
             print("¿Que campo quieres modificar?")
             print("1.Nombre.\n2.Tipo de damage.\n3.Damage por segundo."
-                  "\n4.Rondas por minuto.\n5.Municion maxima.\n6.Puede ponerse en el hombro.\n7.Precio.\n0.Salir.")
+                  "\n4.Rondas por minuto.\n5.Municion maxima.\n6.Precio.\n0.Salir.")
             opcion = Utiles.check_numeros("Opcion", 25)
             if (opcion == "1"):
                 nombre = Utiles.check_campo("nombre", 25)
@@ -135,12 +135,6 @@ class GestionArma(iGestores.iGestores):
                         arma["Arma_" + nombreOriginal + "_Municion"] = municion
                         cambio = True
             elif (opcion == "6"):
-                armaHombro = Utiles.confirmacion("¿Es un arma de hombro?")
-                if armaHombro is not None:
-                    if Utiles.confirmacion("Seguro que quiere cambiar si el arma es de hombro de: " + arma["Arma_"+nombreOriginal+"_Nombre"] + " a: " + armaHombro):
-                        arma["Arma_" + nombreOriginal + "_ArmaHombro"] = str(armaHombro).upper()
-                        cambio = True
-            elif (opcion == "7"):
                 precio = Utiles.check_numeros("precio del arma", 25)
                 if precio is not None:
                     if Utiles.confirmacion("Seguro que quiere cambiar el precio del arma: " + arma["Arma_"+nombreOriginal+"_Nombre"] + " a: " + precio):

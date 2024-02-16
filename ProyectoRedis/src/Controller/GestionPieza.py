@@ -107,9 +107,9 @@ class GestionPieza(iGestores.iGestores):
         while (opcion != "0"):
             cambio = False
             print("¿Que campo quieres modificar?")
-            print("1.Nombre.\n2.Tipo de pieza.\n3.Armadura."
-                  "\n4.Consumo de energia.\n5.Peso."
-                  "\n6.Precio."
+            print("1.Nombre.\n2.Armadura."
+                  "\n3.Consumo de energia.\n4.Peso."
+                  "\n5.Precio."
                   "\n0.Salir.")
             opcion = Utiles.check_numeros("Opcion", 25)
             if (opcion == "1"):
@@ -134,13 +134,6 @@ class GestionPieza(iGestores.iGestores):
                             cambio = True
                     else:
                         print("Ya existe una pieza con el mismo nombre.")
-            elif (opcion == "2"):
-                tipoPieza = GestionPieza.menuTipoPieza()
-                if tipoPieza is not None:
-                    if Utiles.confirmacion("Seguro que quiere cambiar el tipo de pieza de la pieza: " + pieza[
-                        "Pieza_" + nombreOriginal + "_Nombre"] + " a: " + tipoPieza):
-                        pieza["Pieza_" + nombreOriginal + "_TipoPieza"] = tipoPieza
-                        cambio = True
             elif (opcion == "3"):
                 armadura = Utiles.check_numeros("valor de armadura", 25)
                 if armadura is not None:

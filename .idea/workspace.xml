@@ -22,10 +22,7 @@
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Controller/Utiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Controller/Utiles.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Controller/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Controller/config.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Controller/iGestores.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Controller/iGestores.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Model/Arma.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Model/Cuerpo.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Model/GestorBBDD.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Model/GestorBBDD.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Model/Pieza.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/View/Menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/View/Menu.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/View/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/View/config.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/config.ini" afterDir="false" />

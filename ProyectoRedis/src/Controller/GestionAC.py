@@ -370,7 +370,7 @@ class GestionAC(iGestores.iGestores):
                         print("No se han encontrado esas piernas\n")
 
             elif (opcion == "6"):
-                GestionAC.mostrarNombres("Arma", "False")
+                GestionAC.mostrarNombres("Arma", "FALSE")
                 armaBDer = Utiles.check_campo("armaBDer", 25)
 
                 if armaBDer is not None:
@@ -385,7 +385,7 @@ class GestionAC(iGestores.iGestores):
                         print("No se ha encontrado ese arma del brazo derecho\n")
 
             elif (opcion == "7"):
-                GestionAC.mostrarNombres("Arma", "False")
+                GestionAC.mostrarNombres("Arma", "FALSE")
                 armaBIzq = Utiles.check_campo("armaBIzq", 25)
 
                 if armaBIzq is not None:

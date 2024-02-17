@@ -490,51 +490,60 @@ class GestionAC(iGestores.iGestores):
                     print("  Arma hombro derecho:" + datos["AC_" + nombre + "_ArmaHDer"] + "  ")
                     print("  Arma hombro izquierdo:" + datos["AC_" + nombre + "_ArmaHIzq"] + "  ")
 
-                    print(Utiles.bcolors.Green+
+                    print(Utiles.bcolors.Green +
 
-                        "\n                                         *(                 " +
-                        "\n                    /  *,,               (#(                " +
-                        "\n                   (#,....#  .       *   /%@(               " +
-                        "\n                ,*%(,//%"+ Utiles.bcolors.Purple+"-----------------------------------"+Utiles.bcolors.BckgrWhite+"HD Arma:" + Utiles.bcolors.Cyan+datos[
-                            "AC_" + nombre + "_ArmaHDer"]+ Utiles.bcolors.Green + Utiles.bcolors.BckgrDefault+
-                        "\n               *(&%%*/.%%*/    .     *  *#/*/,///(*(        " +
-                        "\n              (/#& ,(,%#%#&#../(,//((.(#% %#---------------HI Arma:" + datos[
-                            "AC_" + nombre + "_ArmaHIzq"] +
-                        "\n                  %#*(#%(/*(/#%((#(&*%*./(%/,/((            " +
-                        "\n                  %&(#&   @%,,%///-------------------------Cabeza:" + datos[
-                            "AC_" + nombre + "_Cabeza"] +
-                        "\n                 #(%(&     %&(%&&&(...(     %/(*.           " +
-                        "\n                (&@/%%    &*&#@@%%#&-----------------------Torso:" + datos[
-                            "AC_" + nombre + "_Torso"] +
-                        "\n               #@#(&&  (#&& ,%(&&&&%%%  &/. *&((@/%(*/      " +
-                        "\n              ,/(/&   //@*,/@@&#/%/&@@*,&@/*  &,(##--------Brazos:" + datos[
-                            "AC_" + nombre + "_Brazos"] +
-                        "\n            */&(/&    (%*%(%&@(%*%& @&%%%/%&   &&@,( /      " +
-                        "\n           **##%       #*(%&&*       &&#*%      /.# /#      " +
-                        "\n          (.%((%      *&(%&&          &&#&&     ##---------BI Arma:" + datos[
-                            "AC_" + nombre + "_ArmaBIzq"] +
-                        "\n         /.&/%,     #&#&&@(            %%#,#(    (*         " +
-                        "\n          %%-----------------------------------------------BD Arma:" + datos[
-                            "AC_" + nombre + "_ArmaBDer"] +
-                        "\n        ,/%(       #((#&%(%            ##&#%#((             " +
-                        "\n       ,/&#       /(,/%#%%%            %&#%/---------------Piernas:" + datos[
-                            "AC_" + nombre + "_Piernas"] +
-                        "\n      ..%         (.*%&%                 %%,*..             " +
-                        "\n     ,,%        #*,(#&&                    %#* ./           " + "NOMBRE:" + datos[
-                            "AC_" + nombre + "_Nombre"] +
-                        "\n    #/*      *&##%&(%%&.                  ,##&%&%#(         " + "ARMADURA: " + str(
-                            datoAC(datos["AC_" + nombre + "_Nombre"], "Armadura")) +
-                        "\n             %&@&&#%%%%                    *&&&&(@@/        " + "CONSUMO ENERGETICO:" + str(
-                            datoAC(datos["AC_" + nombre + "_Nombre"], "ConsumoEnergia")) +
-                        "\n          *#/%%&&&&&%%#                    .%%%%#%#%        " + "PESO:" + str(
-                            datoAC(datos["AC_" + nombre + "_Nombre"], "Peso")) +
-                        "\n         ,#%###                                 &&&%&(      " + "DPS:" + str(
-                            datoAC(datos["AC_" + nombre + "_Nombre"], "Dps")) +
-                        "\n                                                    ,,      " + "RPM:" + str(
-                            datoAC(datos["AC_" + nombre + "_Nombre"], "Rpm")) +
-                        "\n      ====================================================     PRECIO:" + str(
-                            datoAC(datos["AC_" + nombre + "_Nombre"], "Precio")) + "$"
-                    + Utiles.bcolors.White)
+                          "\n                                         *(                 " +
+                          "\n                    /  *,,               (#(                " +
+                          "\n                   (#,....#  .       *   /%@(               " +
+                          "\n                ,*%(,//%" + Utiles.bcolors.Purple + "------------------------------------HD Arma:" + Utiles.bcolors.Cyan +
+                          datos[
+                              "AC_" + nombre + "_ArmaHDer"] + Utiles.bcolors.Green +
+                          "\n               *(&%%*/.%%*/    .     *  *#/*/,///(*(        " +
+                          "\n              (/#& ,(,%#%#&#../(,//((.(#% %#" + Utiles.bcolors.Purple + "----------------HI Arma:" + Utiles.bcolors.Cyan +
+                          datos[
+                              "AC_" + nombre + "_ArmaHIzq"] + Utiles.bcolors.Green +
+                          "\n                  %#*(#%(/*(/#%((#(&*%*./(%/,/((            " +
+                          "\n                  %&(#&   @%,,%///" + Utiles.bcolors.Purple + "--------------------------Cabeza:" + Utiles.bcolors.Cyan +
+                          datos[
+                              "AC_" + nombre + "_Cabeza"] + Utiles.bcolors.Green +
+                          "\n                 #(%(&     %&(%&&&(...(     %/(*.           " +
+                          "\n                (&@/%%    &*&#@@%%#&" + Utiles.bcolors.Purple + "------------------------Torso:" + Utiles.bcolors.Cyan +
+                          datos[
+                              "AC_" + nombre + "_Torso"] + Utiles.bcolors.Green +
+                          "\n               #@#(&&  (#&& ,%(&&&&%%%  &/. *&((@/%(*/      " +
+                          "\n              ,/(/&   //@*,/@@&#/%/&@@*,&@/*  &,(##" + Utiles.bcolors.Purple + "---------Brazos:" + Utiles.bcolors.Cyan +
+                          datos[
+                              "AC_" + nombre + "_Brazos"] + Utiles.bcolors.Green +
+                          "\n            */&(/&    (%*%(%&@(%*%& @&%%%/%&   &&@,( /      " +
+                          "\n           **##%       #*(%&&*       &&#*%      /.# /#      " +
+                          "\n          (.%((%      *&(%&&          &&#&&     ##" + Utiles.bcolors.Purple + "----------BI Arma:" + Utiles.bcolors.Cyan +
+                          datos[
+                              "AC_" + nombre + "_ArmaBIzq"] + Utiles.bcolors.Green +
+                          "\n         /.&/%,     #&#&&@(            %%#,#(    (*         " +
+                          "\n          %%" + Utiles.bcolors.Purple + "------------------------------------------------BD Arma:" + Utiles.bcolors.Cyan +
+                          datos[
+                              "AC_" + nombre + "_ArmaBDer"] + Utiles.bcolors.Green +
+                          "\n        ,/%(       #((#&%(%            ##&#%#((             " +
+                          "\n       ,/&#       /(,/%#%%%            %&#%/" + Utiles.bcolors.Purple + "----------------Piernas:" + Utiles.bcolors.Cyan +
+                          datos[
+                              "AC_" + nombre + "_Piernas"] + Utiles.bcolors.Green +
+                          "\n      ..%         (.*%&%                 %%,*..             " +
+                          "\n     ,,%        #*,(#&&                    %#* ./           " + Utiles.bcolors.Purple + "NOMBRE:" + Utiles.bcolors.Cyan +
+                          datos[
+                              "AC_" + nombre + "_Nombre"] + Utiles.bcolors.Green +
+                          "\n    #/*      *&##%&(%%&.                  ,##&%&%#(         " + Utiles.bcolors.Purple + "ARMADURA: " + Utiles.bcolors.Cyan + str(
+                        datoAC(datos["AC_" + nombre + "_Nombre"], "Armadura")) + Utiles.bcolors.Green +
+                          "\n             %&@&&#%%%%                    *&&&&(@@/        " + Utiles.bcolors.Purple + "CONSUMO ENERGETICO:" + Utiles.bcolors.Cyan + str(
+                        datoAC(datos["AC_" + nombre + "_Nombre"], "ConsumoEnergia")) + Utiles.bcolors.Green +
+                          "\n          *#/%%&&&&&%%#                    .%%%%#%#%        " + Utiles.bcolors.Purple + "PESO:" + Utiles.bcolors.Cyan + str(
+                        datoAC(datos["AC_" + nombre + "_Nombre"], "Peso")) + Utiles.bcolors.Green +
+                          "\n         ,#%###                                 &&&%&(      " + Utiles.bcolors.Purple + "DPS:" + Utiles.bcolors.Cyan + str(
+                        datoAC(datos["AC_" + nombre + "_Nombre"], "Dps")) + Utiles.bcolors.Green +
+                          "\n                                                    ,,      " + Utiles.bcolors.Purple + "RPM:" + Utiles.bcolors.Cyan + str(
+                        datoAC(datos["AC_" + nombre + "_Nombre"], "Rpm")) + Utiles.bcolors.Green +
+                          "\n   =======================================================  " + Utiles.bcolors.Purple + "PRECIO:" + Utiles.bcolors.Cyan + str(
+                        datoAC(datos["AC_" + nombre + "_Nombre"], "Precio")) + "$\n"
+                          + Utiles.bcolors.White)
                 else:
                     print("No se ha encontrado ese AC.")
         else:
@@ -557,47 +566,57 @@ class GestionAC(iGestores.iGestores):
                 print("  Arma hombro derecho:" + datos[x][x + "_ArmaHDer"] + "  ")
                 print("  Arma hombro izquierdo:" + datos[x][x + "_ArmaHIzq"] + "  ")
 
-                print(
+                print(Utiles.bcolors.Green +
 
-                    "\n                                         *(                 " +
-                    "\n                    /  *,,               (#(                " +
-                    "\n                   (#,....#  .       *   /%@(               " +
-                    "\n                ,*%(,//%-----------------------------------HD Arma:" + datos[x][
-                        x + "_ArmaHDer"] +
-                    "\n               *(&%%*/.%%*/    .     *  *#/*/,///(*(        " +
-                    "\n              (/#& ,(,%#%#&#../(,//((.(#% %#---------------HI Arma:" + datos[x][
-                        x + "_ArmaHIzq"] +
-                    "\n                  %#*(#%(/*(/#%((#(&*%*./(%/,/((            " +
-                    "\n                  %&(#&   @%,,%///-------------------------Cabeza:" + datos[x][x + "_Cabeza"] +
-                    "\n                 #(%(&     %&(%&&&(...(     %/(*.           " +
-                    "\n                (&@/%%    &*&#@@%%#&-----------------------Torso:" + datos[x][x + "_Torso"] +
-                    "\n               #@#(&&  (#&& ,%(&&&&%%%  &/. *&((@/%(*/      " +
-                    "\n              ,/(/&   //@*,/@@&#/%/&@@*,&@/*  &,(##--------Brazos:" + datos[x][x + "_Brazos"] +
-                    "\n            */&(/&    (%*%(%&@(%*%& @&%%%/%&   &&@,( /      " +
-                    "\n           **##%       #*(%&&*       &&#*%      /.# /#      " +
-                    "\n          (.%((%      *&(%&&          &&#&&     ##---------BI Arma:" + datos[x][
-                        x + "_ArmaBIzq"] +
-                    "\n         /.&/%,     #&#&&@(            %%#,#(    (*         " +
-                    "\n          %%-----------------------------------------------BD Arma:" + datos[x][
-                        x + "_ArmaBDer"] +
-                    "\n        ,/%(       #((#&%(%            ##&#%#((             " +
-                    "\n       ,/&#       /(,/%#%%%            %&#%/---------------Piernas:" + datos[x][x + "_Piernas"] +
-                    "\n      ..%         (.*%&%                 %%,*..             " +
-                    "\n     ,,%        #*,(#&&                    %#* ./           " + "NOMBRE:" + datos[x][
-                        x + "_Nombre"] +
-                    "\n    #/*      *&##%&(%%&.                  ,##&%&%#(         " + "ARMADURA: " + str(
-                        datoAC(datos[x][x + "_Nombre"], "Armadura")) +
-                    "\n             %&@&&#%%%%                    *&&&&(@@/        " + "CONSUMO ENERGETICO:" + str(
-                        datoAC(datos[x][x + "_Nombre"], "ConsumoEnergia")) +
-                    "\n          *#/%%&&&&&%%#                    .%%%%#%#%        " + "PESO:" + str(
-                        datoAC(datos[x][x + "_Nombre"], "Peso")) +
-                    "\n         ,#%###                                 &&&%&(      " + "DPS:" + str(
-                        datoAC(datos[x][x + "_Nombre"], "Dps")) +
-                    "\n                                                    ,,      " + "RPM:" + str(
-                        datoAC(datos[x][x + "_Nombre"], "Rpm")) +
-                    "\n      ====================================================  PRECIO:" + str(
-                        datoAC(datos[x][x + "_Nombre"], "Precio")) + "$"
-                )
+                      "\n                                         *(                 " +
+                      "\n                    /  *,,               (#(                " +
+                      "\n                   (#,....#  .       *   /%@(               " +
+                      "\n                ,*%(,//%" + Utiles.bcolors.Purple + "------------------------------------HD Arma:" + Utiles.bcolors.Cyan +
+                      datos[x][
+                          x + "_ArmaHDer"] + Utiles.bcolors.Green +
+                      "\n               *(&%%*/.%%*/    .     *  *#/*/,///(*(        " +
+                      "\n              (/#& ,(,%#%#&#../(,//((.(#% %#" + Utiles.bcolors.Purple + "----------------HI Arma:" + Utiles.bcolors.Cyan +
+                      datos[x][
+                          x + "_ArmaHIzq"] + Utiles.bcolors.Green +
+                      "\n                  %#*(#%(/*(/#%((#(&*%*./(%/,/((            " +
+                      "\n                  %&(#&   @%,,%///" + Utiles.bcolors.Purple + "--------------------------Cabeza:" + Utiles.bcolors.Cyan +
+                      datos[x][x + "_Cabeza"] + Utiles.bcolors.Green +
+                      "\n                 #(%(&     %&(%&&&(...(     %/(*.           " +
+                      "\n                (&@/%%    &*&#@@%%#&" + Utiles.bcolors.Purple + "------------------------Torso:" + Utiles.bcolors.Cyan +
+                      datos[x][x + "_Torso"] + Utiles.bcolors.Green +
+                      "\n               #@#(&&  (#&& ,%(&&&&%%%  &/. *&((@/%(*/      " +
+                      "\n              ,/(/&   //@*,/@@&#/%/&@@*,&@/*  &,(##" + Utiles.bcolors.Purple + "---------Brazos:" + Utiles.bcolors.Cyan +
+                      datos[x][x + "_Brazos"] + Utiles.bcolors.Green +
+                      "\n            */&(/&    (%*%(%&@(%*%& @&%%%/%&   &&@,( /      " +
+                      "\n           **##%       #*(%&&*       &&#*%      /.# /#      " +
+                      "\n          (.%((%      *&(%&&          &&#&&     ##" + Utiles.bcolors.Purple + "----------BI Arma:" + Utiles.bcolors.Cyan +
+                      datos[x][
+                          x + "_ArmaBIzq"] + Utiles.bcolors.Green +
+                      "\n         /.&/%,     #&#&&@(            %%#,#(    (*         " +
+                      "\n          %%" + Utiles.bcolors.Purple + "------------------------------------------------BD Arma:" + Utiles.bcolors.Cyan +
+                      datos[x][
+                          x + "_ArmaBDer"] + Utiles.bcolors.Green +
+                      "\n        ,/%(       #((#&%(%            ##&#%#((             " +
+                      "\n       ,/&#       /(,/%#%%%            %&#%/" + Utiles.bcolors.Purple + "----------------Piernas:" + Utiles.bcolors.Cyan +
+                      datos[x][x + "_Piernas"] + Utiles.bcolors.Green +
+                      "\n      ..%         (.*%&%                 %%,*..             " +
+                      "\n     ,,%        #*,(#&&                    %#* ./           " + Utiles.bcolors.Purple + "NOMBRE:" + Utiles.bcolors.Cyan +
+                      datos[x][
+                          x + "_Nombre"] + Utiles.bcolors.Green +
+                      "\n    #/*      *&##%&(%%&.                  ,##&%&%#(         " + Utiles.bcolors.Purple + "ARMADURA: " + Utiles.bcolors.Cyan + str(
+                    datoAC(datos[x][x + "_Nombre"], "Armadura")) + Utiles.bcolors.Green +
+                      "\n             %&@&&#%%%%                    *&&&&(@@/        " + Utiles.bcolors.Purple + "CONSUMO ENERGETICO:" + Utiles.bcolors.Cyan + str(
+                    datoAC(datos[x][x + "_Nombre"], "ConsumoEnergia")) + Utiles.bcolors.Green +
+                      "\n          *#/%%&&&&&%%#                    .%%%%#%#%        " + Utiles.bcolors.Purple + "PESO:" + Utiles.bcolors.Cyan + str(
+                    datoAC(datos[x][x + "_Nombre"], "Peso")) + Utiles.bcolors.Green +
+                      "\n         ,#%###                                 &&&%&(      " + Utiles.bcolors.Purple + "DPS:" + Utiles.bcolors.Cyan + str(
+                    datoAC(datos[x][x + "_Nombre"], "Dps")) + Utiles.bcolors.Green +
+                      "\n                                                    ,,      " + Utiles.bcolors.Purple + "RPM:" + Utiles.bcolors.Cyan + str(
+                    datoAC(datos[x][x + "_Nombre"], "Rpm")) + Utiles.bcolors.Green +
+                      "\n   =======================================================  " + Utiles.bcolors.Purple + "PRECIO:" + Utiles.bcolors.Cyan + str(
+                    datoAC(datos[x][x + "_Nombre"], "Precio")) + "$"
+                      + Utiles.bcolors.White)
+                print("")
         else:
             print("No hay ACs creados.")
 

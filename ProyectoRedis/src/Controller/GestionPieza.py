@@ -13,7 +13,7 @@ class GestionPieza(iGestores.iGestores):
         peso = None
         precio = None
         pieza=None
-        print(5*"-"+"ALTA"+"-"*5)
+        print(Utiles.bcolors.Green+5*"-"+"ALTA"+"-"*5+Utiles.bcolors.White)
         nombre = Utiles.check_campo("nombre", 25)
         if nombre is not None:
             piezaAux = GestorBBDD.buscarDatoPorClave("Pieza_" + nombre)  # Comprobamos si ya existe un arma con ese nombre
@@ -69,7 +69,7 @@ class GestionPieza(iGestores.iGestores):
     @staticmethod
     def baja():
         if (GestorBBDD.mostrarTodosDatos("Pieza_") != {}):
-            print(5*"-"+"BAJA"+"-"*5)
+            print(Utiles.bcolors.Green+5*"-"+"BAJA"+"-"*5+Utiles.bcolors.White)
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
                 piezaAux = GestorBBDD.buscarDatoPorClave("Pieza_" + nombre)
@@ -88,7 +88,7 @@ class GestionPieza(iGestores.iGestores):
     @staticmethod
     def modificar():
         if (GestorBBDD.mostrarTodosDatos("Pieza_") != {}):
-            print(5*"-"+"MODIFICAR"+"-"*5)
+            print(Utiles.bcolors.Green+5*"-"+"MODIFICAR"+"-"*5+Utiles.bcolors.White)
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
                 piezaAux = GestorBBDD.buscarDatoPorClave(
@@ -107,10 +107,10 @@ class GestionPieza(iGestores.iGestores):
         while (opcion != "0"):
             cambio = False
             print("¿Que campo quieres modificar?")
-            print("1.Nombre.\n2.Armadura."
+            print(Utiles.bcolors.Cyan+"1.Nombre.\n2.Armadura."
                   "\n3.Consumo de energia.\n4.Peso."
                   "\n5.Precio."
-                  "\n0.Salir.")
+                  "\n0.Salir."+Utiles.bcolors.White)
             opcion = Utiles.check_numeros("Opcion", 25)
             if (opcion == "1"):
                 nombre = Utiles.check_campo("nombre", 25)
@@ -174,7 +174,7 @@ class GestionPieza(iGestores.iGestores):
     @staticmethod
     def buscar():
         if (GestorBBDD.mostrarTodosDatos("Pieza_") != {}):
-            print(5*"-"+"BUSCAR"+"-"*5)
+            print(Utiles.bcolors.Green+5*"-"+"BUSCAR"+"-"*5+Utiles.bcolors.White)
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
                 datos = GestorBBDD.buscarDatoPorClave(
@@ -198,7 +198,7 @@ class GestionPieza(iGestores.iGestores):
     @staticmethod
     def mostrarTodos():
         if (GestorBBDD.mostrarTodosDatos("Pieza_") != {}):
-            print(5*"-"+"MOSTRAR TODOS"+"-"*5)
+            print(Utiles.bcolors.Green+5*"-"+"MOSTRAR TODOS"+"-"*5+Utiles.bcolors.White)
             datos = GestorBBDD.mostrarTodosDatos("Pieza_")
             for x in datos:
                 print("\n[-" + datos[x][x + "_Nombre"] + "-]")

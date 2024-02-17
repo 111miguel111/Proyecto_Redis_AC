@@ -13,7 +13,7 @@ class GestionArma(iGestores.iGestores):
         armaHombro = None
         precio = None
         arma=None
-        print(5*"-"+"ALTA"+"-"*5)
+        print(Utiles.bcolors.Green+5*"-"+"ALTA"+"-"*5+Utiles.bcolors.White)
         nombre = Utiles.check_campo("nombre", 25)
         if nombre is not None:
             armaAux = GestorBBDD.buscarDatoPorClave("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
@@ -78,7 +78,7 @@ class GestionArma(iGestores.iGestores):
     @staticmethod
     def baja():
         if(GestorBBDD.mostrarTodosDatos("Arma_")!={}):
-            print(5*"-"+"BAJA"+"-"*5)
+            print(Utiles.bcolors.Green+5*"-"+"BAJA"+"-"*5+Utiles.bcolors.White)
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
                 armaAux =GestorBBDD.buscarDatoPorClave("Arma_" + nombre)
@@ -97,7 +97,7 @@ class GestionArma(iGestores.iGestores):
     @staticmethod
     def modificar():
         if (GestorBBDD.mostrarTodosDatos("Arma_") != {}):
-            print(5*"-"+"MODIFICAR"+"-"*5)
+            print(Utiles.bcolors.Green+5*"-"+"MODIFICAR"+"-"*5+Utiles.bcolors.White)
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
                 armaAux = GestorBBDD.buscarDatoPorClave("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
@@ -114,8 +114,8 @@ class GestionArma(iGestores.iGestores):
         while (opcion != "0"):
             cambio=False
             print("¿Que campo quieres modificar?")
-            print("1.Nombre.\n2.Tipo de damage.\n3.Damage por segundo."
-                  "\n4.Rondas por minuto.\n5.Municion maxima.\n6.Precio.\n0.Salir.")
+            print(Utiles.bcolors.Cyan+"1.Nombre.\n2.Tipo de damage.\n3.Damage por segundo."
+                  "\n4.Rondas por minuto.\n5.Municion maxima.\n6.Precio.\n0.Salir."+Utiles.bcolors.White)
             opcion = Utiles.check_numeros("Opcion", 25)
             if (opcion == "1"):
                 nombre = Utiles.check_campo("nombre", 25)
@@ -181,7 +181,7 @@ class GestionArma(iGestores.iGestores):
     @staticmethod
     def buscar():
         if (GestorBBDD.mostrarTodosDatos("Arma_") != {}):
-            print(5*"-"+"BUSCAR"+"-"*5)
+            print(Utiles.bcolors.Green+5*"-"+"BUSCAR"+"-"*5+Utiles.bcolors.White)
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
                 datos = GestorBBDD.buscarDatoPorClave("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
@@ -206,7 +206,7 @@ class GestionArma(iGestores.iGestores):
     @staticmethod
     def mostrarTodos():
         if (GestorBBDD.mostrarTodosDatos("Pieza_") != {}):
-            print(5*"-"+"MOSTRAR TODOS"+"-"*5)
+            print(Utiles.bcolors.Green+5*"-"+"MOSTRAR TODOS"+"-"*5+Utiles.bcolors.White)
             datos = GestorBBDD.mostrarTodosDatos("Arma_")# Te mando la categoria para que me devuelvas un diccionario con diccionarios que contengan los datos de una pieza
             for x in datos:
                 print("\n[-" + datos[x][x+"_Nombre"] + "-]")

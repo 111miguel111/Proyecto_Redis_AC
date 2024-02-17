@@ -25,7 +25,7 @@ class GestionAC(iGestores.iGestores):
             armaHIzq = None
             cuerpo = None
 
-            print(5 * "-" + "ALTA" + "-" * 5)
+            print(Utiles.bcolors.Green+5 * "-" + "ALTA" + "-" * 5+Utiles.bcolors.White)
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
                 cuerpoAux = GestorBBDD.buscarDatoPorClave(
@@ -218,7 +218,7 @@ class GestionAC(iGestores.iGestores):
         if (tipoDato == "Pieza"):
             for x in datos:
                 if (datos[x][x + "_TipoPieza"] == campo):
-                    print("[-" + datos[x][x + "_Nombre"] + "-]", end="")
+                    print(Utiles.bcolors.Cyan+"[-" + datos[x][x + "_Nombre"] + "-]"+Utiles.bcolors.White, end="")
                     cont += 1
                     if (cont == 3):
                         cont = 0
@@ -226,7 +226,7 @@ class GestionAC(iGestores.iGestores):
         elif (tipoDato == "Arma"):
             if (campo == "irrelevante"):
                 for x in datos:
-                    print("[-" + datos[x][x + "_Nombre"] + "-]", end="")
+                    print(Utiles.bcolors.Cyan+"[-" + datos[x][x + "_Nombre"] + "-]"+Utiles.bcolors.White, end="")
                     cont += 1
                     if (cont == 3):
                         cont = 0
@@ -234,14 +234,14 @@ class GestionAC(iGestores.iGestores):
             else:
                 for x in datos:
                     if (datos[x][x + "_ArmaHombro"] == campo):
-                        print("[-" + datos[x][x + "_Nombre"] + "-]", end="")
+                        print(Utiles.bcolors.Cyan+"[-" + datos[x][x + "_Nombre"] + "-]"+Utiles.bcolors.White, end="")
                         cont += 1
                         if (cont == 3):
                             cont = 0
                             print("\n")
         elif (tipoDato == "AC"):
             for x in datos:
-                print("[-" + datos[x][x + "_Nombre"] + "-]", end="")
+                print(Utiles.bcolors.Cyan+"[-" + datos[x][x + "_Nombre"] + "-]"+Utiles.bcolors.White, end="")
                 cont += 1
                 if (cont == 3):
                     cont = 0
@@ -270,7 +270,7 @@ class GestionAC(iGestores.iGestores):
     @staticmethod
     def baja():
         if (GestorBBDD.mostrarTodosDatos("AC_") != {}):
-            print(5 * "-" + "BAJA" + "-" * 5)
+            print(Utiles.bcolors.Green+5 * "-" + "BAJA" + "-" * 5+Utiles.bcolors.White)
             print("ACs disponibles:")
             GestionAC.mostrarNombres("AC", "")
             nombre = Utiles.check_campo("nombre", 25)
@@ -288,7 +288,7 @@ class GestionAC(iGestores.iGestores):
     @staticmethod
     def modificar():
         if (GestorBBDD.mostrarTodosDatos("AC_") != {}):
-            print(5 * "-" + "MODIFICAR" + "-" * 5)
+            print(Utiles.bcolors.Green+5 * "-" + "MODIFICAR" + "-" * 5+Utiles.bcolors.White)
             print("ACs disponibles:")
             GestionAC.mostrarNombres("AC", "")
             nombre = Utiles.check_campo("nombre", 25)
@@ -308,10 +308,10 @@ class GestionAC(iGestores.iGestores):
         while (opcion != "0"):
             cambio = False
             print("¿Que campo quieres modificar?")
-            print("1.Nombre.\n2.Cabeza.\n3.Torso."
+            print(Utiles.bcolors.Cyan+"1.Nombre.\n2.Cabeza.\n3.Torso."
                   "\n4.Brazos.\n5.Piernas.\n6.Arma brazo derecho."
                   "\n7.Arma Brazo Izquierdo.\n8.Arma Hombro Derecho."
-                  "\n9.Arma Hombro Izquierdo.\n0.Salir.")
+                  "\n9.Arma Hombro Izquierdo.\n0.Salir."+Utiles.bcolors.White)
             opcion = Utiles.check_numeros("Opcion", 25)
             if (opcion == "1"):
                 nombre = Utiles.check_campo("nombre", 25)
@@ -485,7 +485,7 @@ class GestionAC(iGestores.iGestores):
     @staticmethod
     def buscar():
         if (GestorBBDD.mostrarTodosDatos("AC_") != {}):
-            print(5 * "-" + "BUSCAR" + "-" * 5)
+            print(Utiles.bcolors.Green+5 * "-" + "BUSCAR" + "-" * 5+Utiles.bcolors.White)
             print("ACs disponibles:")
             GestionAC.mostrarNombres("AC", "")
             nombre = Utiles.check_campo("nombre", 25)
@@ -565,7 +565,7 @@ class GestionAC(iGestores.iGestores):
     @staticmethod
     def mostrarTodos():
         if (GestorBBDD.mostrarTodosDatos("AC_") != {}):
-            print(5 * "-" + "MOSTRAR TODOS" + "-" * 5)
+            print(Utiles.bcolors.Green+5 * "-" + "MOSTRAR TODOS" + "-" * 5+Utiles.bcolors.White)
             datos = GestorBBDD.mostrarTodosDatos(
                 "AC_")  # Te mando la categoria para que me devuelvas un diccionario con diccionarios que contengan los datos de una pieza
             for x in datos:

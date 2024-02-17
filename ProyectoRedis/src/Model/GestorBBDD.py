@@ -3,7 +3,7 @@ import traceback
 from os import remove
 import sys
 import redis
-from ProyectoRedis.src.Controller import Utiles
+from Controller import Utiles
 
 
 def iniciarFicheroConfiguracion():

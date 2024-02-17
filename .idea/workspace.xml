@@ -18,7 +18,6 @@
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Controller/GestionAC.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Controller/GestionAC.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Controller/GestionArma.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Controller/GestionArma.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Controller/GestionPieza.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Controller/GestionPieza.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Controller/Test.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Controller/Utiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Controller/Utiles.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Controller/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Controller/config.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoRedis/src/Controller/iGestores.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoRedis/src/Controller/iGestores.py" afterDir="false" />
@@ -176,6 +175,10 @@
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ProyectoRedis/src/View/Menu.py</url>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ProyectoRedis/src/Controller/GestionPieza.py</url>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

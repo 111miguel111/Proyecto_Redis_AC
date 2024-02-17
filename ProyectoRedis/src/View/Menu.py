@@ -1,5 +1,5 @@
-from ProyectoRedis.src.Controller import Utiles,GestionPieza,GestionArma,GestionAC
-from ProyectoRedis.src.Model import GestorBBDD
+from Controller import Utiles,GestionPieza,GestionArma,GestionAC
+from Model import GestorBBDD
 
 def menu():
     opcion=None

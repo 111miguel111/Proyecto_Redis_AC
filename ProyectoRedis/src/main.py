@@ -1,3 +1,3 @@
-from ProyectoRedis.src.View import Menu
+from View import Menu
 
 Menu.menu()

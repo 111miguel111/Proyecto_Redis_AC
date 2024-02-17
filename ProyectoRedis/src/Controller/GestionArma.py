@@ -1,5 +1,5 @@
-from ProyectoRedis.src.Controller import Utiles, iGestores
-from ProyectoRedis.src.Model import GestorBBDD
+from Controller import Utiles, iGestores
+from Model import GestorBBDD
 
 
 class GestionArma(iGestores.iGestores):

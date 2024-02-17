@@ -197,7 +197,7 @@ class GestionPieza(iGestores.iGestores):
 
     @staticmethod
     def mostrarTodos():
-        if (GestorBBDD.mostrarTodosDatos("Arma_") != {}):
+        if (GestorBBDD.mostrarTodosDatos("Pieza_") != {}):
             print(5*"-"+"MOSTRAR TODOS"+"-"*5)
             datos = GestorBBDD.mostrarTodosDatos("Pieza_")
             for x in datos:

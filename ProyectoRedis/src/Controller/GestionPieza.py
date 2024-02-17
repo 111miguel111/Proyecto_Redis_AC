@@ -134,28 +134,28 @@ class GestionPieza(iGestores.iGestores):
                             cambio = True
                     else:
                         print("Ya existe una pieza con el mismo nombre.")
-            elif (opcion == "3"):
+            elif (opcion == "2"):
                 armadura = Utiles.check_numeros("valor de armadura", 25)
                 if armadura is not None:
                     if Utiles.confirmacion("Seguro que quiere cambiar la armadura de la pieza: " + pieza[
                         "Pieza_" + nombreOriginal + "_Nombre"] + " a: " + armadura):
                         pieza["Pieza_" + nombreOriginal + "_Armadura"] = armadura
                         cambio = True
-            elif (opcion == "4"):
+            elif (opcion == "3"):
                 consumoEnergia = Utiles.check_numeros("valor de consumo de energia", 25)
                 if consumoEnergia is not None:
                     if Utiles.confirmacion("Seguro que quiere cambiar el consumo energetico de la pieza: " + pieza[
                         "Pieza_" + nombreOriginal + "_Nombre"] + " a: " + consumoEnergia):
                         pieza["Pieza_" + nombreOriginal + "_ConsumoEnergia"] = consumoEnergia
                         cambio = True
-            elif (opcion == "5"):
+            elif (opcion == "4"):
                 peso = Utiles.check_numeros("peso de la pieza", 25)
                 if peso is not None:
                     if Utiles.confirmacion("Seguro que quiere cambiar el peso de la pieza: " + pieza[
                         "Pieza_" + nombreOriginal + "_Nombre"] + " a: " + peso):
                         pieza["Pieza_" + nombreOriginal + "_Peso"] = peso
                         cambio = True
-            elif (opcion == "6"):
+            elif (opcion == "5"):
                 precio = Utiles.check_numeros("precio de la pieza", 25)
                 if precio is not None:
                     if Utiles.confirmacion("Seguro que quiere cambiar el precio de la pieza: " + pieza[

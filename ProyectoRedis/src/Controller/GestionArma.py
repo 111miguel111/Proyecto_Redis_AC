@@ -18,7 +18,7 @@ class GestionArma(iGestores.iGestores):
         if nombre is not None:
             armaAux = GestorBBDD.buscarDatoPorClave("Arma_" + nombre)  # Te mando un tipo+nombre para que me devuelvas todods los datos dentro de un diccionario---------------
             if armaAux is None:
-                tipoDamage = Utiles.check_letras("tipo de damage", 25)
+                tipoDamage = GestionArma.menuTipoDamage()
             else:
                 print("Ya existe un arma con ese nombre.")
         if tipoDamage is not None:
@@ -46,6 +46,35 @@ class GestionArma(iGestores.iGestores):
             print("Arma creada.")
         else:
             print("Fallo en la creacion del arma.")
+
+    @staticmethod
+    def menuTipoDamage():
+        opcion = None
+        while (opcion != "0"):
+            print("Tipo de damage:")
+            print("1.Cinetico.\n2.Explosivo.\n3.Energia.\n4.Fuego.\n0.Salir.")
+            opcion = Utiles.check_numeros("Opcion", 25)
+            if (opcion == "1"):
+                print("Se ha seleccionado CINETICO\n")
+                return "CINETICO"
+            elif (opcion == "2"):
+                print("Se ha seleccionado EXPLOSIVO\n")
+                return "EXPLOSIVO"
+            elif (opcion == "3"):
+                print("Se ha seleccionado ENERGIA\n")
+                return "ENERGIA"
+            elif (opcion == "4"):
+                print("Se ha seleccionado FUEGO\n")
+                return "FUEGO"
+            elif (opcion == "0"):
+                print("Saliendo del menu.")
+                return None
+            elif (opcion == None):
+                return None
+            else:
+                print("Opcion no valida.")
+
+
     @staticmethod
     def baja():
         if(GestorBBDD.mostrarTodosDatos("Arma_")!={}):
@@ -111,7 +140,7 @@ class GestionArma(iGestores.iGestores):
                     else:
                         print("Ya existe un arma con el mismo nombre.")
             elif (opcion == "2"):
-                tipoDamage = Utiles.check_letras("tipo de damage", 25)
+                tipoDamage = GestionArma.menuTipoDamage()
                 if tipoDamage is not None:
                     if Utiles.confirmacion("Seguro que quiere cambiar el tipo de damage del arma: " + arma["Arma_"+nombreOriginal+"_Nombre"] + " a: " + tipoDamage):
                         arma["Arma_" + nombreOriginal + "_TipoDamage"] = tipoDamage

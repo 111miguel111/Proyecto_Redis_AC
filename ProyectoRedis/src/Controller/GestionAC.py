@@ -346,11 +346,13 @@ class GestionAC(iGestores.iGestores):
                 if cabeza is not None:
                     cabezaAux = GestorBBDD.buscarDatoPorClave("Pieza_" + cabeza)
                     if cabezaAux is not None:
-                        # Este if va dentro del de justo arriba
-                        if Utiles.confirmacion("Seguro que quiere cambiar la cabeza del AC: " + ac[
-                            "AC_" + nombreOriginal + "_Nombre"] + " a: " + cabeza):
-                            ac["AC_" + nombreOriginal + "_Cabeza"] = cabeza
-                            cambio = True
+                        if cabezaAux["Pieza_" + cabeza + "_TipoPieza"] == "CABEZA":
+                            if Utiles.confirmacion("Seguro que quiere cambiar la cabeza del AC: " + ac[
+                                "AC_" + nombreOriginal + "_Nombre"] + " a: " + cabeza):
+                                ac["AC_" + nombreOriginal + "_Cabeza"] = cabeza
+                                cambio = True
+                        else:
+                            print("No se ha encontrado esa cabeza\n")
                     else:
                         print("No se ha encontrado esa cabeza\n")
 
@@ -361,11 +363,14 @@ class GestionAC(iGestores.iGestores):
                 if torso is not None:
                     torsoAux = GestorBBDD.buscarDatoPorClave("Pieza_" + torso)
                     if torsoAux is not None:
-                        # Este if va dentro del de justo arriba
-                        if Utiles.confirmacion("Seguro que quiere cambiar el torso del AC: " + ac[
-                            "AC_" + nombreOriginal + "_Nombre"] + " a: " + torso):
-                            ac["AC_" + nombreOriginal + "_Torso"] = torso
-                            cambio = True
+                        if torsoAux["Pieza_" + torso + "_TipoPieza"] == "TORSO":
+                            if Utiles.confirmacion("Seguro que quiere cambiar el torso del AC: " + ac[
+                                "AC_" + nombreOriginal + "_Nombre"] + " a: " + torso):
+                                ac["AC_" + nombreOriginal + "_Torso"] = torso
+                                cambio = True
+                        else:
+                            print("No se ha encontrado ese torso\n")
+
                     else:
                         print("No se ha encontrado ese torso\n")
 
@@ -376,11 +381,13 @@ class GestionAC(iGestores.iGestores):
                 if brazos is not None:
                     brazosAux = GestorBBDD.buscarDatoPorClave("Pieza_" + brazos)
                     if brazosAux is not None:
-                        # Este if va dentro del de justo arriba
-                        if Utiles.confirmacion("Seguro que quiere cambiar la brazos del AC: " + ac[
-                            "AC_" + nombreOriginal + "_Nombre"] + " a: " + brazos):
-                            ac["AC_" + nombreOriginal + "_Brazos"] = brazos
-                            cambio = True
+                        if brazosAux["Pieza_" + brazos + "_TipoPieza"] == "BRAZOS":
+                            if Utiles.confirmacion("Seguro que quiere cambiar la brazos del AC: " + ac[
+                                "AC_" + nombreOriginal + "_Nombre"] + " a: " + brazos):
+                                ac["AC_" + nombreOriginal + "_Brazos"] = brazos
+                                cambio = True
+                        else:
+                            print("No se han encontrado esos brazos\n")
                     else:
                         print("No se han encontrado esos brazos\n")
 
@@ -391,11 +398,13 @@ class GestionAC(iGestores.iGestores):
                 if piernas is not None:
                     piernasAux = GestorBBDD.buscarDatoPorClave("Pieza_" + piernas)
                     if piernasAux is not None:
-                        # Este if va dentro del de justo arriba
-                        if Utiles.confirmacion("Seguro que quiere cambiar la piernas del AC: " + ac[
-                            "AC_" + nombreOriginal + "_Nombre"] + " a: " + piernas):
-                            ac["AC_" + nombreOriginal + "_Piernas"] = piernas
-                            cambio = True
+                        if piernasAux["Pieza_" + piernas + "_TipoPieza"] == "PIERNAS":
+                            if Utiles.confirmacion("Seguro que quiere cambiar la piernas del AC: " + ac[
+                                "AC_" + nombreOriginal + "_Nombre"] + " a: " + piernas):
+                                ac["AC_" + nombreOriginal + "_Piernas"] = piernas
+                                cambio = True
+                        else:
+                            print("No se han encontrado esas piernas\n")
                     else:
                         print("No se han encontrado esas piernas\n")
 
@@ -406,11 +415,13 @@ class GestionAC(iGestores.iGestores):
                 if armaBDer is not None:
                     armaBDerAux = GestorBBDD.buscarDatoPorClave("Arma_" + armaBDer)
                     if armaBDerAux is not None:
-                        # Este if va dentro del de justo arriba
-                        if Utiles.confirmacion("Seguro que quiere cambiar la armaBDer del AC: " + ac[
-                            "AC_" + nombreOriginal + "_Nombre"] + " a: " + armaBDer):
-                            ac["AC_" + nombreOriginal + "_ArmaBDer"] = armaBDer
-                            cambio = True
+                        if armaBDerAux["Arma_" + armaBDer + "_ArmaHombro"] == "FALSE":
+                            if Utiles.confirmacion("Seguro que quiere cambiar la armaBDer del AC: " + ac[
+                                "AC_" + nombreOriginal + "_Nombre"] + " a: " + armaBDer):
+                                ac["AC_" + nombreOriginal + "_ArmaBDer"] = armaBDer
+                                cambio = True
+                        else:
+                            print("No se ha encontrado ese arma del brazo derecho\n")
                     else:
                         print("No se ha encontrado ese arma del brazo derecho\n")
 
@@ -421,11 +432,13 @@ class GestionAC(iGestores.iGestores):
                 if armaBIzq is not None:
                     armaBIzqAux = GestorBBDD.buscarDatoPorClave("Arma_" + armaBIzq)
                     if armaBIzqAux is not None:
-                        # Este if va dentro del de justo arriba
-                        if Utiles.confirmacion("Seguro que quiere cambiar la armaBIzq del AC: " + ac[
-                            "AC_" + nombreOriginal + "_Nombre"] + " a: " + armaBIzq):
-                            ac["AC_" + nombreOriginal + "_ArmaBIzq"] = armaBIzq
-                            cambio = True
+                        if armaBIzqAux["Arma_" + armaBIzq + "_ArmaHombro"] == "FALSE":
+                            if Utiles.confirmacion("Seguro que quiere cambiar la armaBIzq del AC: " + ac[
+                                "AC_" + nombreOriginal + "_Nombre"] + " a: " + armaBIzq):
+                                ac["AC_" + nombreOriginal + "_ArmaBIzq"] = armaBIzq
+                                cambio = True
+                        else:
+                            print("No se ha encontrado ese arma del brazo izquierdo\n")
                     else:
                         print("No se ha encontrado ese arma del brazo izquierdo\n")
 

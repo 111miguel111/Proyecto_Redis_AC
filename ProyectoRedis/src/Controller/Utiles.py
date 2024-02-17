@@ -183,6 +183,35 @@ def check_numeros(contexto, long):
     print("Se han producido 5 fallos.\nAbotortando proceso.\n")
     return None
 
+def check_numerosMenu(contexto, long):
+    """
+    Funcion de apoyo que cerciora que la cadena que se introduce tiene como maximo una longitud y ademas es alfanumerica
+    :param contexto: Explicacion del campo al que se refiere
+    :param long: longitud maxima de la cadena
+    :return: campo si este cumple las validaciones
+    :return: None si se falla 5 veces en la introduccion del campo
+    """
+    fallos = 0
+    campo = entrada_teclado(contexto)
+    if campo is not None:
+        palabras = campo.split(" ")
+        carac_no_valido = False
+        for espacio in palabras:  # Comprobamos que en las posibles palabras del campo no haya componentes no alfanumericos
+            if not espacio.isnumeric():
+                carac_no_valido = True
+        if not carac_no_valido:
+            long = int(long)
+            if 0 < len(campo) <= long:  # Verificamos la longitud del campo
+                return campo
+            else:
+                print(contexto + " tiene una longitud no valida, longitud maxima: " + str(long) + ".\n")
+        else:
+            if len(campo) == 0:
+                print("El campo, " + contexto + " no puede estar vacio." + "\n")
+            else:
+                print(contexto + " contiene caracteres no validos." + "\n")
+    return None
+
 
 def check_letras(contexto, long):
     """

@@ -28,7 +28,7 @@ class GestionArma(iGestores.iGestores):
         if rpm is not None:
             municion = Utiles.check_numeros("rondas maximas", 25)
         if municion is not None:
-            armaHombro = Utiles.confirmacion("¿Es un arma de hombro?")
+            armaHombro = Utiles.confirmacionArmaHombro("¿Es un arma de hombro?")
         if armaHombro is not None:
             precio = Utiles.check_numeros("precio del arma", 25)
         if precio is not None:

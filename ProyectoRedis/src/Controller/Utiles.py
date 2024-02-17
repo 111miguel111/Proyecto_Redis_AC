@@ -67,6 +67,26 @@ def confirmacion(contexto):
             cont += 1
     print("Has superado el numero de intentos." + "\n")
     return False
+def confirmacionArmaHombro(contexto):
+    '''
+    Metodo para confirmar si se quiere confirmar una operacion
+    :return Devuelve un un boolean. El valor sera True si escribe 'si' y False si escribe 'no'
+    '''
+    cont = 0
+    while cont < 5:
+        print(contexto, "(Si o No)")
+        inputConfirmacion = input("→")
+        print("")
+        if inputConfirmacion.lower() == 'si':
+            return True
+        elif inputConfirmacion.lower() == 'no':
+            return False
+        else:
+            if cont < 4:
+                print("\nValor incorrecto, pruebe otra vez (Si o No)." + "\n")
+            cont += 1
+    print("Has superado el numero de intentos." + "\n")
+    return None
 
 
 def entrada_teclado(contexto=""):

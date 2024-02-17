@@ -44,8 +44,11 @@ class GestionAC(iGestores.iGestores):
                                 cabeza = None
                                 print("No existe esa cabeza "+str(cont+1)+"/5\n")
                             else:
-                                cont = 5
-                            cont += 1
+                                if cabezaAux["Pieza_" + cabeza + "_TipoPieza"] == "CABEZA":
+                                    cont = 5
+                                else:
+                                    cabeza = None
+                                    print("No existe esa cabeza " + str(cont + 1) + "/5\n")
                         else:
                             cont = 5
 
@@ -64,8 +67,11 @@ class GestionAC(iGestores.iGestores):
                             torso = None
                             print("No existe ese torso "+str(cont+1)+"/5\n")
                         else:
-                            cont = 5
-                        cont += 1
+                            if torsoAux["Pieza_" + torso + "_TipoPieza"] == "TORSO":
+                                cont = 5
+                            else:
+                                torso = None
+                                print("No existe ese torso " + str(cont + 1) + "/5\n")
                     else:
                         cont = 5
 
@@ -82,8 +88,11 @@ class GestionAC(iGestores.iGestores):
                             print("No existen esos brazos "+str(cont+1)+"/5\n")
                             cont += 1
                         else:
-                            cont = 5
-                        cont += 1
+                            if brazosAux["Pieza_" + brazos + "_TipoPieza"] == "BRAZOS":
+                                cont = 5
+                            else:
+                                brazos = None
+                                print("No existen esos brazos " + str(cont + 1) + "/5\n")
                     else:
                         cont = 5
 
@@ -99,8 +108,11 @@ class GestionAC(iGestores.iGestores):
                             piernas = None
                             print("No existen esas piernas "+str(cont+1)+"/5\n")
                         else:
-                            cont = 5
-                        cont += 1
+                            if piernasAux["Pieza_" + piernas + "_TipoPieza"] == "PIERNAS":
+                                cont = 5
+                            else:
+                                piernas = None
+                                print("No existen esas piernas " + str(cont + 1) + "/5\n")
                     else:
                         cont = 5
 
@@ -116,8 +128,11 @@ class GestionAC(iGestores.iGestores):
                             armaBDer = None
                             print("No existe ese arma del brazo derecho "+str(cont+1)+"/5\n")
                         else:
-                            cont = 5
-                        cont += 1
+                            if armaBDerAux["Arma_" + armaBDer + "_ArmaHombro"] == "FALSE":
+                                cont = 5
+                            else:
+                                armaBDer = None
+                                print("No existe ese arma de brazo " + str(cont + 1) + "/5\n")
                     else:
                         cont = 5
 
@@ -133,15 +148,18 @@ class GestionAC(iGestores.iGestores):
                             armaBIzq = None
                             print("No existe ese arma del brazo izquierdo "+str(cont+1)+"/5\n")
                         else:
-                            cont = 5
-                        cont += 1
+                            if armaBIzqAux["Arma_" + armaBIzq + "_ArmaHombro"] == "FALSE":
+                                cont = 5
+                            else:
+                                armaBIzq = None
+                                print("No existe ese arma de brazo " + str(cont + 1) + "/5\n")
                     else:
                         cont = 5
 
             if armaBIzq is not None:
                 cont = 0
                 while cont < 5:
-                    print("Armas para  disponibles:")
+                    print("Armas para hombros disponibles:")
                     GestionAC.mostrarNombres("Arma", "irrelevante")
                     armaHDer = Utiles.check_campo("nombre del arma del hombro derecho del AC", 25)
                     if armaHDer is not None:
@@ -158,6 +176,7 @@ class GestionAC(iGestores.iGestores):
             if armaHDer is not None:
                 cont = 0
                 while cont < 5:
+                    print("Armas para hombros disponibles:")
                     GestionAC.mostrarNombres("Arma", "irrelevante")
                     armaHIzq = Utiles.check_campo("nombre del arma del hombro izquierdo del AC", 25)
                     if armaHIzq is not None:
@@ -220,6 +239,13 @@ class GestionAC(iGestores.iGestores):
                         if (cont == 3):
                             cont = 0
                             print("\n")
+        elif (tipoDato == "AC"):
+            for x in datos:
+                print("[-" + datos[x][x + "_Nombre"] + "-]", end="")
+                cont += 1
+                if (cont == 3):
+                    cont = 0
+                    print("\n")
         print("")
 
     @staticmethod
@@ -245,6 +271,8 @@ class GestionAC(iGestores.iGestores):
     def baja():
         if (GestorBBDD.mostrarTodosDatos("AC_") != {}):
             print(5 * "-" + "BAJA" + "-" * 5)
+            print("ACs disponibles:")
+            GestionAC.mostrarNombres("AC", "")
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
                 acAux = GestorBBDD.buscarDatoPorClave("AC_" + nombre)
@@ -261,6 +289,8 @@ class GestionAC(iGestores.iGestores):
     def modificar():
         if (GestorBBDD.mostrarTodosDatos("AC_") != {}):
             print(5 * "-" + "MODIFICAR" + "-" * 5)
+            print("ACs disponibles:")
+            GestionAC.mostrarNombres("AC", "")
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
                 acAux = GestorBBDD.buscarDatoPorClave(
@@ -443,6 +473,8 @@ class GestionAC(iGestores.iGestores):
     def buscar():
         if (GestorBBDD.mostrarTodosDatos("AC_") != {}):
             print(5 * "-" + "BUSCAR" + "-" * 5)
+            print("ACs disponibles:")
+            GestionAC.mostrarNombres("AC", "")
             nombre = Utiles.check_campo("nombre", 25)
             if nombre is not None:
                 datos = GestorBBDD.buscarDatoPorClave(

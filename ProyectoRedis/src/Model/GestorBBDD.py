@@ -116,7 +116,11 @@ def checkConfigBien(filePath):
 
 
 def AgregarCatalogo():
+    '''
+    Funcion encargada de cargar un catalogo de piezas en la base de datos
+    '''
     try:
+        #Se abre el fichero del catalogo y por cada linea del catalogo se sacan los datos para introducirlos en la base de datos
         with open("../../catalogo.txt", "r") as fichero:
             for linea in fichero:
                 linea=linea.replace("\n","")
@@ -167,6 +171,9 @@ def conectarse():
 
 
 def cerrarBD():
+    '''
+    Funcion para desconectarse de la base de datos
+    '''
     try:
         print("Desconectando la base de datos.")
         conn.close()
@@ -229,6 +236,11 @@ else:
 
 # Crud
 def insertarDato(datos):
+    '''
+    Metodo para insertar un conjunto de datos en la base de datos
+    :param datos: Diccionario que contiene los datos a introducir
+    '''
+    #Se recorre el diccionario de datos introduciendo los datos uno a uno
     try:
         for campo in datos:
             conn.set(campo, datos[campo])
@@ -237,6 +249,12 @@ def insertarDato(datos):
 
 
 def buscarDato(busqueda):
+    '''
+    Metodo para buscar un conjunto de datos en la base de datos
+    :param busqueda: String que contiene los primeros caracteres de los datos a buscar
+    :return Diccionario de campos
+    '''
+    #Se crea un diccionario vacio y se guardan en el todos los datos cuya clave comience por la cadena introducida
     datos = {}
     for campo in conn.keys(busqueda + "*"):
         datos[campo] = conn.get(campo)
@@ -245,6 +263,12 @@ def buscarDato(busqueda):
     return datos
 
 def buscarDatoPorClave(clave):
+    '''
+    Metodo para buscar un conjunto de datos cuya clave sea exactamente igual hasta el campo final
+    :param clave: String que contiene los primeros dos segmentos de la clave a buscar
+    :return Diccionario de campos
+    '''
+    # Se crea un diccionario vacio y se guardan en el todos los datos cuya clave comience por la cadena introducida
     datos = {}
     for campo in conn.keys(clave +"_"+"*"):
         datos[campo] = conn.get(campo)
@@ -253,19 +277,34 @@ def buscarDatoPorClave(clave):
     return datos
 
 
-def borrarDato(clave):
-    datos = buscarDato(clave)
+def borrarDato(busqueda):
+    '''
+    Metodo para eliminar un grupo de datos de la base de datos
+    :param busqueda: String que contiene los primeros caracteres de los datos a buscar para eliminar
+    '''
+    #Se buscan los datos que comiencen por la cadena introducida y se eliminan todos
+    datos = buscarDato(busqueda)
     for campo in datos:
         conn.delete(campo)
 
 def dropDatabase():
+    '''
+    Metodo para eliminar la base de datos
+    '''
     conn.flushdb()
 
 
 def mostrarTodosDatos(tipoDato):  # Diccionario de diccionarios
-    datos = conn.keys(tipoDato + "*")  # Ayuda
+    '''
+    Metodo que busca todas las instancias de un tipo de dato
+    :param tipoDato: String que contiene que tipo de datos se quieren mostrar (Partes, armas o AC)
+    :return Diccionario de diccionarios que contiene los datos y sus campos
+    '''
+    #Se buscan todos los datos que empiecen por el tipo de arma indicado
+    datos = conn.keys(tipoDato + "*")
     datosOut = {}
     stringAux = ""
+    #Se recorre el diccionario agrupando los datos en diccionarios en funcion de como sean los dos primeros segmentos de la clave
     for key in datos:
         if (str(key).split("_")[0] + "_" + str(key).split("_")[1]) != stringAux:
             stringAux = str(key).split("_")[0] + "_" + str(key).split("_")[1]
@@ -277,8 +316,14 @@ def mostrarTodosDatos(tipoDato):  # Diccionario de diccionarios
 
 
 def cascada(nombreOriginal, nombre):
-    datos = mostrarTodosDatos(
-        "AC_")  # Te mando la categoria para que me devuelvas un diccionario con diccionarios que contengan los datos de una pieza
+    '''
+    Metodo que refleja las modificaciones de piezas y armas en el AC
+    :param nombreOriginal: String del nombre original de la pieza o arma
+    :param nombre: String nombre actual de la pieza o arma
+    '''
+    # Te mando la categoria para que me devuelvas un diccionario con diccionarios que contengan los datos de una pieza
+    datos = mostrarTodosDatos("AC_")
+    #Se busca en cada campo de cada diccionario si el nombre existe y si lo hace lo sobrescribe con el actual
     for x in datos:
         for campo in datos[x]:
             if (datos[x][campo] == nombreOriginal):
@@ -310,19 +355,20 @@ def sumaDatosAC(listaCampos, tipoComponente, nombreAC, tipoDato):
             valor = 0
     return valor
 
-
+#Metodo deprecado y sin implementar por falta de tiempo. Sin testear en versiones recientes del codigo tras grandes cambios estructurales
+'''
 def mostrarTodosFiltro(tipoDato, campo, valor, rango):  # Diccionario de diccionarios
-    '''
-    Metodo que busca todas las instancias de datos con los parametros elegidos.
-    Si los parametros elegidos no son correctos se devuelve none
-    tipoDato: String con el tipo de dato a buscar, se le puede concatenar caracteres
-    del nombre del dato para una busqueda por nombre mas exhaustiva
-    campo: String del parametro del dato por el que se desea filtrar
-    valor: String del valor por el que se desea filtrar. En el caso de buscar por nombre
-    se puede hacer busqueda parcial terminando con un *
-    rango: String con "=", "<", o ">" para hacer que busque por mayor que, menor que o igual.
-    El caso de que se quiera buscar un campo con letras solo "=" sera valido
-    '''
+    
+    #Metodo que busca todas las instancias de datos con los parametros elegidos.
+    #Si los parametros elegidos no son correctos se devuelve none
+    #tipoDato: String con el tipo de dato a buscar, se le puede concatenar caracteres
+    #del nombre del dato para una busqueda por nombre mas exhaustiva
+    #campo: String del parametro del dato por el que se desea filtrar
+    #valor: String del valor por el que se desea filtrar. En el caso de buscar por nombre
+    #se puede hacer busqueda parcial terminando con un *
+    #rango: String con "=", "<", o ">" para hacer que busque por mayor que, menor que o igual.
+    #El caso de que se quiera buscar un campo con letras solo "=" sera valido
+    
     # Se crea el diccionario en el que se van a guardar los datos
     datosAux = {}
 
@@ -347,3 +393,4 @@ def mostrarTodosFiltro(tipoDato, campo, valor, rango):  # Diccionario de diccion
             return None
 
     return datosAux
+    '''

@@ -6,6 +6,10 @@ class GestionPieza(iGestores.iGestores):
 
     @staticmethod
     def alta():
+        '''
+        Metodo que da de alta una pieza en la base de datos
+        '''
+        #Se definen variables que se van a comprobar mas adelante
         nombre = None
         tipoPieza = None
         armadura = None
@@ -13,7 +17,9 @@ class GestionPieza(iGestores.iGestores):
         peso = None
         precio = None
         pieza=None
+
         print(Utiles.bcolors.Green+5*"-"+"ALTA"+"-"*5+Utiles.bcolors.White)
+        #Se comprueba que el campo introducido es un campo valido y si lo es comprobamos si existe. Si no existe se continua
         nombre = Utiles.check_campo("nombre", 25)
         if nombre is not None:
             piezaAux = GestorBBDD.buscarDatoPorClave("Pieza_" + nombre)  # Comprobamos si ya existe un arma con ese nombre
@@ -43,6 +49,7 @@ class GestionPieza(iGestores.iGestores):
             print("Pieza creada.")
         else:
             print("Fallo en la creacion de la pieza.")
+
     @staticmethod
     def menuTipoPieza():
         opcion = None
@@ -111,7 +118,7 @@ class GestionPieza(iGestores.iGestores):
                   "\n3.Consumo de energia.\n4.Peso."
                   "\n5.Precio."
                   "\n0.Salir."+Utiles.bcolors.White)
-            opcion = Utiles.check_numeros("Opcion", 25)
+            opcion = Utiles.check_numerosMenu("Opcion", 25)
             if (opcion == "1"):
                 nombre = Utiles.check_campo("nombre", 25)
                 if nombre is not None:

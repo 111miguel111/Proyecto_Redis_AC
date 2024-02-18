@@ -3,6 +3,9 @@ from abc import ABCMeta
 
 
 class iGestores(metaclass=ABCMeta):
+    '''
+    Clase interfaz encargada de permitir que se puedan llamar a los "mismas" funciones desde el menu
+    '''
     @staticmethod
     @abstractmethod
     def alta():

@@ -1,5 +1,8 @@
 
 class bcolors:
+    '''
+    Clase que nos permite printear con colores en python
+    '''
     NC = '\033[0m'  # No Color, reset all
 
     Bold = '\033[1m'
@@ -50,6 +53,7 @@ class bcolors:
 def confirmacion(contexto):
     '''
     Metodo para confirmar si se quiere confirmar una operacion
+    contexto: informcacion sobre el campo
     :return Devuelve un un boolean. El valor sera True si escribe 'si' y False si escribe 'no'
     '''
     cont = 0
@@ -69,7 +73,8 @@ def confirmacion(contexto):
     return False
 def confirmacionArmaHombro(contexto):
     '''
-    Metodo para confirmar si se quiere confirmar una operacion
+    Metodo para confirmar si se quiere confirmar una operacion en este caso que un arma sea de hombro o no
+    contexto: informcacion sobre el campo
     :return Devuelve un un boolean. El valor sera True si escribe 'si' y False si escribe 'no'
     '''
     cont = 0
